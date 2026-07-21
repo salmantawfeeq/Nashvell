@@ -1,11 +1,6 @@
-/* ============================================================
-   NASHVELL INTERNATIONAL TRADING CO. LTD.
-   Main JavaScript — Premium Corporate Website
-   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ── Preloader ── */
   const preloader = document.getElementById('preloader');
   if (preloader) {
     window.addEventListener('load', () => {
@@ -14,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(() => preloader.classList.add('hidden'), 2500);
   }
 
-  /* ── AOS Init ── */
   if (typeof AOS !== 'undefined') {
     AOS.init({
       duration: 800,
@@ -24,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Navbar scroll behavior ── */
   const mainNav = document.getElementById('mainNav');
   if (mainNav) {
     const onScroll = () => {
@@ -38,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
     onScroll();
   }
 
-  /* ── Active nav link ── */
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('#mainNav .nav-link').forEach(link => {
     const href = link.getAttribute('href');
@@ -47,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* ── Auto-close mobile/tablet navbar on item click ── */
   const navMenu = document.getElementById('navMenu');
   if (navMenu) {
     const closeNavMenu = () => {
@@ -61,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Scroll-to-top button ── */
   const scrollTop = document.getElementById('scrollTop');
   if (scrollTop) {
     window.addEventListener('scroll', () => {
@@ -72,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Counter animation ── */
   function animateCounter(el) {
     const target = parseInt(el.getAttribute('data-target'), 10);
     const suffix = el.getAttribute('data-suffix') || '';
@@ -103,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function () {
     counters.forEach(c => observer.observe(c));
   }
 
-  /* ── Ripple effect ── */
   document.querySelectorAll('.btn-ripple').forEach(btn => {
     btn.addEventListener('click', function (e) {
       const rect = this.getBoundingClientRect();
@@ -117,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ── Lightbox ── */
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
 
@@ -143,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   }
 
-  /* ── Contact form ── */
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
@@ -165,7 +151,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Newsletter form ── */
   document.querySelectorAll('.newsletter-form').forEach(form => {
     form.addEventListener('submit', e => {
       e.preventDefault();
@@ -178,7 +163,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ── Smooth scroll for anchor links ── */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
@@ -191,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ── Video modal ── */
   const videoPlayBtn = document.getElementById('videoPlayBtn');
   if (videoPlayBtn) {
     const VIDEO_CLIP_SECONDS = 18;
@@ -214,7 +197,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ── Product filter tabs ── */
   document.querySelectorAll('.filter-tab').forEach(tab => {
     tab.addEventListener('click', function () {
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
