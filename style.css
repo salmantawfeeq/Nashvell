@@ -24,7 +24,11 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+}
 
 body {
   font-family: 'Cairo', sans-serif;
@@ -32,6 +36,7 @@ body {
   background: var(--white);
   line-height: 1.7;
   overflow-x: hidden;
+  width: 100%;
 }
 
 img { max-width: 100%; height: auto; }
@@ -168,6 +173,9 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
   transition: var(--transition);
   z-index: 1050;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 #mainNav.scrolled {
@@ -551,6 +559,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .products-section { padding: 0; }
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .products-section > .row > div:last-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
 
 .product-card {
   position: relative;
@@ -1578,7 +1593,37 @@ h1, h2, h3, h4, h5, h6 {
   .hero-left { padding: 100px 20px 60px 0; }
 }
 
-@media (max-width: 1199.98px) {
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .footer-top .row > div:last-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero-stats .row > div:last-child,
+  .values-bar .row > div:last-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-stats .row > div:nth-child(4),
+  .hero-stats .row > div:nth-child(5) {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .about-stats-row > div:last-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1399.98px) {
   #mainNav .navbar-collapse {
     background: var(--primary);
     padding: 18px 20px;
@@ -1634,6 +1679,11 @@ h1, h2, h3, h4, h5, h6 {
 
 [data-aos] { pointer-events: none; }
 [data-aos].aos-animate { pointer-events: auto; }
+
+@media (hover: none) {
+  .product-btn { opacity: 1; transform: translateY(0); }
+  .gallery-overlay { opacity: 1; }
+}
 
 #scrollTop {
   position: fixed;
