@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — Nashvell International Trading Co. Ltd.</title>
+  <meta name="description" content="Explore our premium Sudanese products: agricultural products, natural oils, livestock, mining, and industrial products exported worldwide." />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="./photo/logo.png" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+
+  <div id="preloader"><div class="loader-ring"></div></div>
+
+  <!-- NAVBAR -->
+  <nav id="mainNav" class="navbar navbar-expand-xl fixed-top">
+    <div class="container-fluid px-4 px-xl-5">
+      <a class="navbar-brand" href="index.html">
+        <div class="brand-icon">
+          <img src="./photo/logo.png" alt="Nashvell Logo" class="brand-logo" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">NASHVELL</span>
+          <span class="brand-tagline" data-i18n-key="brand_tagline">International Trading Co. Ltd.</span>
+        </div>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+        <i class="bi bi-list text-white fs-2"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n-key="nav_home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n-key="nav_about">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="products.html" data-i18n-key="nav_products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="technology.html" data-i18n-key="nav_technology">Technology</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html" data-i18n-key="nav_projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="investment.html" data-i18n-key="nav_investment">Investment</a></li>
+          <li class="nav-item"><a class="nav-link" href="logistics.html" data-i18n-key="nav_logistics">Logistics</a></li>
+          <li class="nav-item"><a class="nav-link" href="media.html" data-i18n-key="nav_media">Media Center</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html" data-i18n-key="nav_gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n-key="nav_contact">Contact</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0">
+          <button type="button" class="lang-btn" id="lang-ar-btn">العربية</button>
+          <button type="button" class="lang-btn" id="lang-en-btn" style="display: none;">English</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <div class="page-hero-content">
+      <div class="container-fluid px-4 px-xl-5">
+        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-aos="fade-down" data-i18n-key="prod_hero_tag">What We Offer</p>
+        <h1 class="page-hero-title" data-aos="fade-up" data-aos-delay="80" data-i18n-key="prod_hero_title">Our Products</h1>
+        <p class="page-hero-sub" data-aos="fade-up" data-aos-delay="120" data-i18n-key="prod_hero_sub">Premium Sudanese products exported to over 25 countries worldwide.</p>
+        <div class="breadcrumb-custom" data-aos="fade-up" data-aos-delay="160">
+          <a href="index.html" data-i18n-key="nav_home">Home</a>
+          <span><i class="bi bi-chevron-right" style="font-size:0.7rem;"></i></span>
+          <span class="current" data-i18n-key="nav_products">Products</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS GRID -->
+  <section class="section-pad">
+    <div class="container-fluid px-4 px-xl-5">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="prod_catalog_tag">Our Catalog</p>
+        <h2 class="section-title" data-i18n-key="prod_catalog_title">Explore Our Products</h2>
+        <div class="gold-divider center"></div>
+        <p class="section-subtitle mx-auto" data-i18n-key="prod_catalog_sub">From Sudan's fertile lands to the world's markets — quality you can trust.</p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs" data-aos="fade-up" data-aos-delay="100">
+        <button class="filter-tab active" data-filter="all" data-i18n-key="prod_filter_all">All Products</button>
+        <button class="filter-tab" data-filter="agri" data-i18n-key="prod_filter_agri">Agricultural</button>
+        <button class="filter-tab" data-filter="oils" data-i18n-key="prod_filter_oils">Natural Oils</button>
+        <button class="filter-tab" data-filter="live" data-i18n-key="prod_filter_live">Livestock</button>
+        <button class="filter-tab" data-filter="mine" data-i18n-key="prod_filter_mine">Mining</button>
+        <button class="filter-tab" data-filter="indu" data-i18n-key="prod_filter_indu">Industrial</button>
+      </div>
+
+      <div class="row g-4">
+        <!-- Agricultural -->
+        <div class="col-md-6 col-lg-4" data-category="agri" data-aos="fade-up" data-aos-delay="0">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/بذور السمسم.jpg" alt="Sesame Seeds" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_agri">Agricultural</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item1_title">Sesame Seeds</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item1_desc">Premium white and golden sesame seeds sourced from Sudan's fertile regions, rich in oil content and flavor.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="agri" data-aos="fade-up" data-aos-delay="80">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/كركدية.jpg" alt="Hibiscus" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_agri">Agricultural</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item2_title">Hibiscus (Karkade)</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item2_desc">High-quality dried hibiscus flowers, known for vibrant color and health benefits, exported globally.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="agri" data-aos="fade-up" data-aos-delay="160">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/فول سوداني.jpg" alt="Peanuts" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_agri">Agricultural</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item3_title">Peanuts</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item3_desc">Carefully selected peanuts from Sudan's agricultural heartlands, meeting international quality standards.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Natural Oils -->
+        <div class="col-md-6 col-lg-4" data-category="oils" data-aos="fade-up" data-aos-delay="0">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/زيت السمسم.jpg" alt="Sesame Oil" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_oils">Natural Oils</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item4_title">Sesame Oil</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item4_desc">Cold-pressed premium sesame oil, rich in nutrients and ideal for culinary and cosmetic applications.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="oils" data-aos="fade-up" data-aos-delay="80">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/الصمغ العربي.jpg" alt="Gum Arabic" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_oils">Natural Oils</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item5_title">Gum Arabic</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item5_desc">Premium grade gum arabic (hashab and talha), Sudan's finest natural export used in industries worldwide.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="oils" data-aos="fade-up" data-aos-delay="160">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/زبدةة الشيا.jpg" alt="Shea Butter" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_oils">Natural Oils</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item6_title">Shea Butter</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item6_desc">Unrefined organic shea butter, prized in cosmetics and skincare for its nourishing properties.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Livestock -->
+        <div class="col-md-6 col-lg-4" data-category="live" data-aos="fade-up" data-aos-delay="0">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/ابقار.jpg" alt="Cattle" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_live">Livestock</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item7_title">Cattle Export</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item7_desc">Healthy, well-nourished cattle raised on Sudan's natural pastures, meeting halal and export standards.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="live" data-aos="fade-up" data-aos-delay="80">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/اغنام ومعاز.jpg" alt="Sheep" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_live">Livestock</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item8_title">Sheep &amp; Goats</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item8_desc">High-quality sheep and goats for export, raised in optimal conditions with veterinary certification.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="live" data-aos="fade-up" data-aos-delay="160">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/جمال.jpg" alt="Camels" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_live">Livestock</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item9_title">Camels</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item9_desc">Premium camels for export to Gulf and international markets, known for strength and quality.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mining -->
+        <div class="col-md-6 col-lg-4" data-category="mine" data-aos="fade-up" data-aos-delay="0">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/الذهب.jpg" alt="Gold" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_mine">Mining</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item10_title">Gold</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item10_desc">Ethically-sourced gold from Sudan's rich mining regions, refined and certified for international trade.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="mine" data-aos="fade-up" data-aos-delay="80">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/الكروميت.jpg" alt="Chromite" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_mine">Mining</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item11_title">Chromite</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item11_desc">High-grade chromite ore for industrial applications, meeting strict metallurgical specifications.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="mine" data-aos="fade-up" data-aos-delay="160">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/خام النحاس.jpg" alt="Copper" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_mine">Mining</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item12_title">Copper Ore</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item12_desc">Premium copper ore extracted from Sudan's mineral-rich deposits, ready for industrial processing.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Industrial -->
+        <div class="col-md-6 col-lg-4" data-category="indu" data-aos="fade-up" data-aos-delay="0">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/مواد البناء.jpg" alt="Cement" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_indu">Industrial</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item13_title">Construction Materials</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item13_desc">High-quality cement, aggregates and construction materials for regional infrastructure projects.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="indu" data-aos="fade-up" data-aos-delay="80">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/المعدات الصناعية.jpg" alt="Equipment" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_indu">Industrial</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item14_title">Industrial Equipment</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item14_desc">Heavy machinery and industrial equipment supplied to sectors across construction and manufacturing.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-category="indu" data-aos="fade-up" data-aos-delay="160">
+          <div class="product-page-card">
+            <div class="product-page-card-img">
+              <img src="./photo/منتجات النسيج.jpg" alt="Textiles" />
+            </div>
+            <div class="product-page-card-body">
+              <div class="product-page-card-cat" data-i18n-key="prod_cat_indu">Industrial</div>
+              <h3 class="product-page-card-title" data-i18n-key="prod_item15_title">Textile Products</h3>
+              <p class="product-page-card-desc" data-i18n-key="prod_item15_desc">Cotton and textile products manufactured to international standards for global fashion and industry.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad-sm bg-primary-dark">
+    <div class="container-fluid px-4 px-xl-5 text-center">
+      <h2 class="section-title text-white mb-3" data-aos="fade-up" data-i18n-key="prod_cta_title">Interested in Our Products?</h2>
+      <p style="color:rgba(255,255,255,0.6);max-width:600px;margin:0 auto 24px;" data-aos="fade-up" data-aos-delay="80" data-i18n-key="prod_cta_desc">
+        Contact our team to discuss your requirements, request samples or get a customized quote.
+      </p>
+      <a href="contact.html" class="btn-gold btn-ripple d-inline-block" data-aos="zoom-in" data-aos-delay="160">
+        <i class="bi bi-telephone me-2"></i><span data-i18n-key="prod_cta_btn">Contact Us Today</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container-fluid px-4 px-xl-5">
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-brand">
+              <a href="index.html" class="navbar-brand mb-3 d-inline-flex">
+                <div class="brand-icon">
+                  <img src="./photo/logo.png" alt="Nashvell Logo" class="brand-logo" />
+                </div>
+                <div class="brand-text ms-2">
+                  <span class="brand-name">NASHVELL</span>
+                  <span class="brand-tagline" data-i18n-key="brand_tagline">International Trading Co. Ltd.</span>
+                </div>
+              </a>
+              <p data-i18n-key="footer_desc">A leading international trading company connecting Sudan to the world through premium products, technology and strategic investments since 1994.</p>
+              <div class="social-links">
+                <a href="https://wa.me/966504415254" class="social-link" title="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i></a>
+                <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="social-link" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-heading" data-i18n-key="footer_title_links">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="index.html" data-i18n-key="nav_home">Home</a></li>
+              <li><a href="about.html" data-i18n-key="nav_about">About Us</a></li>
+              <li><a href="products.html" data-i18n-key="nav_products">Products</a></li>
+              <li><a href="technology.html" data-i18n-key="nav_technology">Technology</a></li>
+              <li><a href="projects.html" data-i18n-key="nav_projects">Projects</a></li>
+              <li><a href="investment.html" data-i18n-key="nav_investment">Investment</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-heading" data-i18n-key="nav_products">Products</h5>
+            <ul class="footer-links">
+              <li><a href="products.html" data-i18n-key="product_title_agri">Agricultural Products</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_oils">Natural Oils</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_livestock">Livestock</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_mining">Mining &amp; Minerals</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_industrial">Industrial Products</a></li>
+              <li><a href="logistics.html" data-i18n-key="nav_logistics">Logistics</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-heading" data-i18n-key="nav_technology">Technology</h5>
+            <ul class="footer-links">
+              <li><a href="technology.html" data-i18n-key="tech_card_title_erp">ERP Systems</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_web">Web Development</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_mobile">Mobile Apps</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_ai">AI Solutions</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_security">Cyber Security</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_cloud">Cloud Solutions</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-heading" data-i18n-key="footer_title_newsletter">Newsletter</h5>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-bottom:14px;" data-i18n-key="footer_newsletter_desc">Subscribe to receive our latest news and updates.</p>
+            <form class="newsletter-form" onsubmit="return false;">
+              <input type="email" class="newsletter-input" placeholder="Your email address" data-i18n-key="footer_placeholder_newsletter" />
+              <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="bi bi-send-fill"></i></button>
+            </form>
+            <div class="mt-4">
+              <div class="contact-item" style="border:none;padding:6px 0;">
+                <div style="color:var(--gold);font-size:0.82rem;" data-i18n-key="contact_office_ksa"><i class="bi bi-geo-alt me-2"></i>Kingdom of Saudi Arabia</div>
+              </div>
+              <div class="contact-item" style="border:none;padding:6px 0;">
+                <div style="color:rgba(255,255,255,0.55);font-size:0.82rem;" data-i18n-key="contact_phone_ksa"><i class="bi bi-telephone me-2" style="color:var(--gold);"></i>+966 50 441 5254</div>
+              </div>
+              <div class="contact-item" style="border:none;padding:6px 0;">
+                <div style="color:rgba(255,255,255,0.55);font-size:0.82rem;" data-i18n-key="contact_email_main"><i class="bi bi-envelope me-2" style="color:var(--gold);"></i>info@nashvell.com</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container-fluid px-4 px-xl-5">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <p class="footer-copyright" data-i18n-key="footer_copyright">&copy; 2024 Nashvell International Trading Co. Ltd. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end mt-2 mt-md-0">
+            <p class="footer-copyright" data-i18n-key="footer_design">Designed with precision &mdash; <span style="color:var(--gold);">Excellence in Every Detail</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" id="scrollTop" aria-label="Back to top"><i class="bi bi-chevron-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="./main.js"></script>
+  <script src="translate.js"></script>
+</body>
+</html>
