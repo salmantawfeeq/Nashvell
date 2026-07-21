@@ -17,7 +17,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="icon" type="image/png" href="./photo/logo.png" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
 
@@ -29,33 +30,38 @@
   <!-- ═══════════════════ NAVBAR ═══════════════════ -->
   <nav id="mainNav" class="navbar navbar-expand-xl fixed-top">
     <div class="container-fluid px-4 px-xl-5">
-      <a class="navbar-brand" href="/">
-        <div class="brand-icon">N</div>
+      <a class="navbar-brand" href="index.html">
+        <div class="brand-icon">
+          <img src="./photo/logo.png" alt="Nashvell Logo" class="brand-logo" />
+        </div>
         <div class="brand-text">
+
           <span class="brand-name">NASHVELL</span>
           <span class="brand-tagline">International Trading Co. Ltd.</span>
         </div>
       </a>
 
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-        <i class="bi bi-list text-white fs-2"></i>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+        <span class="visually-hidden">Toggle navigation</span>
+        <i class="bi bi-list text-white fs-2" aria-hidden="true"></i>
       </button>
 
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav mx-auto gap-1">
-          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/products.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/technology.html">Technology</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/investment.html">Investment</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/logistics.html">Logistics</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/media.html">Media Center</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/gallery.html">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="/pages/contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.html" data-i18n-key="nav_home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n-key="nav_about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html" data-i18n-key="nav_products">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="technology.html" data-i18n-key="nav_technology">Technology</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html" data-i18n-key="nav_projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="investment.html" data-i18n-key="nav_investment">Investment</a></li>
+          <li class="nav-item"><a class="nav-link" href="logistics.html" data-i18n-key="nav_logistics">Logistics</a></li>
+          <li class="nav-item"><a class="nav-link" href="media.html" data-i18n-key="nav_media">Media Center</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html" data-i18n-key="nav_gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n-key="nav_contact">Contact</a></li>
         </ul>
         <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0">
-          <button class="lang-btn" id="langToggle">AR</button>
+          <button type="button" class="lang-btn" id="lang-ar-btn">العربية</button>
+          <button type="button" class="lang-btn" id="lang-en-btn" style="display: none;">English</button>
         </div>
       </div>
     </div>
@@ -73,27 +79,25 @@
           <!-- Left Content -->
           <div class="col-xl-5 col-lg-6 px-4 px-xl-5">
             <div class="hero-left">
-              <div class="hero-badge" data-aos="fade-down">
+              <div class="hero-badge" data-aos="fade-down" data-i18n-key="hero_badge">
                 <i class="bi bi-globe2"></i>
-                Est. 1994 — Khartoum, Sudan
+                Premium Corporate Solutions
               </div>
-              <h1 class="hero-heading-ar" data-aos="fade-right" data-aos-delay="100">
-                نربط السودان بالعالم
+              <h1 class="hero-heading-ar" data-aos="fade-right" data-aos-delay="100" data-i18n-key="hero_title">
+                Pioneers in Trade and Innovative Investments
               </h1>
-              <p class="hero-sub-ar" data-aos="fade-right" data-aos-delay="150">
-                تجارة &mdash; تقنية &mdash; إستثمار
+              <p class="hero-sub-ar" data-aos="fade-right" data-aos-delay="150" data-i18n-key="hero_subtitle">
+                Your Strategic Partner for Global Success
               </p>
-              <p class="hero-desc" data-aos="fade-right" data-aos-delay="200">
-                We deliver premium Sudanese products of the highest quality,
-                comprehensive technology solutions, and successful investment
-                partnerships across global markets.
+              <p class="hero-desc" data-aos="fade-right" data-aos-delay="200" data-i18n-key="hero_desc">
+                We provide integrated solutions in international trade, logistics, and strategic investments, leveraging the latest technologies to achieve growth and excellence for our partners.
               </p>
               <div class="hero-actions" data-aos="fade-up" data-aos-delay="280">
-                <a href="/pages/products.html" class="btn-gold btn-ripple d-inline-block">
-                  <i class="bi bi-grid me-2"></i>Explore Products
+                <a href="products.html" class="btn-gold btn-ripple d-inline-block">
+                  <i class="bi bi-grid me-2"></i><span data-i18n-key="hero_btn_main">Discover Our Services</span>
                 </a>
-                <a href="/pages/contact.html" class="btn-outline-gold d-inline-block">
-                  <i class="bi bi-telephone me-2"></i>Contact Us
+                <a href="contact.html" class="btn-outline-gold d-inline-block">
+                  <i class="bi bi-telephone me-2"></i><span data-i18n-key="hero_btn_outline">Contact Us</span>
                 </a>
               </div>
             </div>
@@ -101,112 +105,110 @@
 
           <!-- Center Image -->
           <div class="col-xl-4 col-lg-6 d-none d-lg-flex align-items-end justify-content-center pb-5">
-            <img
-              src="/images/hero/20260716_121420000_iOS.jpg"
-              alt="Global Trade Network"
-              class="hero-main-image"
+            <div
+              aria-label="Global Trade Network"
               data-aos="zoom-in"
               data-aos-delay="200"
-            />
+            ></div>
           </div>
 
           <!-- Right Panel -->
           <div class="col-xl-3 d-none d-xl-flex flex-column">
             <div class="hero-right h-100">
-              <h2 class="hero-right-title" data-aos="fade-left">حلول تقنية متكاملة</h2>
-              <p class="hero-right-sub" data-aos="fade-left" data-aos-delay="80">
-                نبتكر اليوم لنصنع مستقبل أعمالك
+              <h2 class="hero-right-title" data-aos="fade-left" data-i18n-key="hero_right_title">Our Core Technologies</h2>
+              <p class="hero-right-sub" data-aos="fade-left" data-aos-delay="80" data-i18n-key="hero_right_sub">
+                Driving innovation in every sector.
               </p>
-              <a href="/pages/technology.html" class="hero-right-btn d-inline-block" data-aos="fade-left" data-aos-delay="120">
-                تعرف على خدماتنا <i class="bi bi-arrow-left ms-2"></i>
+              <a href="technology.html" class="hero-right-btn d-inline-block" data-aos="fade-left" data-aos-delay="120">
+                <span data-i18n-key="hero_right_btn">Explore Technology</span> <i class="bi bi-arrow-left ms-2"></i>
               </a>
 
               <div class="tech-icons-grid" data-aos="fade-up" data-aos-delay="180">
-                <a href="/pages/technology.html" class="tech-icon-item">
-                  <i class="bi bi-code-slash"></i>
-                  <span>تطوير الأنظمة</span>
+                <a href="technology.html" class="tech-icon-item">
+                  <i class="bi bi-truck"></i>
+                  <span data-i18n-key="tech_icon_supply">Supply Chain</span>
                 </a>
-                <a href="/pages/technology.html" class="tech-icon-item">
-                  <i class="bi bi-phone"></i>
-                  <span>تطبيقات الجوال</span>
+                <a href="technology.html" class="tech-icon-item">
+                  <i class="bi bi-bar-chart-line"></i>
+                  <span data-i18n-key="tech_icon_data">Data Analysis</span>
                 </a>
-                <a href="/pages/technology.html" class="tech-icon-item">
-                  <i class="bi bi-display"></i>
-                  <span>تصميم المواقع</span>
+                <a href="technology.html" class="tech-icon-item">
+                  <i class="bi bi-cpu"></i>
+                  <span data-i18n-key="tech_icon_automation">Automation</span>
                 </a>
-                <a href="/pages/technology.html" class="tech-icon-item">
-                  <i class="bi bi-robot"></i>
-                  <span>الذكاء الاصطناعي</span>
-                </a>
-                <a href="/pages/technology.html" class="tech-icon-item">
+                <a href="technology.html" class="tech-icon-item">
                   <i class="bi bi-shield-lock"></i>
-                  <span>الأمن السيبراني</span>
+                  <span data-i18n-key="tech_icon_security">Cybersecurity</span>
                 </a>
-                <a href="/pages/technology.html" class="tech-icon-item">
+                <a href="technology.html" class="tech-icon-item">
                   <i class="bi bi-cloud"></i>
-                  <span>الحوسبة السحابية</span>
+                  <span data-i18n-key="tech_icon_cloud">Cloud Services</span>
+                </a>
+                <a href="technology.html" class="tech-icon-item">
+                  <i class="bi bi-hdd-network"></i>
+                  <span data-i18n-key="tech_icon_iot">IoT</span>
                 </a>
               </div>
             </div>
           </div>
 
-        </div>
-      </div>
-    </div>
-
-    <!-- Stats Bar -->
-    <div class="hero-stats">
-      <div class="container-fluid px-4 px-xl-5">
-        <div class="row g-0">
-          <div class="col-6 col-md-4 col-lg">
-            <div class="stat-item">
-              <div class="stat-icon"><i class="bi bi-award"></i></div>
-              <div class="stat-info">
-                <span class="stat-number counter-num" data-target="30" data-suffix="+">30+</span>
-                <span class="stat-label">Years of Experience</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg">
-            <div class="stat-item">
-              <div class="stat-icon"><i class="bi bi-globe2"></i></div>
-              <div class="stat-info">
-                <span class="stat-number counter-num" data-target="25" data-suffix="+">25+</span>
-                <span class="stat-label">Countries Worldwide</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg">
-            <div class="stat-item">
-              <div class="stat-icon"><i class="bi bi-box-seam"></i></div>
-              <div class="stat-info">
-                <span class="stat-number counter-num" data-target="200" data-suffix="+">200+</span>
-                <span class="stat-label">Sudanese Products</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg">
-            <div class="stat-item">
-              <div class="stat-icon"><i class="bi bi-people"></i></div>
-              <div class="stat-info">
-                <span class="stat-number counter-num" data-target="500" data-suffix="+">500+</span>
-                <span class="stat-label">Clients &amp; Partners</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-4 col-lg">
-            <div class="stat-item">
-              <div class="stat-icon"><i class="bi bi-check2-circle"></i></div>
-              <div class="stat-info">
-                <span class="stat-number counter-num" data-target="100" data-suffix="+">100+</span>
-                <span class="stat-label">Completed Projects</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Stats Bar -->
+  <div class="hero-stats">
+    <div class="container-fluid px-4 px-xl-5">
+      <div class="row g-0">
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-item">
+            <div class="stat-icon"><i class="bi bi-award"></i></div>
+            <div class="stat-info">
+              <span class="stat-number counter-num" data-target="30" data-suffix="+">30+</span>
+              <span class="stat-label" data-i18n-key="stat_experience">Years of Experience</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-item">
+            <div class="stat-icon"><i class="bi bi-check2-circle"></i></div>
+            <div class="stat-info">
+              <span class="stat-number counter-num" data-target="100" data-suffix="+">100+</span>
+              <span class="stat-label" data-i18n-key="stat_projects">Completed Projects</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-item">
+            <div class="stat-icon"><i class="bi bi-people"></i></div>
+            <div class="stat-info">
+              <span class="stat-number counter-num" data-target="500" data-suffix="+">500+</span>
+              <span class="stat-label" data-i18n-key="stat_clients">Satisfied Clients</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-item">
+            <div class="stat-icon"><i class="bi bi-globe2"></i></div>
+            <div class="stat-info">
+              <span class="stat-number counter-num" data-target="25" data-suffix="+">25+</span>
+              <span class="stat-label" data-i18n-key="stat_countries">Countries Worldwide</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg">
+          <div class="stat-item">
+            <div class="stat-icon"><i class="bi bi-box-seam"></i></div>
+            <div class="stat-info">
+              <span class="stat-number counter-num" data-target="200" data-suffix="+">200+</span>
+              <span class="stat-label" data-i18n-key="stat_products">Sudanese Products</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ═══════════════════ PRODUCTS GRID ═══════════════════ -->
   <section class="products-section">
@@ -215,10 +217,10 @@
         <div class="product-card">
           <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Agricultural Products" />
           <div class="product-overlay">
-            <span class="product-label">Export</span>
-            <div class="product-title">المنتجات الزراعية</div>
-            <div class="product-desc">Agricultural Products — Sesame, Peanuts, Hibiscus &amp; more</div>
-            <a href="/pages/products.html" class="product-btn">Explore <i class="bi bi-arrow-right"></i></a>
+            <span class="product-label" data-i18n-key="product_cat_export">Export</span>
+            <div class="product-title" data-i18n-key="product_title_agri">Agricultural Products</div>
+            <div class="product-desc" data-i18n-key="product_desc_agri">Sesame, Peanuts, Hibiscus &amp; more</div>
+            <a href="products.html" class="product-btn"><span data-i18n-key="product_btn_explore">Explore</span> <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -226,10 +228,10 @@
         <div class="product-card">
           <img src="https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Natural Oils" />
           <div class="product-overlay">
-            <span class="product-label">Premium</span>
-            <div class="product-title">الزيوت الطبيعية</div>
-            <div class="product-desc">Natural Oils — Sesame Oil, Gum Arabic, Shea Butter</div>
-            <a href="/pages/products.html" class="product-btn">Explore <i class="bi bi-arrow-right"></i></a>
+            <span class="product-label" data-i18n-key="product_cat_premium">Premium</span>
+            <div class="product-title" data-i18n-key="product_title_oils">Natural Oils</div>
+            <div class="product-desc" data-i18n-key="product_desc_oils">Sesame Oil, Gum Arabic, Shea Butter</div>
+            <a href="products.html" class="product-btn"><span data-i18n-key="product_btn_explore">Explore</span> <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -237,10 +239,10 @@
         <div class="product-card">
           <img src="https://images.pexels.com/photos/422218/pexels-photo-422218.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Livestock" />
           <div class="product-overlay">
-            <span class="product-label">Live Export</span>
-            <div class="product-title">الثروة الحيوانية</div>
-            <div class="product-desc">Livestock — Cattle, Sheep, Camels &amp; Goats</div>
-            <a href="/pages/products.html" class="product-btn">Explore <i class="bi bi-arrow-right"></i></a>
+            <span class="product-label" data-i18n-key="product_cat_live">Live Export</span>
+            <div class="product-title" data-i18n-key="product_title_livestock">Livestock</div>
+            <div class="product-desc" data-i18n-key="product_desc_livestock">Cattle, Sheep, Camels &amp; Goats</div>
+            <a href="products.html" class="product-btn"><span data-i18n-key="product_btn_explore">Explore</span> <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -248,10 +250,10 @@
         <div class="product-card">
           <img src="https://images.pexels.com/photos/1078884/pexels-photo-1078884.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mining" />
           <div class="product-overlay">
-            <span class="product-label">Mining</span>
-            <div class="product-title">التعدين والمعادن</div>
-            <div class="product-desc">Mining &amp; Minerals — Gold, Chromite, Copper</div>
-            <a href="/pages/products.html" class="product-btn">Explore <i class="bi bi-arrow-right"></i></a>
+            <span class="product-label" data-i18n-key="product_cat_mining">Mining</span>
+            <div class="product-title" data-i18n-key="product_title_mining">Mining &amp; Minerals</div>
+            <div class="product-desc" data-i18n-key="product_desc_mining">Gold, Chromite, Copper</div>
+            <a href="products.html" class="product-btn"><span data-i18n-key="product_btn_explore">Explore</span> <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -259,10 +261,10 @@
         <div class="product-card">
           <img src="https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Industrial Products" />
           <div class="product-overlay">
-            <span class="product-label">Industrial</span>
-            <div class="product-title">منتجات صناعية</div>
-            <div class="product-desc">Industrial Products — Construction Materials, Equipment</div>
-            <a href="/pages/products.html" class="product-btn">Explore <i class="bi bi-arrow-right"></i></a>
+            <span class="product-label" data-i18n-key="product_cat_industrial">Industrial</span>
+            <div class="product-title" data-i18n-key="product_title_industrial">Industrial Products</div>
+            <div class="product-desc" data-i18n-key="product_desc_industrial">Construction Materials, Equipment</div>
+            <a href="products.html" class="product-btn"><span data-i18n-key="product_btn_explore">Explore</span> <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
       </div>
@@ -278,16 +280,16 @@
           <img src="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Logistics" />
           <div class="service-panel-overlay"></div>
           <div class="service-panel-content">
-            <h3 class="service-panel-title">الخدمات اللوجستية</h3>
+            <h3 class="service-panel-title" data-i18n-key="service_title_logistics">Logistics Services</h3>
             <ul class="service-list">
-              <li><i class="bi bi-truck"></i> شحن بري</li>
-              <li><i class="bi bi-airplane"></i> شحن جوي</li>
-              <li><i class="bi bi-file-earmark-check"></i> التخليص الجمركي</li>
-              <li><i class="bi bi-building"></i> التخزين والتوزيع</li>
-              <li><i class="bi bi-geo-alt"></i> تتبع الشحنات</li>
+              <li><i class="bi bi-truck"></i> <span data-i18n-key="service_item_road">Road Freight</span></li>
+              <li><i class="bi bi-airplane"></i> <span data-i18n-key="service_item_air">Air Freight</span></li>
+              <li><i class="bi bi-file-earmark-check"></i> <span data-i18n-key="service_item_customs">Customs Clearance</span></li>
+              <li><i class="bi bi-building"></i> <span data-i18n-key="service_item_warehousing">Warehousing &amp; Distribution</span></li>
+              <li><i class="bi bi-geo-alt"></i> <span data-i18n-key="service_item_tracking">Shipment Tracking</span></li>
             </ul>
-            <a href="/pages/logistics.html" class="btn-outline-gold mt-3 d-inline-block" style="font-size:0.82rem;padding:6px 16px;">
-              Learn More <i class="bi bi-arrow-right ms-1"></i>
+            <a href="logistics.html" class="btn-outline-gold mt-3 d-inline-block" style="font-size:0.82rem;padding:6px 16px;">
+              <span data-i18n-key="btn_learn_more">Learn More</span> <i class="bi bi-arrow-right ms-1"></i>
             </a>
           </div>
         </div>
@@ -298,15 +300,15 @@
           <img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Investment" />
           <div class="service-panel-overlay"></div>
           <div class="service-panel-content">
-            <h3 class="service-panel-title">الإستثمار والمشاريع</h3>
+            <h3 class="service-panel-title" data-i18n-key="service_title_investment">Investment &amp; Projects</h3>
             <ul class="service-list">
-              <li><i class="bi bi-graph-up-arrow"></i> فرص استثمارية</li>
-              <li><i class="bi bi-diagram-3"></i> شراكات استراتيجية</li>
-              <li><i class="bi bi-search"></i> دراسات الجدوى</li>
-              <li><i class="bi bi-gear"></i> إدارة المشاريع</li>
+              <li><i class="bi bi-graph-up-arrow"></i> <span data-i18n-key="service_item_opportunities">Investment Opportunities</span></li>
+              <li><i class="bi bi-diagram-3"></i> <span data-i18n-key="service_item_partnerships">Strategic Partnerships</span></li>
+              <li><i class="bi bi-search"></i> <span data-i18n-key="service_item_feasibility">Feasibility Studies</span></li>
+              <li><i class="bi bi-gear"></i> <span data-i18n-key="service_item_management">Project Management</span></li>
             </ul>
-            <a href="/pages/investment.html" class="btn-outline-gold mt-3 d-inline-block" style="font-size:0.82rem;padding:6px 16px;">
-              Learn More <i class="bi bi-arrow-right ms-1"></i>
+            <a href="investment.html" class="btn-outline-gold mt-3 d-inline-block" style="font-size:0.82rem;padding:6px 16px;">
+              <span data-i18n-key="btn_learn_more">Learn More</span> <i class="bi bi-arrow-right ms-1"></i>
             </a>
           </div>
         </div>
@@ -317,12 +319,12 @@
           <img src="https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Global Partners" />
           <div class="service-panel-overlay"></div>
           <div class="service-panel-content">
-            <h3 class="service-panel-title">شراكات عالمية</h3>
-            <p style="color:rgba(255,255,255,0.75);font-size:0.88rem;line-height:1.8;">
-              نعمل مع شركاء حول العالم لبناء مستقبل أفضل ومستدام من خلال علاقات تجارية استراتيجية قوية.
+            <h3 class="service-panel-title" data-i18n-key="service_title_global">Global Partnerships</h3>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.88rem;line-height:1.8;" data-i18n-key="service_desc_global">
+              We work with partners around the world to build a better, more sustainable future through strong strategic trade relationships.
             </p>
-            <a href="/pages/about.html" class="btn-outline-gold mt-2 d-inline-block" style="font-size:0.82rem;padding:6px 16px;">
-              Learn More <i class="bi bi-arrow-right ms-1"></i>
+            <a href="about.html" class="btn-outline-gold mt-2 d-inline-block" style="font-size:0.82rem;padding:6px 16px;">
+              <span data-i18n-key="btn_learn_more">Learn More</span> <i class="bi bi-arrow-right ms-1"></i>
             </a>
           </div>
         </div>
@@ -335,16 +337,16 @@
     <div class="container-fluid px-4 px-xl-5">
       <div class="row justify-content-between align-items-end mb-5">
         <div class="col-lg-6" data-aos="fade-right">
-          <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;">Our Technology</p>
-          <h2 class="section-title text-white">حلول تقنية متكاملة</h2>
+          <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="section_title_tech_tag">Our Technology</p>
+          <h2 class="section-title text-white" data-i18n-key="section_title_tech">Integrated Technology Solutions</h2>
           <div class="gold-divider"></div>
-          <p class="section-subtitle" style="color:rgba(255,255,255,0.55);">
+          <p class="section-subtitle" style="color:rgba(255,255,255,0.55);" data-i18n-key="section_subtitle_tech">
             Integrated technology solutions crafted to drive digital transformation for businesses across the region.
           </p>
         </div>
         <div class="col-lg-4 text-lg-end mt-3 mt-lg-0" data-aos="fade-left">
-          <a href="/pages/technology.html" class="btn-outline-gold d-inline-block">
-            View All Services <i class="bi bi-arrow-right ms-2"></i>
+          <a href="technology.html" class="btn-outline-gold d-inline-block">
+            <span data-i18n-key="tech_btn_all">View All Services</span> <i class="bi bi-arrow-right ms-2"></i>
           </a>
         </div>
       </div>
@@ -353,43 +355,43 @@
         <div class="col-sm-6 col-lg-4 col-xl-2" data-aos="zoom-in" data-aos-delay="0">
           <div class="tech-card">
             <div class="tech-card-icon"><i class="bi bi-layers"></i></div>
-            <div class="tech-card-title">ERP Systems</div>
-            <div class="tech-card-desc">Enterprise resource planning tailored to your business needs.</div>
+            <div class="tech-card-title" data-i18n-key="tech_card_title_erp">ERP Systems</div>
+            <div class="tech-card-desc" data-i18n-key="tech_card_desc_erp">Enterprise resource planning tailored to your business needs.</div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-4 col-xl-2" data-aos="zoom-in" data-aos-delay="80">
           <div class="tech-card">
             <div class="tech-card-icon"><i class="bi bi-code-slash"></i></div>
-            <div class="tech-card-title">Web Development</div>
-            <div class="tech-card-desc">Modern, responsive websites and web applications.</div>
+            <div class="tech-card-title" data-i18n-key="tech_card_title_web">Web Development</div>
+            <div class="tech-card-desc" data-i18n-key="tech_card_desc_web">Modern, responsive websites and web applications.</div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-4 col-xl-2" data-aos="zoom-in" data-aos-delay="160">
           <div class="tech-card">
             <div class="tech-card-icon"><i class="bi bi-phone"></i></div>
-            <div class="tech-card-title">Mobile Apps</div>
-            <div class="tech-card-desc">iOS and Android applications for global audiences.</div>
+            <div class="tech-card-title" data-i18n-key="tech_card_title_mobile">Mobile Apps</div>
+            <div class="tech-card-desc" data-i18n-key="tech_card_desc_mobile">iOS and Android applications for global audiences.</div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-4 col-xl-2" data-aos="zoom-in" data-aos-delay="240">
           <div class="tech-card">
             <div class="tech-card-icon"><i class="bi bi-robot"></i></div>
-            <div class="tech-card-title">Artificial Intelligence</div>
-            <div class="tech-card-desc">AI-powered solutions for automation and analytics.</div>
+            <div class="tech-card-title" data-i18n-key="tech_card_title_ai">Artificial Intelligence</div>
+            <div class="tech-card-desc" data-i18n-key="tech_card_desc_ai">AI-powered solutions for automation and analytics.</div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-4 col-xl-2" data-aos="zoom-in" data-aos-delay="320">
           <div class="tech-card">
             <div class="tech-card-icon"><i class="bi bi-shield-lock"></i></div>
-            <div class="tech-card-title">Cyber Security</div>
-            <div class="tech-card-desc">Advanced security systems to protect your digital assets.</div>
+            <div class="tech-card-title" data-i18n-key="tech_card_title_security">Cyber Security</div>
+            <div class="tech-card-desc" data-i18n-key="tech_card_desc_security">Advanced security systems to protect your digital assets.</div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-4 col-xl-2" data-aos="zoom-in" data-aos-delay="400">
           <div class="tech-card">
             <div class="tech-card-icon"><i class="bi bi-cloud-check"></i></div>
-            <div class="tech-card-title">Cloud Solutions</div>
-            <div class="tech-card-desc">Scalable cloud infrastructure and migration services.</div>
+            <div class="tech-card-title" data-i18n-key="tech_card_title_cloud">Cloud Solutions</div>
+            <div class="tech-card-desc" data-i18n-key="tech_card_desc_cloud">Scalable cloud infrastructure and migration services.</div>
           </div>
         </div>
       </div>
@@ -404,7 +406,7 @@
       <div class="col-lg col-md-6" data-aos="fade-up">
         <div style="padding:32px 28px;border-right:1px solid rgba(212,175,55,0.1);">
           <h4 style="color:var(--white);font-size:1rem;font-weight:800;margin-bottom:16px;">
-            <i class="bi bi-images me-2" style="color:var(--gold);"></i>معرض الصور
+            <i class="bi bi-images me-2" style="color:var(--gold);"></i><span data-i18n-key="preview_title_gallery">Photo Gallery</span>
           </h4>
           <div class="row g-2">
             <div class="col-4">
@@ -423,7 +425,7 @@
               <img src="https://images.pexels.com/photos/422218/pexels-photo-422218.jpeg?auto=compress&cs=tinysrgb&w=200" style="width:100%;height:70px;object-fit:cover;border-radius:4px;" alt="" />
             </div>
             <div class="col-4">
-              <a href="/pages/gallery.html" style="display:flex;align-items:center;justify-content:center;height:70px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:4px;color:var(--gold);font-size:0.72rem;font-weight:700;">View All</a>
+              <a href="gallery.html" style="display:flex;align-items:center;justify-content:center;height:70px;background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);border-radius:4px;color:var(--gold);font-size:0.72rem;font-weight:700;" data-i18n-key="preview_btn_view_all">View All</a>
             </div>
           </div>
         </div>
@@ -435,11 +437,11 @@
           <img src="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=600" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;" />
           <div style="position:relative;z-index:1;padding:32px 28px;display:flex;flex-direction:column;justify-content:center;height:100%;min-height:220px;">
             <h4 style="color:var(--white);font-size:1rem;font-weight:800;margin-bottom:20px;">
-              <i class="bi bi-play-circle me-2" style="color:var(--gold);"></i>معرض الفيديو
+              <i class="bi bi-play-circle me-2" style="color:var(--gold);"></i><span data-i18n-key="preview_title_video">Video Gallery</span>
             </h4>
             <div style="display:flex;align-items:center;justify-content:center;padding:20px 0;">
-              <button id="videoPlayBtn" class="play-btn btn-ripple">
-                <i class="bi bi-play-fill"></i>
+              <button id="videoPlayBtn" class="play-btn btn-ripple" type="button" aria-label="Play video">
+                <i class="bi bi-play-fill" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -450,7 +452,7 @@
       <div class="col-lg col-md-6" data-aos="fade-up" data-aos-delay="120">
         <div style="padding:32px 28px;border-right:1px solid rgba(212,175,55,0.1);">
           <h4 style="color:var(--white);font-size:1rem;font-weight:800;margin-bottom:16px;">
-            <i class="bi bi-people me-2" style="color:var(--gold);"></i>عملاؤنا وشركاؤنا
+            <i class="bi bi-people me-2" style="color:var(--gold);"></i><span data-i18n-key="preview_title_partners">Our Clients &amp; Partners</span>
           </h4>
           <div class="row g-2">
             <div class="col-4">
@@ -491,7 +493,7 @@
       <div class="col-lg col-md-6" data-aos="fade-up" data-aos-delay="180">
         <div style="padding:32px 28px;border-right:1px solid rgba(212,175,55,0.1);">
           <h4 style="color:var(--white);font-size:1rem;font-weight:800;margin-bottom:16px;">
-            <i class="bi bi-patch-check me-2" style="color:var(--gold);"></i>شهاداتنا
+            <i class="bi bi-patch-check me-2" style="color:var(--gold);"></i><span data-i18n-key="preview_title_certs">Our Certificates</span>
           </h4>
           <div class="row g-2">
             <div class="col-4 text-center">
@@ -520,7 +522,7 @@
       <div class="col-lg" data-aos="fade-up" data-aos-delay="240">
         <div style="padding:32px 28px;">
           <h4 style="color:var(--white);font-size:1rem;font-weight:800;margin-bottom:16px;">
-            <i class="bi bi-headset me-2" style="color:var(--gold);"></i>تواصل معنا
+            <i class="bi bi-headset me-2" style="color:var(--gold);"></i><span data-i18n-key="preview_title_contact">Contact Us</span>
           </h4>
           <div style="display:flex;flex-direction:column;gap:10px;">
             <a href="tel:+966504415254" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.75);font-size:0.82rem;transition:color 0.3s;">
@@ -531,25 +533,22 @@
               <i class="bi bi-telephone-fill" style="color:var(--gold);font-size:0.9rem;"></i>
               +249 90 717 5005
             </a>
-            <a href="mailto:info@nashvell.com" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.75);font-size:0.82rem;transition:color 0.3s;">
+            <a href="mailto:qqsalah@hotmail.com" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.75);font-size:0.82rem;transition:color 0.3s;">
               <i class="bi bi-envelope-fill" style="color:var(--gold);font-size:0.9rem;"></i>
-              info@nashvell.com
+              qqsalah@hotmail.com
             </a>
-            <a href="https://www.nashvell.com" style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.75);font-size:0.82rem;transition:color 0.3s;">
-              <i class="bi bi-globe2" style="color:var(--gold);font-size:0.9rem;"></i>
-              www.nashvell.com
-            </a>
+           
             <span style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.75);font-size:0.82rem;">
               <i class="bi bi-geo-alt-fill" style="color:var(--gold);font-size:0.9rem;"></i>
-              Kingdom of Saudi Arabia
+               Khartoum , Sudan
             </span>
           </div>
           <div class="social-links mt-3">
-            <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
-            <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a>
-            <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+<a href="https://wa.me/966504415254" class="social-link" aria-label="WhatsApp" title="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
       </div>
@@ -564,31 +563,31 @@
         <div class="col-6 col-md">
           <div class="value-item">
             <i class="bi bi-patch-check"></i>
-            <span class="value-text">جودة عالية وفق المعايير العالمية</span>
+            <span class="value-text" data-i18n-key="value_quality">High Quality According to Global Standards</span>
           </div>
         </div>
         <div class="col-6 col-md">
           <div class="value-item">
             <i class="bi bi-currency-exchange"></i>
-            <span class="value-text">أسعار تنافسية</span>
+            <span class="value-text" data-i18n-key="value_pricing">Competitive Pricing</span>
           </div>
         </div>
         <div class="col-6 col-md">
           <div class="value-item">
             <i class="bi bi-clock-history"></i>
-            <span class="value-text">التزام بالمواعيد</span>
+            <span class="value-text" data-i18n-key="value_delivery">On-Time Delivery</span>
           </div>
         </div>
         <div class="col-6 col-md">
           <div class="value-item">
             <i class="bi bi-headset"></i>
-            <span class="value-text">دعم فني متواصل</span>
+            <span class="value-text" data-i18n-key="value_support">Continuous Technical Support</span>
           </div>
         </div>
         <div class="col-6 col-md">
           <div class="value-item">
             <i class="bi bi-lightbulb"></i>
-            <span class="value-text">حلول مبتكرة</span>
+            <span class="value-text" data-i18n-key="value_innovation">Innovative Solutions</span>
           </div>
         </div>
       </div>
@@ -604,80 +603,83 @@
           <!-- Brand -->
           <div class="col-lg-3 col-md-6">
             <div class="footer-brand">
-              <a href="/" class="navbar-brand mb-3 d-inline-flex">
-                <div class="brand-icon">N</div>
+              <a href="index.html" class="navbar-brand mb-3 d-inline-flex">
+                <div class="brand-icon">
+                  <img src="./photo/logo.png" alt="Nashvell Logo" class="brand-logo" />
+                </div>
                 <div class="brand-text ms-2">
+
                   <span class="brand-name">NASHVELL</span>
                   <span class="brand-tagline">International Trading Co. Ltd.</span>
                 </div>
               </a>
-              <p>A leading international trading company connecting Sudan to the world through premium products, technology and strategic investments since 1994.</p>
-              <div class="social-links">
-                <a href="#" class="social-link"><i class="bi bi-whatsapp"></i></a>
-                <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a>
-                <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
-                <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+              <p data-i18n-key="footer_desc">A leading international trading company connecting Sudan to the world through premium products, technology and strategic investments since 1994.</p>
+<div class="social-links">
+<a href="https://wa.me/966504415254" class="social-link" title="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp"></i></a>
+                <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="social-link" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="#" class="social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
               </div>
             </div>
           </div>
 
           <!-- Quick Links -->
           <div class="col-lg-2 col-md-6">
-            <h5 class="footer-heading">Quick Links</h5>
+            <h5 class="footer-heading" data-i18n-key="footer_title_links">Quick Links</h5>
             <ul class="footer-links">
-              <li><a href="/">Home</a></li>
-              <li><a href="/pages/about.html">About Us</a></li>
-              <li><a href="/pages/products.html">Products</a></li>
-              <li><a href="/pages/technology.html">Technology</a></li>
-              <li><a href="/pages/projects.html">Projects</a></li>
-              <li><a href="/pages/investment.html">Investment</a></li>
+              <li><a href="index.html" data-i18n-key="nav_home">Home</a></li>
+              <li><a href="about.html" data-i18n-key="nav_about">About Us</a></li>
+              <li><a href="products.html" data-i18n-key="nav_products">Products</a></li>
+              <li><a href="technology.html" data-i18n-key="nav_technology">Technology</a></li>
+              <li><a href="projects.html" data-i18n-key="nav_projects">Projects</a></li>
+              <li><a href="investment.html" data-i18n-key="nav_investment">Investment</a></li>
             </ul>
           </div>
 
           <!-- Products -->
           <div class="col-lg-2 col-md-6">
-            <h5 class="footer-heading">Products</h5>
+            <h5 class="footer-heading" data-i18n-key="nav_products">Products</h5>
             <ul class="footer-links">
-              <li><a href="/pages/products.html">Agricultural Products</a></li>
-              <li><a href="/pages/products.html">Natural Oils</a></li>
-              <li><a href="/pages/products.html">Livestock</a></li>
-              <li><a href="/pages/products.html">Mining &amp; Minerals</a></li>
-              <li><a href="/pages/products.html">Industrial Products</a></li>
-              <li><a href="/pages/logistics.html">Logistics</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_agri">Agricultural Products</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_oils">Natural Oils</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_livestock">Livestock</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_mining">Mining &amp; Minerals</a></li>
+              <li><a href="products.html" data-i18n-key="product_title_industrial">Industrial Products</a></li>
+              <li><a href="logistics.html" data-i18n-key="nav_logistics">Logistics</a></li>
             </ul>
           </div>
 
           <!-- Technology -->
           <div class="col-lg-2 col-md-6">
-            <h5 class="footer-heading">Technology</h5>
+            <h5 class="footer-heading" data-i18n-key="nav_technology">Technology</h5>
             <ul class="footer-links">
-              <li><a href="/pages/technology.html">ERP Systems</a></li>
-              <li><a href="/pages/technology.html">Web Development</a></li>
-              <li><a href="/pages/technology.html">Mobile Apps</a></li>
-              <li><a href="/pages/technology.html">AI Solutions</a></li>
-              <li><a href="/pages/technology.html">Cyber Security</a></li>
-              <li><a href="/pages/technology.html">Cloud Solutions</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_erp">ERP Systems</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_web">Web Development</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_mobile">Mobile Apps</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_ai">AI Solutions</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_security">Cyber Security</a></li>
+              <li><a href="technology.html" data-i18n-key="tech_card_title_cloud">Cloud Solutions</a></li>
             </ul>
           </div>
 
           <!-- Newsletter -->
           <div class="col-lg-3 col-md-6">
-            <h5 class="footer-heading">Newsletter</h5>
-            <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-bottom:14px;">Subscribe to receive our latest news and updates.</p>
+            <h5 class="footer-heading" data-i18n-key="footer_title_newsletter">Newsletter</h5>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.45);margin-bottom:14px;" data-i18n-key="footer_newsletter_desc">Subscribe to receive our latest news and updates.</p>
             <form class="newsletter-form" onsubmit="return false;">
-              <input type="email" class="newsletter-input" placeholder="Your email address" />
-              <button type="submit" class="newsletter-btn"><i class="bi bi-send-fill"></i></button>
+              <input type="email" class="newsletter-input" placeholder="Your email address" data-i18n-key="footer_placeholder_newsletter" />
+              <button type="submit" class="newsletter-btn" aria-label="Subscribe"><i class="bi bi-send-fill"></i></button>
             </form>
             <div class="mt-4">
               <div class="contact-item">
-                <div style="color:var(--gold);font-size:0.82rem;"><i class="bi bi-geo-alt me-2"></i>Kingdom of Saudi Arabia</div>
+                <div style="color:var(--gold);font-size:0.82rem;"><i class="bi bi-geo-alt me-2"></i>Khartoum , Sudan</div>
               </div>
               <div class="contact-item">
-                <div style="color:rgba(255,255,255,0.55);font-size:0.82rem;"><i class="bi bi-telephone me-2" style="color:var(--gold);"></i>+966 50 441 5254</div>
+                <div style="color:rgba(255,255,255,0.55);font-size:0.82rem;"><i class="bi bi-telephone me-2" style="color:var(--gold);"></i>+249907175005</div>
               </div>
               <div class="contact-item">
-                <div style="color:rgba(255,255,255,0.55);font-size:0.82rem;"><i class="bi bi-envelope me-2" style="color:var(--gold);"></i>info@nashvell.com</div>
+                <div style="color:rgba(255,255,255,0.55);font-size:0.82rem;"><i class="bi bi-envelope me-2" style="color:var(--gold);"></i>qqsalah@hotmail.com</div>
               </div>
             </div>
           </div>
@@ -690,10 +692,10 @@
       <div class="container-fluid px-4 px-xl-5">
         <div class="row align-items-center">
           <div class="col-md-6">
-            <p class="footer-copyright">&copy; 2024 Nashvell International Trading Co. Ltd. All Rights Reserved.</p>
+            <p class="footer-copyright" data-i18n-key="footer_copyright">&copy; 2024 Nashvell International Trading Co. Ltd. All Rights Reserved.</p>
           </div>
           <div class="col-md-6 text-md-end mt-2 mt-md-0">
-            <p class="footer-copyright">Designed with precision &mdash; <span style="color:var(--gold);">Excellence in Every Detail</span></p>
+            <p class="footer-copyright" data-i18n-key="footer_design">Designed with precision &mdash; <span style="color:var(--gold);">Excellence in Every Detail</span></p>
           </div>
         </div>
       </div>
@@ -707,13 +709,14 @@
   </div>
 
   <!-- ═══════════════════ SCROLL TOP ═══════════════════ -->
-  <button id="scrollTop" aria-label="Back to top">
+  <button type="button" id="scrollTop" aria-label="Back to top">
     <i class="bi bi-chevron-up"></i>
   </button>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="/assets/js/main.js"></script>
+  <script src="./main.js"></script>
+  <script src="translate.js"></script>
 </body>
 </html>
