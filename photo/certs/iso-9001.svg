@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240">
+  <defs>
+    <linearGradient id="g9001" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8C84A"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+  </defs>
+  <path d="M70 150 L60 228 L100 203 L140 228 L130 150 Z" fill="url(#g9001)"/>
+  <circle cx="100" cy="95" r="78" fill="url(#g9001)"/>
+  <circle cx="100" cy="95" r="66" fill="#081B33"/>
+  <circle cx="100" cy="95" r="66" fill="none" stroke="url(#g9001)" stroke-width="2" stroke-dasharray="3 4"/>
+  <path d="M100 42 L120 50 L120 68 Q120 84 100 93 Q80 84 80 68 L80 50 Z" fill="url(#g9001)"/>
+  <polyline points="90,68 97,75 112,57" fill="none" stroke="#081B33" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="100" y="118" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="21" fill="#E8C84A">ISO 9001</text>
+  <text x="100" y="136" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="#FFFFFF">CERTIFIED · 2015</text>
+</svg>
