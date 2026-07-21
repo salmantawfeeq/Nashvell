@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
   if (mainNav) {
     const onScroll = () => {
       if (window.scrollY > 60) {
-        mainNav.classList.add('scrolled', 'sticky-top');
+        mainNav.classList.add('scrolled');
       } else {
-        mainNav.classList.remove('scrolled', 'sticky-top');
+        mainNav.classList.remove('scrolled');
       }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
