@@ -194,6 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ── Video modal ── */
   const videoPlayBtn = document.getElementById('videoPlayBtn');
   if (videoPlayBtn) {
+    const VIDEO_CLIP_SECONDS = 18;
     videoPlayBtn.addEventListener('click', () => {
       const modal = document.createElement('div');
       modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;display:flex;align-items:center;justify-content:center;';
@@ -201,10 +202,14 @@ document.addEventListener('DOMContentLoaded', function () {
         <div style="position:relative;width:90%;max-width:900px;">
           <button onclick="this.closest('div').parentElement.remove()" style="position:absolute;top:-40px;right:0;background:none;border:none;color:#D4AF37;font-size:1.8rem;cursor:pointer;">&times;</button>
           <div style="position:relative;padding-bottom:56.25%;background:#000;border-radius:8px;overflow:hidden;">
-            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);font-size:1rem;">Video Placeholder — Replace with actual video</div>
+            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="./video/nashvell-intro.mp4" autoplay muted loop playsinline controls></video>
           </div>
         </div>`;
       document.body.appendChild(modal);
+      const videoEl = modal.querySelector('video');
+      videoEl.addEventListener('timeupdate', () => {
+        if (videoEl.currentTime >= VIDEO_CLIP_SECONDS) videoEl.currentTime = 0;
+      });
       modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
     });
   }

@@ -186,7 +186,7 @@ const translations = {
     about_team_tag: "Our Leadership",
     about_team_title: "Meet the Team",
     about_team_subtitle: "Experienced leaders guiding our vision for global trade and innovation.",
-    about_team_member1_name: "Salah",
+    about_team_member1_name: "Dr. Salah",
     about_team_member1_role: "Owner of the Company",
     about_team_member2_name: "Khalid Mahmoud",
     about_team_member2_role: "Operating Officer",
@@ -221,7 +221,7 @@ const translations = {
     contact_phone_sd_label: "Phone (Sudan)",
     contact_phone_sd: "+249 90 717 5005",
     contact_email_label: "Email",
-    contact_email_main: "info@nashvell.com",
+    contact_email_main: "qqsalah@hotmail.com",
     contact_website_label: "Website",
     contact_website_url: "www.nashvell.com",
     contact_form_tag: "Send a Message",
@@ -241,7 +241,7 @@ const translations = {
     contact_office2_title: "Khartoum, Sudan",
     contact_office2_desc: "Regional Office\nAl-Mogran, Khartoum, Sudan\n+249 90 717 5005",
     contact_office3_title: "Port Sudan, Sudan",
-    contact_office3_desc: "Logistics Hub\nPort Sudan Harbor, Sudan\n+249 91 234 5678",
+    contact_office3_desc: "Logistics Hub\nPort Sudan Harbor, Sudan\n+249 90 717 5005",
 
     // ============================================================
     // GALLERY PAGE
@@ -661,7 +661,7 @@ const translations = {
     about_team_tag: "قيادتنا",
     about_team_title: "تعرّف على الفريق",
     about_team_subtitle: "قادة ذوو خبرة يوجّهون رؤيتنا نحو التجارة العالمية والابتكار.",
-    about_team_member1_name: "صلاح",
+    about_team_member1_name: "د. صلاح",
     about_team_member1_role: "مالك الشركة",
     about_team_member2_name: "خالد محمود",
     about_team_member2_role: "مدير العمليات",
@@ -696,7 +696,7 @@ const translations = {
     contact_phone_sd_label: "الهاتف (السودان)",
     contact_phone_sd: "+249 90 717 5005",
     contact_email_label: "البريد الإلكتروني",
-    contact_email_main: "info@nashvell.com",
+    contact_email_main: "qqsalah@hotmail.com",
     contact_website_label: "الموقع الإلكتروني",
     contact_website_url: "www.nashvell.com",
     contact_form_tag: "أرسل رسالة",
@@ -716,7 +716,7 @@ const translations = {
     contact_office2_title: "الخرطوم، السودان",
     contact_office2_desc: "المكتب الإقليمي\nالمقرن، الخرطوم، السودان\n+249 90 717 5005",
     contact_office3_title: "بورتسودان، السودان",
-    contact_office3_desc: "المركز اللوجستي\nميناء بورتسودان، السودان\n+249 91 234 5678",
+    contact_office3_desc: "المركز اللوجستي\nميناء بورتسودان، السودان\n+249 90 717 5005",
 
     // ============================================================
     // GALLERY PAGE
