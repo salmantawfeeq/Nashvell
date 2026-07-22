@@ -713,6 +713,15 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
+.tech-section-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1920');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.16;
+}
+
 .tech-card {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(212,175,55,0.15);
