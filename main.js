@@ -205,10 +205,12 @@ document.addEventListener('DOMContentLoaded', function () {
       document.querySelectorAll('[data-category]').forEach(card => {
         if (filter === 'all' || card.getAttribute('data-category') === filter) {
           card.style.display = '';
+          card.classList.add('aos-animate');
         } else {
           card.style.display = 'none';
         }
       });
+      if (typeof AOS !== 'undefined') AOS.refresh();
     });
   });
 
