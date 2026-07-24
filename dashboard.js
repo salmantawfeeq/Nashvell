@@ -4,6 +4,8 @@
 let currentRole = null;
 let productModalInstance = null;
 let categoriesCache = [];
+let manageCategoriesModalInstance = null;
+let editCategoryModalInstance = null;
 
 // Curated set of Bootstrap Icons relevant to a trade/logistics/tech company,
 // so staff pick a shape visually instead of typing an icon name/link.
@@ -132,6 +134,116 @@ async function handleSaveNewCategory() {
   labelArInput.value = '';
   statusEl.textContent = '';
   document.getElementById('newCategoryForm').style.display = 'none';
+}
+
+function renderCategoriesTable() {
+  const tbody = document.getElementById('categoriesTableBody');
+  if (!categoriesCache.length) {
+    tbody.innerHTML = `<tr><td colspan="3" class="text-center py-4">No categories yet.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = categoriesCache.map((c) => `
+    <tr data-slug="${escapeHtml(c.slug)}">
+      <td>${escapeHtml(c.label_en)}</td>
+      <td dir="rtl">${escapeHtml(c.label_ar)}</td>
+      <td class="admin-table-actions">
+        ${currentRole === 'admin' ? `
+          <button type="button" class="btn-icon" data-action="edit-category" title="Edit"><i class="bi bi-pencil"></i></button>
+          <button type="button" class="btn-icon btn-icon-danger" data-action="delete-category" title="Delete"><i class="bi bi-trash"></i></button>
+        ` : ''}
+      </td>
+    </tr>
+  `).join('');
+
+  tbody.querySelectorAll('[data-action="edit-category"]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const slug = btn.closest('tr').dataset.slug;
+      const cat = categoriesCache.find((c) => c.slug === slug);
+      if (cat) openEditCategoryModal(cat);
+    });
+  });
+
+  tbody.querySelectorAll('[data-action="delete-category"]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const slug = btn.closest('tr').dataset.slug;
+      const cat = categoriesCache.find((c) => c.slug === slug);
+      if (cat) handleDeleteCategory(cat);
+    });
+  });
+}
+
+async function openManageCategoriesModal() {
+  const statusEl = document.getElementById('manageCategoriesStatus');
+  statusEl.style.display = 'none';
+  statusEl.textContent = '';
+  await loadCategories();
+  renderCategoriesTable();
+  manageCategoriesModalInstance.show();
+}
+
+function openEditCategoryModal(cat) {
+  document.getElementById('editCategorySlug').value = cat.slug;
+  document.getElementById('editCategoryLabelEn').value = cat.label_en;
+  document.getElementById('editCategoryLabelAr').value = cat.label_ar;
+  const statusEl = document.getElementById('editCategoryStatus');
+  statusEl.style.display = 'none';
+  statusEl.textContent = '';
+  editCategoryModalInstance.show();
+}
+
+async function handleSaveCategoryEdit() {
+  const slug = document.getElementById('editCategorySlug').value;
+  const labelEn = document.getElementById('editCategoryLabelEn').value.trim();
+  const labelAr = document.getElementById('editCategoryLabelAr').value.trim();
+  const statusEl = document.getElementById('editCategoryStatus');
+
+  if (!labelEn || !labelAr) {
+    statusEl.textContent = 'Please fill in both the English and Arabic names.';
+    statusEl.style.display = 'block';
+    return;
+  }
+
+  const { error } = await supabaseClient.from('categories')
+    .update({ label_en: labelEn, label_ar: labelAr })
+    .eq('slug', slug);
+
+  if (error) {
+    statusEl.textContent = error.message.includes('permission')
+      ? "You don't have permission for this action."
+      : error.message;
+    statusEl.style.display = 'block';
+    return;
+  }
+
+  editCategoryModalInstance.hide();
+  await loadCategories();
+  renderCategoriesTable();
+  loadProducts();
+}
+
+async function handleDeleteCategory(cat) {
+  if (!confirm(`Delete the category "${cat.label_en}"? This cannot be undone.`)) return;
+
+  const statusEl = document.getElementById('manageCategoriesStatus');
+  statusEl.style.display = 'none';
+  statusEl.textContent = '';
+
+  const { error } = await supabaseClient.from('categories').delete().eq('slug', cat.slug);
+
+  if (error) {
+    statusEl.textContent = error.message.includes('violates foreign key constraint')
+      ? `Cannot delete "${cat.label_en}" — it still has products assigned to it. Move or delete those products first.`
+      : error.message.includes('permission')
+        ? "You don't have permission for this action."
+        : error.message;
+    statusEl.style.display = 'block';
+    return;
+  }
+
+  await loadCategories();
+  renderCategoriesTable();
+  loadProducts();
 }
 
 function escapeHtml(str) {
@@ -3087,6 +3199,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   document.getElementById('saveNewCategoryBtn').addEventListener('click', handleSaveNewCategory);
 
+  document.getElementById('manageCategoriesBtn').addEventListener('click', openManageCategoriesModal);
+  document.getElementById('saveEditCategoryBtn').addEventListener('click', handleSaveCategoryEdit);
+
   document.getElementById('openAddProjectBtn').addEventListener('click', () => openProjectModal(null));
   document.getElementById('projectForm').addEventListener('submit', handleProjectFormSubmit);
   document.getElementById('projectImageFile').addEventListener('change', handleProjectImageFileChange);
@@ -3256,6 +3371,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   const modalEl = document.getElementById('productModal');
+  const manageCategoriesModalEl = document.getElementById('manageCategoriesModal');
+  const editCategoryModalEl = document.getElementById('editCategoryModal');
   const editStaffModalEl = document.getElementById('editStaffModal');
   const addEmployeeModalEl = document.getElementById('addEmployeeModal');
   const projectModalEl = document.getElementById('projectModal');
@@ -3275,6 +3392,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const contactOfficeModalEl = document.getElementById('contactOfficeModal');
   if (typeof bootstrap !== 'undefined') {
     productModalInstance = new bootstrap.Modal(modalEl);
+    manageCategoriesModalInstance = new bootstrap.Modal(manageCategoriesModalEl);
+    editCategoryModalInstance = new bootstrap.Modal(editCategoryModalEl);
     editStaffModalInstance = new bootstrap.Modal(editStaffModalEl);
     addEmployeeModalInstance = new bootstrap.Modal(addEmployeeModalEl);
     projectModalInstance = new bootstrap.Modal(projectModalEl);
