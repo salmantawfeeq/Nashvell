@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Nashvell International Trading Co. Ltd.</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="./photo/logo.png" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    /* This is an app-like admin panel, not a page with a hero image to
+       scroll past — main.js's shared scroll listener (built for the public
+       pages' transparent-over-hero-then-solid-on-scroll nav) removes the
+       "scrolled" class on load here since scrollY is 0, leaving the navy
+       nav transparent and its light-colored logo/buttons unreadable against
+       the white page until the visitor scrolls past 60px. Keep it solid navy
+       unconditionally on this page only. */
+    #mainNav { background: var(--primary); box-shadow: 0 4px 30px rgba(8,27,51,0.4); }
+  </style>
+</head>
+<body>
+
+  <div id="preloader"><div class="loader-ring"></div></div>
+
+  <nav id="mainNav" class="navbar navbar-expand-xxl fixed-top scrolled">
+    <div class="container-fluid px-4 px-xl-5">
+      <a class="navbar-brand" href="index.html">
+        <div class="brand-icon">
+          <img src="./photo/logo.png" alt="Nashvell Logo" class="brand-logo" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">NASHVELL</span>
+          <span class="brand-tagline">Dashboard</span>
+        </div>
+      </a>
+      <button class="navbar-toggler border-0 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboardSidebar" aria-controls="dashboardSidebar" aria-label="Toggle sections menu" title="Sections menu">
+        <i class="bi bi-grid-3x3-gap-fill text-white fs-4"></i>
+      </button>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+        <i class="bi bi-list text-white fs-2"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto gap-1">
+          <li class="nav-item"><a class="nav-link" href="products.html">View Public Site</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0">
+          <span id="currentUserBadge" class="admin-badge"></span>
+          <button type="button" class="btn-outline-gold" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="dashboard-layout">
+    <aside class="offcanvas-lg offcanvas-start dashboard-sidebar" id="dashboardSidebar" tabindex="-1">
+      <div class="offcanvas-header d-lg-none">
+        <h5 class="offcanvas-title text-white">Sections</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body dashboard-sidebar-body">
+        <nav class="dashboard-sidebar-nav" id="dashboardSidebarNav">
+          <div class="sidebar-group-label">Content</div>
+          <button type="button" class="sidebar-link active" data-tab="products"><i class="bi bi-box-seam"></i><span>Products</span></button>
+          <button type="button" class="sidebar-link" data-tab="projects"><i class="bi bi-kanban"></i><span>Projects</span></button>
+          <button type="button" class="sidebar-link" data-tab="gallery"><i class="bi bi-images"></i><span>Gallery</span></button>
+          <button type="button" class="sidebar-link" data-tab="services"><i class="bi bi-grid"></i><span>Services</span></button>
+          <button type="button" class="sidebar-link" data-tab="techCards"><i class="bi bi-cpu"></i><span>Tech Cards</span></button>
+          <button type="button" class="sidebar-link" data-tab="staff" id="staffSidebarLink" style="display:none;"><i class="bi bi-people"></i><span>Staff Accounts</span></button>
+
+          <div class="sidebar-group-label pages-nav-link" id="pagesGroupLabel">Pages</div>
+          <button type="button" class="sidebar-link pages-nav-link" data-tab="about"><i class="bi bi-info-circle"></i><span>About</span></button>
+          <button type="button" class="sidebar-link pages-nav-link" data-tab="chairman"><i class="bi bi-person-badge"></i><span>Chairman's Message</span></button>
+          <button type="button" class="sidebar-link pages-nav-link" data-tab="investment"><i class="bi bi-graph-up-arrow"></i><span>Investment</span></button>
+          <button type="button" class="sidebar-link pages-nav-link" data-tab="logistics"><i class="bi bi-truck"></i><span>Logistics</span></button>
+          <button type="button" class="sidebar-link pages-nav-link" data-tab="media"><i class="bi bi-newspaper"></i><span>Media Center</span></button>
+          <button type="button" class="sidebar-link pages-nav-link" data-tab="contact"><i class="bi bi-envelope-paper"></i><span>Contact</span></button>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="dashboard-content">
+
+      <div id="dashboardError" class="form-error" style="display:none;"></div>
+
+      <div id="productsSection">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:0;">Products</h2>
+          <button type="button" class="btn-gold btn-ripple" id="openAddProductBtn">
+            <i class="bi bi-plus-lg me-2"></i>Add Product
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Title (EN)</th>
+                <th>Title (AR)</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <tr><td colspan="6" class="text-center py-4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="projectsSection" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:0;">Projects</h2>
+          <button type="button" class="btn-gold btn-ripple" id="openAddProjectBtn">
+            <i class="bi bi-plus-lg me-2"></i>Add Project
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Category</th>
+                <th>Title (EN)</th>
+                <th>Title (AR)</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="projectsTableBody">
+              <tr><td colspan="6" class="text-center py-4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="gallerySection" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:0;">Gallery</h2>
+          <button type="button" class="btn-gold btn-ripple" id="openAddGalleryBtn">
+            <i class="bi bi-plus-lg me-2"></i>Add Image
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Alt Text</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="galleryTableBody">
+              <tr><td colspan="4" class="text-center py-4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="servicesSection" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:0;">Services</h2>
+          <button type="button" class="btn-gold btn-ripple" id="openAddServiceBtn">
+            <i class="bi bi-plus-lg me-2"></i>Add Service
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Title (EN)</th>
+                <th>Title (AR)</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="servicesTableBody">
+              <tr><td colspan="5" class="text-center py-4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="techCardsSection" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:0;">Tech Cards</h2>
+          <button type="button" class="btn-gold btn-ripple" id="openAddTechCardBtn">
+            <i class="bi bi-plus-lg me-2"></i>Add Tech Card
+          </button>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Icon</th>
+                <th>Title (EN)</th>
+                <th>Title (AR)</th>
+                <th>Featured</th>
+                <th>Active</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="techCardsTableBody">
+              <tr><td colspan="6" class="text-center py-4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="aboutSection" style="display:none;">
+        <div class="mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:4px;">About Page</h2>
+          <p class="section-subtitle" style="margin-bottom:0;">Edit every section of the public About page.</p>
+        </div>
+
+        <div class="admin-form-panel" style="margin-bottom:40px;">
+          <form id="aboutPageForm">
+            <input type="hidden" id="aboutPageId" />
+
+            <h3 class="section-title" style="font-size:1.1rem;">Hero Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutHeroTagEn">Tag (English)</label><input type="text" id="aboutHeroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutHeroTagArInput">Tag (Arabic)</label><input type="text" id="aboutHeroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutHeroTitleEn">Title (English)</label><input type="text" id="aboutHeroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutHeroTitleArInput">Title (Arabic)</label><input type="text" id="aboutHeroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutHeroSubtitleEn">Subtitle (English)</label><input type="text" id="aboutHeroSubtitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutHeroSubtitleArInput">Subtitle (Arabic)</label><input type="text" id="aboutHeroSubtitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutHeroImageFile">Hero Background Image</label><input type="file" id="aboutHeroImageFile" class="form-control-custom" accept="image/*" /><div id="aboutHeroImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="aboutHeroImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="aboutHeroImageUrl">Hero Image URL</label><input type="text" id="aboutHeroImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Our Story Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryTagEn">Tag (English)</label><input type="text" id="aboutStoryTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryTagArInput">Tag (Arabic)</label><input type="text" id="aboutStoryTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryTitleEn">Title (English)</label><input type="text" id="aboutStoryTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryTitleArInput">Title (Arabic)</label><input type="text" id="aboutStoryTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryP1En">Paragraph 1 (English)</label><textarea id="aboutStoryP1En" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryP1ArInput">Paragraph 1 (Arabic)</label><textarea id="aboutStoryP1ArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryP2En">Paragraph 2 (English)</label><textarea id="aboutStoryP2En" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryP2ArInput">Paragraph 2 (Arabic)</label><textarea id="aboutStoryP2ArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryImageFile">Story Image</label><input type="file" id="aboutStoryImageFile" class="form-control-custom" accept="image/*" /><div id="aboutStoryImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="aboutStoryImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="aboutStoryImageUrl">Story Image URL</label><input type="text" id="aboutStoryImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+              <div class="col-md-4"><div class="form-group-custom"><label class="form-label-custom" for="aboutBadgeNumInput">Badge Number</label><input type="text" id="aboutBadgeNumInput" class="form-control-custom" placeholder="e.g. 30+" /></div></div>
+              <div class="col-md-4"><div class="form-group-custom"><label class="form-label-custom" for="aboutBadgeLabelEn">Badge Label (English)</label><input type="text" id="aboutBadgeLabelEn" class="form-control-custom" /></div></div>
+              <div class="col-md-4"><div class="form-group-custom"><label class="form-label-custom" for="aboutBadgeLabelArInput">Badge Label (Arabic)</label><input type="text" id="aboutBadgeLabelArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutBtnContactEn">"Get in Touch" Button (English)</label><input type="text" id="aboutBtnContactEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutBtnContactArInput">"Get in Touch" Button (Arabic)</label><input type="text" id="aboutBtnContactArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom">Feature Bullet Points</label>
+                  <div id="aboutFeaturesListEditor"></div>
+                  <button type="button" class="btn-outline-gold" id="addAboutFeatureBtn" style="margin-top:6px;padding:0.5rem 1.2rem;font-size:0.85rem;"><i class="bi bi-plus-lg me-1"></i>Add Feature</button>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Section Headers</h3>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutVisionTagEn">Vision Section Tag (English)</label><input type="text" id="aboutVisionTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutVisionTagArInput">Vision Section Tag (Arabic)</label><input type="text" id="aboutVisionTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutVisionTitleEn">Vision Section Title (English)</label><input type="text" id="aboutVisionTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutVisionTitleArInput">Vision Section Title (Arabic)</label><input type="text" id="aboutVisionTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutTeamTagEn">Team Section Tag (English)</label><input type="text" id="aboutTeamTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutTeamTagArInput">Team Section Tag (Arabic)</label><input type="text" id="aboutTeamTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutTeamTitleEn">Team Section Title (English)</label><input type="text" id="aboutTeamTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutTeamTitleArInput">Team Section Title (Arabic)</label><input type="text" id="aboutTeamTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutTeamSubtitleEn">Team Section Subtitle (English)</label><input type="text" id="aboutTeamSubtitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutTeamSubtitleArInput">Team Section Subtitle (Arabic)</label><input type="text" id="aboutTeamSubtitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertsTagEn">Certifications Tag (English)</label><input type="text" id="aboutCertsTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertsTagArInput">Certifications Tag (Arabic)</label><input type="text" id="aboutCertsTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertsTitleEn">Certifications Title (English)</label><input type="text" id="aboutCertsTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertsTitleArInput">Certifications Title (Arabic)</label><input type="text" id="aboutCertsTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <button type="submit" class="btn-gold btn-ripple">Save Page Text</button>
+            <span id="aboutPageStatus" style="font-size:0.85rem;margin-left:12px;"></span>
+          </form>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Vision, Mission &amp; Values</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddVisionCardBtn"><i class="bi bi-plus-lg me-2"></i>Add Card</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Icon</th><th>Title (EN)</th><th>Title (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="visionCardsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Stats</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddStatBtn"><i class="bi bi-plus-lg me-2"></i>Add Stat</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Number</th><th>Label (EN)</th><th>Label (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="aboutStatsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Team</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddTeamMemberBtn"><i class="bi bi-plus-lg me-2"></i>Add Team Member</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Photo</th><th>Name (EN)</th><th>Name (AR)</th><th>Role (EN)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="aboutTeamTableBody"><tr><td colspan="6" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Certifications</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddCertBtn"><i class="bi bi-plus-lg me-2"></i>Add Certification</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Badge</th><th>Title (EN)</th><th>Title (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="aboutCertsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="chairmanSection" style="display:none;">
+        <div class="mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:4px;">Chairman's Message Page</h2>
+          <p class="section-subtitle" style="margin-bottom:0;">Edit every section of the public Chairman's Message page.</p>
+        </div>
+
+        <div class="admin-form-panel">
+          <form id="chairmanPageForm">
+            <input type="hidden" id="chairmanPageId" />
+
+            <h3 class="section-title" style="font-size:1.1rem;">Hero Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanHeroTagEn">Tag (English)</label><input type="text" id="chairmanHeroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanHeroTagArInput">Tag (Arabic)</label><input type="text" id="chairmanHeroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanHeroTitleEn">Title (English)</label><input type="text" id="chairmanHeroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanHeroTitleArInput">Title (Arabic)</label><input type="text" id="chairmanHeroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanHeroSubtitleEn">Subtitle (English)</label><input type="text" id="chairmanHeroSubtitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanHeroSubtitleArInput">Subtitle (Arabic)</label><input type="text" id="chairmanHeroSubtitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanHeroImageFile">Hero Background Image</label><input type="file" id="chairmanHeroImageFile" class="form-control-custom" accept="image/*" /><div id="chairmanHeroImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="chairmanHeroImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanHeroImageUrl">Hero Image URL</label><input type="text" id="chairmanHeroImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Photo &amp; Intro</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanPhotoFile">Chairman Photo</label><input type="file" id="chairmanPhotoFile" class="form-control-custom" accept="image/*" /><div id="chairmanPhotoUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="chairmanPhotoPreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanPhotoUrl">Photo URL</label><input type="text" id="chairmanPhotoUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+              <div class="col-md-4"><div class="form-group-custom"><label class="form-label-custom" for="chairmanBadgeNumInput">Badge Number</label><input type="text" id="chairmanBadgeNumInput" class="form-control-custom" placeholder="e.g. 30+" /></div></div>
+              <div class="col-md-4"><div class="form-group-custom"><label class="form-label-custom" for="chairmanBadgeLabelEn">Badge Label (English)</label><input type="text" id="chairmanBadgeLabelEn" class="form-control-custom" /></div></div>
+              <div class="col-md-4"><div class="form-group-custom"><label class="form-label-custom" for="chairmanBadgeLabelArInput">Badge Label (Arabic)</label><input type="text" id="chairmanBadgeLabelArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanRoleEn">Role (English)</label><input type="text" id="chairmanRoleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanRoleArInput">Role (Arabic)</label><input type="text" id="chairmanRoleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanNameEn">Name (English)</label><input type="text" id="chairmanNameEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanNameArInput">Name (Arabic)</label><input type="text" id="chairmanNameArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanBtnContactEn">"Get in Touch" Button (English)</label><input type="text" id="chairmanBtnContactEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanBtnContactArInput">"Get in Touch" Button (Arabic)</label><input type="text" id="chairmanBtnContactArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanBtnAboutEn">"Back to About Us" Button (English)</label><input type="text" id="chairmanBtnAboutEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanBtnAboutArInput">"Back to About Us" Button (Arabic)</label><input type="text" id="chairmanBtnAboutArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Biography</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanP1En">Paragraph 1 (English)</label><textarea id="chairmanP1En" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanP1ArInput">Paragraph 1 (Arabic)</label><textarea id="chairmanP1ArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanP2En">Paragraph 2 (English)</label><textarea id="chairmanP2En" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanP2ArInput">Paragraph 2 (Arabic)</label><textarea id="chairmanP2ArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanP3En">Paragraph 3 (English)</label><textarea id="chairmanP3En" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanP3ArInput">Paragraph 3 (Arabic)</label><textarea id="chairmanP3ArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanP4En">Paragraph 4 (English)</label><textarea id="chairmanP4En" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanP4ArInput">Paragraph 4 (Arabic)</label><textarea id="chairmanP4ArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Pull Quote</h3>
+            <div class="row g-3 mb-3">
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanQuoteEn">Quote (English)</label><textarea id="chairmanQuoteEn" class="form-control-custom" rows="2"></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="chairmanQuoteArInput">Quote (Arabic)</label><textarea id="chairmanQuoteArInput" class="form-control-custom" rows="2" dir="rtl"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanQuoteAttributionEn">Attribution (English)</label><input type="text" id="chairmanQuoteAttributionEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="chairmanQuoteAttributionArInput">Attribution (Arabic)</label><input type="text" id="chairmanQuoteAttributionArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <button type="submit" class="btn-gold btn-ripple">Save Page Text</button>
+            <span id="chairmanPageStatus" style="font-size:0.85rem;margin-left:12px;"></span>
+          </form>
+        </div>
+      </div>
+
+      <div id="investmentSection" style="display:none;">
+        <div class="mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:4px;">Investment Page</h2>
+          <p class="section-subtitle" style="margin-bottom:0;">Edit every section of the public Investment page.</p>
+        </div>
+
+        <div class="admin-form-panel" style="margin-bottom:40px;">
+          <form id="investmentPageForm">
+            <input type="hidden" id="investmentPageId" />
+
+            <h3 class="section-title" style="font-size:1.1rem;">Hero Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentHeroTagEn">Tag (English)</label><input type="text" id="investmentHeroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentHeroTagArInput">Tag (Arabic)</label><input type="text" id="investmentHeroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentHeroTitleEn">Title (English)</label><input type="text" id="investmentHeroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentHeroTitleArInput">Title (Arabic)</label><input type="text" id="investmentHeroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentHeroSubEn">Subtitle (English)</label><input type="text" id="investmentHeroSubEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentHeroSubArInput">Subtitle (Arabic)</label><input type="text" id="investmentHeroSubArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Intro Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentIntroTagEn">Tag (English)</label><input type="text" id="investmentIntroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentIntroTagArInput">Tag (Arabic)</label><input type="text" id="investmentIntroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentIntroTitleEn">Title (English)</label><input type="text" id="investmentIntroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentIntroTitleArInput">Title (Arabic)</label><input type="text" id="investmentIntroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentIntroP1En">Paragraph (English)</label><textarea id="investmentIntroP1En" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentIntroP1ArInput">Paragraph (Arabic)</label><textarea id="investmentIntroP1ArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentIntroImageFile">Intro Image</label><input type="file" id="investmentIntroImageFile" class="form-control-custom" accept="image/*" /><div id="investmentIntroImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="investmentIntroImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="investmentIntroImageUrl">Intro Image URL</label><input type="text" id="investmentIntroImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom">Feature Bullet Points</label>
+                  <div id="investmentFeaturesListEditor"></div>
+                  <button type="button" class="btn-outline-gold" id="addInvestmentFeatureBtn" style="margin-top:6px;padding:0.5rem 1.2rem;font-size:0.85rem;"><i class="bi bi-plus-lg me-1"></i>Add Feature</button>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Section Headers</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorsTagEn">Sectors Tag (English)</label><input type="text" id="investmentSectorsTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorsTagArInput">Sectors Tag (Arabic)</label><input type="text" id="investmentSectorsTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorsTitleEn">Sectors Title (English)</label><input type="text" id="investmentSectorsTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorsTitleArInput">Sectors Title (Arabic)</label><input type="text" id="investmentSectorsTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentProcessTagEn">Process Tag (English)</label><input type="text" id="investmentProcessTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentProcessTagArInput">Process Tag (Arabic)</label><input type="text" id="investmentProcessTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentProcessTitleEn">Process Title (English)</label><input type="text" id="investmentProcessTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentProcessTitleArInput">Process Title (Arabic)</label><input type="text" id="investmentProcessTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Call to Action</h3>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentCtaTitleEn">CTA Title (English)</label><input type="text" id="investmentCtaTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentCtaTitleArInput">CTA Title (Arabic)</label><input type="text" id="investmentCtaTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentCtaDescEn">CTA Description (English)</label><input type="text" id="investmentCtaDescEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentCtaDescArInput">CTA Description (Arabic)</label><input type="text" id="investmentCtaDescArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentCtaBtnEn">CTA Button (English)</label><input type="text" id="investmentCtaBtnEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentCtaBtnArInput">CTA Button (Arabic)</label><input type="text" id="investmentCtaBtnArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <button type="submit" class="btn-gold btn-ripple">Save Page Text</button>
+            <span id="investmentPageStatus" style="font-size:0.85rem;margin-left:12px;"></span>
+          </form>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Investment Sectors</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddSectorBtn"><i class="bi bi-plus-lg me-2"></i>Add Sector</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Icon</th><th>Title (EN)</th><th>Title (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="investmentSectorsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Investment Process Steps</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddStepBtn"><i class="bi bi-plus-lg me-2"></i>Add Step</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>#</th><th>Title (EN)</th><th>Title (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="investmentStepsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="logisticsSection" style="display:none;">
+        <div class="mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:4px;">Logistics Page</h2>
+          <p class="section-subtitle" style="margin-bottom:0;">Edit every section of the public Logistics page.</p>
+        </div>
+
+        <div class="admin-form-panel" style="margin-bottom:40px;">
+          <form id="logisticsPageForm">
+            <input type="hidden" id="logisticsPageId" />
+
+            <h3 class="section-title" style="font-size:1.1rem;">Hero Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsHeroTagEn">Tag (English)</label><input type="text" id="logisticsHeroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsHeroTagArInput">Tag (Arabic)</label><input type="text" id="logisticsHeroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsHeroTitleEn">Title (English)</label><input type="text" id="logisticsHeroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsHeroTitleArInput">Title (Arabic)</label><input type="text" id="logisticsHeroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsHeroSubEn">Subtitle (English)</label><input type="text" id="logisticsHeroSubEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsHeroSubArInput">Subtitle (Arabic)</label><input type="text" id="logisticsHeroSubArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsHeroImageFile">Hero Background Image</label><input type="file" id="logisticsHeroImageFile" class="form-control-custom" accept="image/*" /><div id="logisticsHeroImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="logisticsHeroImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="logisticsHeroImageUrl">Hero Image URL</label><input type="text" id="logisticsHeroImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Intro Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsBadgeEn">Image Badge Text (English)</label><input type="text" id="logisticsBadgeEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsBadgeArInput">Image Badge Text (Arabic)</label><input type="text" id="logisticsBadgeArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsIntroTagEn">Tag (English)</label><input type="text" id="logisticsIntroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsIntroTagArInput">Tag (Arabic)</label><input type="text" id="logisticsIntroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsIntroTitleEn">Title (English)</label><input type="text" id="logisticsIntroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsIntroTitleArInput">Title (Arabic)</label><input type="text" id="logisticsIntroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsIntroDescEn">Description (English)</label><textarea id="logisticsIntroDescEn" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsIntroDescArInput">Description (Arabic)</label><textarea id="logisticsIntroDescArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsIntroImageFile">Intro Image</label><input type="file" id="logisticsIntroImageFile" class="form-control-custom" accept="image/*" /><div id="logisticsIntroImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="logisticsIntroImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="logisticsIntroImageUrl">Intro Image URL</label><input type="text" id="logisticsIntroImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Tracking Section</h3>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackTagEn">Tag (English)</label><input type="text" id="logisticsTrackTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackTagArInput">Tag (Arabic)</label><input type="text" id="logisticsTrackTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackTitleEn">Title (English)</label><input type="text" id="logisticsTrackTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackTitleArInput">Title (Arabic)</label><input type="text" id="logisticsTrackTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackSubEn">Subtitle (English)</label><input type="text" id="logisticsTrackSubEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackSubArInput">Subtitle (Arabic)</label><input type="text" id="logisticsTrackSubArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackPlaceholderEn">Input Placeholder (English)</label><input type="text" id="logisticsTrackPlaceholderEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackPlaceholderArInput">Input Placeholder (Arabic)</label><input type="text" id="logisticsTrackPlaceholderArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackBtnEn">Button (English)</label><input type="text" id="logisticsTrackBtnEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsTrackBtnArInput">Button (Arabic)</label><input type="text" id="logisticsTrackBtnArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <button type="submit" class="btn-gold btn-ripple">Save Page Text</button>
+            <span id="logisticsPageStatus" style="font-size:0.85rem;margin-left:12px;"></span>
+          </form>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Logistics Services</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddLogisticsServiceBtn"><i class="bi bi-plus-lg me-2"></i>Add Service</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Icon</th><th>Title (EN)</th><th>Title (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="logisticsServicesTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Stats</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddLogisticsStatBtn"><i class="bi bi-plus-lg me-2"></i>Add Stat</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Number</th><th>Label (EN)</th><th>Label (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="logisticsStatsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="mediaSection" style="display:none;">
+        <div class="mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:4px;">Media Center Page</h2>
+          <p class="section-subtitle" style="margin-bottom:0;">Edit every section of the public Media Center page.</p>
+        </div>
+
+        <div class="admin-form-panel" style="margin-bottom:40px;">
+          <form id="mediaPageForm">
+            <input type="hidden" id="mediaPageId" />
+
+            <h3 class="section-title" style="font-size:1.1rem;">Hero Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaHeroTagEn">Tag (English)</label><input type="text" id="mediaHeroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaHeroTagArInput">Tag (Arabic)</label><input type="text" id="mediaHeroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaHeroTitleEn">Title (English)</label><input type="text" id="mediaHeroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaHeroTitleArInput">Title (Arabic)</label><input type="text" id="mediaHeroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaHeroSubEn">Subtitle (English)</label><input type="text" id="mediaHeroSubEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaHeroSubArInput">Subtitle (Arabic)</label><input type="text" id="mediaHeroSubArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaHeroImageFile">Hero Background Image</label><input type="file" id="mediaHeroImageFile" class="form-control-custom" accept="image/*" /><div id="mediaHeroImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="mediaHeroImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="mediaHeroImageUrl">Hero Image URL</label><input type="text" id="mediaHeroImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">News Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsTagEn">Tag (English)</label><input type="text" id="mediaNewsTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsTagArInput">Tag (Arabic)</label><input type="text" id="mediaNewsTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsSectionTitleEn">Title (English)</label><input type="text" id="mediaNewsSectionTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsSectionTitleArInput">Title (Arabic)</label><input type="text" id="mediaNewsSectionTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaBtnReadMoreEn">"Read More" Button (English)</label><input type="text" id="mediaBtnReadMoreEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaBtnReadMoreArInput">"Read More" Button (Arabic)</label><input type="text" id="mediaBtnReadMoreArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Video Section</h3>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaVideoTitleEn">Title (English)</label><input type="text" id="mediaVideoTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaVideoTitleArInput">Title (Arabic)</label><input type="text" id="mediaVideoTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaVideoDescEn">Description (English)</label><textarea id="mediaVideoDescEn" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaVideoDescArInput">Description (Arabic)</label><textarea id="mediaVideoDescArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaVideoBgImageFile">Background Image</label><input type="file" id="mediaVideoBgImageFile" class="form-control-custom" accept="image/*" /><div id="mediaVideoBgImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="mediaVideoBgImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="mediaVideoBgImageUrl">Background Image URL</label><input type="text" id="mediaVideoBgImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+            </div>
+
+            <button type="submit" class="btn-gold btn-ripple">Save Page Text</button>
+            <span id="mediaPageStatus" style="font-size:0.85rem;margin-left:12px;"></span>
+          </form>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">News Articles</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddMediaNewsBtn"><i class="bi bi-plus-lg me-2"></i>Add Article</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Image</th><th>Date (EN)</th><th>Title (EN)</th><th>Title (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="mediaNewsTableBody"><tr><td colspan="6" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="contactSection" style="display:none;">
+        <div class="mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:4px;">Contact Page</h2>
+        </div>
+
+        <div class="admin-form-panel" style="margin-bottom:40px;">
+          <form id="contactPageForm">
+            <input type="hidden" id="contactPageId" />
+
+            <h3 class="section-title" style="font-size:1.1rem;">Hero Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactHeroTagEn">Tag (English)</label><input type="text" id="contactHeroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactHeroTagArInput">Tag (Arabic)</label><input type="text" id="contactHeroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactHeroTitleEn">Title (English)</label><input type="text" id="contactHeroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactHeroTitleArInput">Title (Arabic)</label><input type="text" id="contactHeroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactHeroSubEn">Subtitle (English)</label><input type="text" id="contactHeroSubEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactHeroSubArInput">Subtitle (Arabic)</label><input type="text" id="contactHeroSubArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactHeroImageFile">Hero Background Image</label><input type="file" id="contactHeroImageFile" class="form-control-custom" accept="image/*" /><div id="contactHeroImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="contactHeroImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="contactHeroImageUrl">Hero Image URL</label><input type="text" id="contactHeroImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Contact Information Card</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoTagEn">Tag (English)</label><input type="text" id="contactInfoTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoTagArInput">Tag (Arabic)</label><input type="text" id="contactInfoTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoTitleEn">Title (English)</label><input type="text" id="contactInfoTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoTitleArInput">Title (Arabic)</label><input type="text" id="contactInfoTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoDescEn">Description (English)</label><textarea id="contactInfoDescEn" class="form-control-custom" rows="3"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoDescArInput">Description (Arabic)</label><textarea id="contactInfoDescArInput" class="form-control-custom" rows="3" dir="rtl"></textarea></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Contact Form Text</h3>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactFormTagEn">Tag (English)</label><input type="text" id="contactFormTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactFormTagArInput">Tag (Arabic)</label><input type="text" id="contactFormTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactFormTitleEn">Title (English)</label><input type="text" id="contactFormTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactFormTitleArInput">Title (Arabic)</label><input type="text" id="contactFormTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactFormDescEn">Description (English)</label><textarea id="contactFormDescEn" class="form-control-custom" rows="2"></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactFormDescArInput">Description (Arabic)</label><textarea id="contactFormDescArInput" class="form-control-custom" rows="2" dir="rtl"></textarea></div></div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelNameEn">"Name" Label (EN)</label><input type="text" id="contactLabelNameEn" class="form-control-custom" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelNameArInput">"Name" Label (AR)</label><input type="text" id="contactLabelNameArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactPlaceholderNameEn">"Name" Placeholder (EN)</label><input type="text" id="contactPlaceholderNameEn" class="form-control-custom" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactPlaceholderNameArInput">"Name" Placeholder (AR)</label><input type="text" id="contactPlaceholderNameArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelEmailEn">"Email" Label (EN)</label><input type="text" id="contactLabelEmailEn" class="form-control-custom" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelEmailArInput">"Email" Label (AR)</label><input type="text" id="contactLabelEmailArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactPlaceholderEmailEn">"Email" Placeholder (EN)</label><input type="text" id="contactPlaceholderEmailEn" class="form-control-custom" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactPlaceholderEmailArInput">"Email" Placeholder (AR)</label><input type="text" id="contactPlaceholderEmailArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelPhoneEn">"Phone" Label (EN)</label><input type="text" id="contactLabelPhoneEn" class="form-control-custom" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelPhoneArInput">"Phone" Label (AR)</label><input type="text" id="contactLabelPhoneArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactPlaceholderPhoneEn">"Phone" Placeholder (EN)</label><input type="text" id="contactPlaceholderPhoneEn" class="form-control-custom" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactPlaceholderPhoneArInput">"Phone" Placeholder (AR)</label><input type="text" id="contactPlaceholderPhoneArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelSubjectEn">"Subject" Label (EN)</label><input type="text" id="contactLabelSubjectEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelSubjectArInput">"Subject" Label (AR)</label><input type="text" id="contactLabelSubjectArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+            <p class="form-label-custom" style="margin-bottom:8px;">Subject Dropdown Options</p>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectDefaultEn">Default / placeholder option (EN)</label><input type="text" id="contactSubjectDefaultEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectDefaultArInput">Default / placeholder option (AR)</label><input type="text" id="contactSubjectDefaultArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectInquiryEn">Option: General Inquiry (EN)</label><input type="text" id="contactSubjectInquiryEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectInquiryArInput">Option: General Inquiry (AR)</label><input type="text" id="contactSubjectInquiryArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectTradeEn">Option: Products & Trade (EN)</label><input type="text" id="contactSubjectTradeEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectTradeArInput">Option: Products & Trade (AR)</label><input type="text" id="contactSubjectTradeArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectTechEn">Option: Technology Services (EN)</label><input type="text" id="contactSubjectTechEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectTechArInput">Option: Technology Services (AR)</label><input type="text" id="contactSubjectTechArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectInvestmentEn">Option: Investment Partnership (EN)</label><input type="text" id="contactSubjectInvestmentEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectInvestmentArInput">Option: Investment Partnership (AR)</label><input type="text" id="contactSubjectInvestmentArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectLogisticsEn">Option: Logistics & Shipping (EN)</label><input type="text" id="contactSubjectLogisticsEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectLogisticsArInput">Option: Logistics & Shipping (AR)</label><input type="text" id="contactSubjectLogisticsArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectMediaEn">Option: Media & Press (EN)</label><input type="text" id="contactSubjectMediaEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactSubjectMediaArInput">Option: Media & Press (AR)</label><input type="text" id="contactSubjectMediaArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelMessageEn">"Message" Label (EN)</label><input type="text" id="contactLabelMessageEn" class="form-control-custom" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactLabelMessageArInput">"Message" Label (AR)</label><input type="text" id="contactLabelMessageArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactPlaceholderMessageEn">"Message" Placeholder (EN)</label><input type="text" id="contactPlaceholderMessageEn" class="form-control-custom" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactPlaceholderMessageArInput">"Message" Placeholder (AR)</label><input type="text" id="contactPlaceholderMessageArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactBtnSubmitEn">Submit Button (EN)</label><input type="text" id="contactBtnSubmitEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactBtnSubmitArInput">Submit Button (AR)</label><input type="text" id="contactBtnSubmitArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Global Offices Section Header</h3>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficesTagEn">Tag (English)</label><input type="text" id="contactOfficesTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficesTagArInput">Tag (Arabic)</label><input type="text" id="contactOfficesTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficesTitleEn">Title (English)</label><input type="text" id="contactOfficesTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficesTitleArInput">Title (Arabic)</label><input type="text" id="contactOfficesTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <button type="submit" class="btn-gold btn-ripple">Save Page Text</button>
+            <span id="contactPageStatus" style="font-size:0.85rem;margin-left:12px;"></span>
+          </form>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Contact Channels</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddContactInfoItemBtn"><i class="bi bi-plus-lg me-2"></i>Add Channel</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Icon</th><th>Label (EN)</th><th>Value</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="contactInfoItemsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Global Offices</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddContactOfficeBtn"><i class="bi bi-plus-lg me-2"></i>Add Office</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Icon</th><th>Title (EN)</th><th>Title (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="contactOfficesTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="userManagementSection" style="display:none;">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <div>
+            <h2 class="section-title" style="font-size:1.5rem;margin-bottom:4px;">Staff Accounts</h2>
+          </div>
+          <button type="button" class="btn-gold btn-ripple" id="openAddEmployeeBtn">
+            <i class="bi bi-person-plus me-2"></i>Add Employee
+          </button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr><td colspan="4" class="text-center py-4">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Edit Staff Modal (name / email / password) -->
+  <div class="modal fade" id="editStaffModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white">Edit Staff Member</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="editStaffUserId" />
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="editStaffName">Full Name</label>
+            <input type="text" id="editStaffName" class="form-control-custom" required />
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="editStaffEmail">Email</label>
+            <input type="email" id="editStaffEmail" class="form-control-custom" required />
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="editStaffPassword">New Password</label>
+            <input type="password" id="editStaffPassword" class="form-control-custom" placeholder="Leave blank to keep current password" autocomplete="new-password" />
+          </div>
+          <div id="editStaffStatus" class="form-error" style="display:none;"></div>
+        </div>
+        <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+          <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn-gold btn-ripple" id="saveStaffBtn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Employee Modal -->
+  <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white">Add Employee</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="newEmployeeName">Full Name</label>
+            <input type="text" id="newEmployeeName" class="form-control-custom" required />
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="newEmployeeEmail">Email</label>
+            <input type="email" id="newEmployeeEmail" class="form-control-custom" required />
+          </div>
+          <div class="form-group-custom">
+            <label class="form-label-custom" for="newEmployeePassword">Password</label>
+            <input type="password" id="newEmployeePassword" class="form-control-custom" required autocomplete="new-password" />
+          </div>
+          <div id="addEmployeeStatus" class="form-error" style="display:none;"></div>
+        </div>
+        <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+          <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn-gold btn-ripple" id="saveNewEmployeeBtn">Add Employee</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Product Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="productModalTitle">Add Product</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="productForm">
+          <div class="modal-body">
+            <input type="hidden" id="productId" />
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productCategory">Category</label>
+                  <div class="d-flex gap-2">
+                    <select id="productCategory" class="form-control-custom" required></select>
+                    <button type="button" class="btn-outline-gold" id="newCategoryToggleBtn" style="white-space:nowrap;padding:0.6rem 1rem;font-size:0.85rem;">+ New</button>
+                  </div>
+                  <div id="newCategoryForm" style="display:none;margin-top:10px;">
+                    <div class="row g-2">
+                      <div class="col-6">
+                        <input type="text" id="newCategoryLabelEn" class="form-control-custom" placeholder="Category name (English)" />
+                      </div>
+                      <div class="col-6">
+                        <input type="text" id="newCategoryLabelAr" class="form-control-custom" placeholder="اسم الصنف (عربي)" dir="rtl" />
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-2">
+                      <button type="button" class="btn-gold" id="saveNewCategoryBtn" style="padding:0.5rem 1.2rem;font-size:0.85rem;">Add Category</button>
+                      <button type="button" class="btn-outline-white" id="cancelNewCategoryBtn" style="padding:0.5rem 1.2rem;font-size:0.85rem;">Cancel</button>
+                    </div>
+                    <div id="newCategoryStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productImageFile">Upload Image</label>
+                  <input type="file" id="productImageFile" class="form-control-custom" accept="image/*" />
+                  <div id="productImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-end">
+                <div class="form-group-custom" style="width:100%;">
+                  <img id="productImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productImageUrl">Image URL</label>
+                  <input type="text" id="productImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productTitleEn">Title (English)</label>
+                  <input type="text" id="productTitleEn" class="form-control-custom" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productTitleAr">Title (Arabic)</label>
+                  <input type="text" id="productTitleAr" class="form-control-custom" dir="rtl" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productDescEn">Description (English)</label>
+                  <textarea id="productDescEn" class="form-control-custom" rows="3" required></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productDescAr">Description (Arabic)</label>
+                  <textarea id="productDescAr" class="form-control-custom" rows="3" dir="rtl" required></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productImageAlt">Image Alt Text</label>
+                  <input type="text" id="productImageAlt" class="form-control-custom" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="productDisplayOrder">Display Order</label>
+                  <input type="number" id="productDisplayOrder" class="form-control-custom" value="0" />
+                </div>
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <div class="form-group-custom form-check ps-0">
+                  <input type="checkbox" id="productIsActive" checked style="margin-right:8px;" />
+                  <label class="form-label-custom" for="productIsActive" style="display:inline;">Active (visible on site)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Project Modal -->
+  <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="projectModalTitle">Add Project</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="projectForm">
+          <div class="modal-body">
+            <input type="hidden" id="projectId" />
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectImageFile">Upload Image</label>
+                  <input type="file" id="projectImageFile" class="form-control-custom" accept="image/*" />
+                  <div id="projectImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-end">
+                <div class="form-group-custom" style="width:100%;">
+                  <img id="projectImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectImageUrl">Image URL</label>
+                  <input type="text" id="projectImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectTitleEn">Title (English)</label>
+                  <input type="text" id="projectTitleEn" class="form-control-custom" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectTitleAr">Title (Arabic)</label>
+                  <input type="text" id="projectTitleAr" class="form-control-custom" dir="rtl" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectCategoryEn">Category (English)</label>
+                  <input type="text" id="projectCategoryEn" class="form-control-custom" placeholder="e.g. Logistics" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectCategoryAr">Category (Arabic)</label>
+                  <input type="text" id="projectCategoryAr" class="form-control-custom" dir="rtl" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectLocationEn">Location (English)</label>
+                  <input type="text" id="projectLocationEn" class="form-control-custom" placeholder="e.g. Khartoum, Sudan" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectLocationAr">Location (Arabic)</label>
+                  <input type="text" id="projectLocationAr" class="form-control-custom" dir="rtl" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectImageAlt">Image Alt Text</label>
+                  <input type="text" id="projectImageAlt" class="form-control-custom" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="projectDisplayOrder">Display Order</label>
+                  <input type="number" id="projectDisplayOrder" class="form-control-custom" value="0" />
+                </div>
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <div class="form-group-custom form-check ps-0">
+                  <input type="checkbox" id="projectIsActive" checked style="margin-right:8px;" />
+                  <label class="form-label-custom" for="projectIsActive" style="display:inline;">Active (visible on site)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Project</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Gallery Image Modal -->
+  <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="galleryModalTitle">Add Image</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="galleryForm">
+          <div class="modal-body">
+            <input type="hidden" id="galleryImageId" />
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="galleryImageFile">Upload Image</label>
+                  <input type="file" id="galleryImageFile" class="form-control-custom" accept="image/*" />
+                  <div id="galleryImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-end">
+                <div class="form-group-custom" style="width:100%;">
+                  <img id="galleryImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="galleryImageUrl">Image URL</label>
+                  <input type="text" id="galleryImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="galleryImageAlt">Alt Text</label>
+                  <input type="text" id="galleryImageAlt" class="form-control-custom" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="galleryDisplayOrder">Display Order</label>
+                  <input type="number" id="galleryDisplayOrder" class="form-control-custom" value="0" />
+                </div>
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <div class="form-group-custom form-check ps-0">
+                  <input type="checkbox" id="galleryIsActive" checked style="margin-right:8px;" />
+                  <label class="form-label-custom" for="galleryIsActive" style="display:inline;">Active (visible on site)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Image</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Service Modal -->
+  <div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="serviceModalTitle">Add Service</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="serviceForm">
+          <div class="modal-body">
+            <input type="hidden" id="serviceId" />
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceImageFile">Upload Image</label>
+                  <input type="file" id="serviceImageFile" class="form-control-custom" accept="image/*" />
+                  <div id="serviceImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div>
+                </div>
+              </div>
+              <div class="col-md-6 d-flex align-items-end">
+                <div class="form-group-custom" style="width:100%;">
+                  <img id="serviceImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceImageUrl">Image URL</label>
+                  <input type="text" id="serviceImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceTitleEn">Title (English)</label>
+                  <input type="text" id="serviceTitleEn" class="form-control-custom" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceTitleAr">Title (Arabic)</label>
+                  <input type="text" id="serviceTitleAr" class="form-control-custom" dir="rtl" required />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceLinkUrl">Link URL</label>
+                  <input type="text" id="serviceLinkUrl" class="form-control-custom" placeholder="e.g. logistics.html" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceDescEn">Description (English) — used only if no bullet points below</label>
+                  <textarea id="serviceDescEn" class="form-control-custom" rows="2"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceDescAr">Description (Arabic) — used only if no bullet points below</label>
+                  <textarea id="serviceDescAr" class="form-control-custom" rows="2" dir="rtl"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceImageAlt">Image Alt Text</label>
+                  <input type="text" id="serviceImageAlt" class="form-control-custom" />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="serviceDisplayOrder">Display Order</label>
+                  <input type="number" id="serviceDisplayOrder" class="form-control-custom" value="0" />
+                </div>
+              </div>
+              <div class="col-md-3 d-flex align-items-end">
+                <div class="form-group-custom form-check ps-0">
+                  <input type="checkbox" id="serviceIsActive" checked style="margin-right:8px;" />
+                  <label class="form-label-custom" for="serviceIsActive" style="display:inline;">Active (visible on site)</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom">Bullet Points</label>
+                  <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-bottom:10px;">
+                    Click the icon on each row to pick a shape. If this panel has no bullet points, the Description above is shown instead.
+                  </p>
+                  <div id="serviceItemsList"></div>
+                  <button type="button" class="btn-outline-gold" id="addServiceItemBtn" style="margin-top:6px;padding:0.5rem 1.2rem;font-size:0.85rem;">
+                    <i class="bi bi-plus-lg me-1"></i>Add Bullet Point
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Service</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Tech Card Modal -->
+  <div class="modal fade" id="techCardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="techCardModalTitle">Add Tech Card</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="techCardForm">
+          <div class="modal-body">
+            <input type="hidden" id="techCardId" />
+            <div class="row g-3">
+              <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="dropdown">
+                  <button type="button" class="btn-icon" id="techCardIconToggle" data-bs-toggle="dropdown" aria-expanded="false" title="Choose icon" style="width:56px;height:56px;">
+                    <i id="techCardIconPreview" class="bi bi-gear" style="font-size:1.8rem;color:var(--gold);"></i>
+                  </button>
+                  <div class="dropdown-menu icon-picker-menu" id="techCardIconMenu"></div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group-custom">
+                  <label class="form-label-custom">Icon</label>
+                  <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin:0;">Click the icon on the left to pick a shape.</p>
+                  <input type="hidden" id="techCardIcon" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="techCardTitleEn">Title (English)</label>
+                  <input type="text" id="techCardTitleEn" class="form-control-custom" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="techCardTitleAr">Title (Arabic)</label>
+                  <input type="text" id="techCardTitleAr" class="form-control-custom" dir="rtl" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="techCardDescShortEn">Short Description (English) — homepage teaser</label>
+                  <textarea id="techCardDescShortEn" class="form-control-custom" rows="2"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="techCardDescShortAr">Short Description (Arabic) — homepage teaser</label>
+                  <textarea id="techCardDescShortAr" class="form-control-custom" rows="2" dir="rtl"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="techCardDescLongEn">Long Description (English) — Technology page</label>
+                  <textarea id="techCardDescLongEn" class="form-control-custom" rows="3" required></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="techCardDescLongAr">Long Description (Arabic) — Technology page</label>
+                  <textarea id="techCardDescLongAr" class="form-control-custom" rows="3" dir="rtl" required></textarea>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="techCardDisplayOrder">Display Order</label>
+                  <input type="number" id="techCardDisplayOrder" class="form-control-custom" value="0" />
+                </div>
+              </div>
+              <div class="col-md-4 d-flex align-items-end">
+                <div class="form-group-custom form-check ps-0">
+                  <input type="checkbox" id="techCardIsFeatured" style="margin-right:8px;" />
+                  <label class="form-label-custom" for="techCardIsFeatured" style="display:inline;">Show on homepage teaser</label>
+                </div>
+              </div>
+              <div class="col-md-4 d-flex align-items-end">
+                <div class="form-group-custom form-check ps-0">
+                  <input type="checkbox" id="techCardIsActive" checked style="margin-right:8px;" />
+                  <label class="form-label-custom" for="techCardIsActive" style="display:inline;">Active (visible on site)</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Tech Card</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Vision Card Modal -->
+  <div class="modal fade" id="visionCardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="visionCardModalTitle">Add Card</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="visionCardForm">
+          <div class="modal-body">
+            <input type="hidden" id="visionCardId" />
+            <div class="row g-3">
+              <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="dropdown">
+                  <button type="button" class="btn-icon" id="visionCardIconToggle" data-bs-toggle="dropdown" aria-expanded="false" title="Choose icon" style="width:56px;height:56px;">
+                    <i id="visionCardIconPreview" class="bi bi-star" style="font-size:1.8rem;color:var(--gold);"></i>
+                  </button>
+                  <div class="dropdown-menu icon-picker-menu" id="visionCardIconMenu"></div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group-custom">
+                  <label class="form-label-custom">Icon</label>
+                  <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin:0;">Click the icon on the left to pick a shape.</p>
+                  <input type="hidden" id="visionCardIcon" />
+                </div>
+              </div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="visionCardTitleEn">Title (English)</label><input type="text" id="visionCardTitleEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="visionCardTitleAr">Title (Arabic)</label><input type="text" id="visionCardTitleAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="visionCardDescEn">Description (English)</label><textarea id="visionCardDescEn" class="form-control-custom" rows="3" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="visionCardDescAr">Description (Arabic)</label><textarea id="visionCardDescAr" class="form-control-custom" rows="3" dir="rtl" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="visionCardDisplayOrder">Display Order</label><input type="number" id="visionCardDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="visionCardIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="visionCardIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Card</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Stat Modal -->
+  <div class="modal fade" id="aboutStatModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="aboutStatModalTitle">Add Stat</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="aboutStatForm">
+          <div class="modal-body">
+            <input type="hidden" id="aboutStatId" />
+            <div class="row g-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStatNumber">Number</label><input type="number" id="aboutStatNumber" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStatSuffix">Suffix</label><input type="text" id="aboutStatSuffix" class="form-control-custom" placeholder="e.g. +" value="+" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStatLabelEn">Label (English)</label><input type="text" id="aboutStatLabelEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStatLabelAr">Label (Arabic)</label><input type="text" id="aboutStatLabelAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutStatDisplayOrder">Display Order</label><input type="number" id="aboutStatDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="aboutStatIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="aboutStatIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Stat</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Team Member Modal -->
+  <div class="modal fade" id="teamMemberModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="teamMemberModalTitle">Add Team Member</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="teamMemberForm">
+          <div class="modal-body">
+            <input type="hidden" id="teamMemberId" />
+            <div class="row g-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberPhotoFile">Upload Photo</label><input type="file" id="teamMemberPhotoFile" class="form-control-custom" accept="image/*" /><div id="teamMemberPhotoUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-6 d-flex align-items-end"><img id="teamMemberPhotoPreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberPhotoUrl">Photo URL</label><input type="text" id="teamMemberPhotoUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberNameEn">Name (English)</label><input type="text" id="teamMemberNameEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberNameAr">Name (Arabic)</label><input type="text" id="teamMemberNameAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberRoleEn">Role (English)</label><input type="text" id="teamMemberRoleEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberRoleAr">Role (Arabic)</label><input type="text" id="teamMemberRoleAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberLinkUrl">Link URL (optional — e.g. links to a full bio page)</label><input type="text" id="teamMemberLinkUrl" class="form-control-custom" placeholder="e.g. chairman-message.html" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberLinkLabelEn">Link Caption (English)</label><input type="text" id="teamMemberLinkLabelEn" class="form-control-custom" placeholder="e.g. Read the Chairman's Message" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberLinkLabelAr">Link Caption (Arabic)</label><input type="text" id="teamMemberLinkLabelAr" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="teamMemberDisplayOrder">Display Order</label><input type="number" id="teamMemberDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="teamMemberIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="teamMemberIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Team Member</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Certification Modal -->
+  <div class="modal fade" id="aboutCertModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="aboutCertModalTitle">Add Certification</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="aboutCertForm">
+          <div class="modal-body">
+            <input type="hidden" id="aboutCertId" />
+            <div class="row g-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertBadgeFile">Upload Badge Image</label><input type="file" id="aboutCertBadgeFile" class="form-control-custom" accept="image/*" /><div id="aboutCertBadgeUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-6 d-flex align-items-end"><img id="aboutCertBadgePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertBadgeUrl">Badge Image URL</label><input type="text" id="aboutCertBadgeUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertTitleEn">Title (English)</label><input type="text" id="aboutCertTitleEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertTitleAr">Title (Arabic)</label><input type="text" id="aboutCertTitleAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertDescEn">Description (English)</label><input type="text" id="aboutCertDescEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertDescAr">Description (Arabic)</label><input type="text" id="aboutCertDescAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aboutCertDisplayOrder">Display Order</label><input type="number" id="aboutCertDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="aboutCertIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="aboutCertIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Certification</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Investment Sector Modal -->
+  <div class="modal fade" id="investmentSectorModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="investmentSectorModalTitle">Add Sector</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="investmentSectorForm">
+          <div class="modal-body">
+            <input type="hidden" id="investmentSectorId" />
+            <div class="row g-3">
+              <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="dropdown">
+                  <button type="button" class="btn-icon" id="investmentSectorIconToggle" data-bs-toggle="dropdown" aria-expanded="false" title="Choose icon" style="width:56px;height:56px;">
+                    <i id="investmentSectorIconPreview" class="bi bi-graph-up-arrow" style="font-size:1.8rem;color:var(--gold);"></i>
+                  </button>
+                  <div class="dropdown-menu icon-picker-menu" id="investmentSectorIconMenu"></div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group-custom">
+                  <label class="form-label-custom">Icon</label>
+                  <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin:0;">Click the icon on the left to pick a shape.</p>
+                  <input type="hidden" id="investmentSectorIcon" />
+                </div>
+              </div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorTitleEn">Title (English)</label><input type="text" id="investmentSectorTitleEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorTitleAr">Title (Arabic)</label><input type="text" id="investmentSectorTitleAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorDescEn">Description (English)</label><textarea id="investmentSectorDescEn" class="form-control-custom" rows="3" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorDescAr">Description (Arabic)</label><textarea id="investmentSectorDescAr" class="form-control-custom" rows="3" dir="rtl" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentSectorDisplayOrder">Display Order</label><input type="number" id="investmentSectorDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="investmentSectorIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="investmentSectorIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Sector</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Investment Step Modal -->
+  <div class="modal fade" id="investmentStepModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="investmentStepModalTitle">Add Step</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="investmentStepForm">
+          <div class="modal-body">
+            <input type="hidden" id="investmentStepId" />
+            <div class="row g-3">
+              <div class="col-md-4"><div class="form-group-custom"><label class="form-label-custom" for="investmentStepNumber">Step Number</label><input type="text" id="investmentStepNumber" class="form-control-custom" placeholder="e.g. 01" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentStepTitleEn">Title (English)</label><input type="text" id="investmentStepTitleEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentStepTitleAr">Title (Arabic)</label><input type="text" id="investmentStepTitleAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentStepDescEn">Description (English)</label><textarea id="investmentStepDescEn" class="form-control-custom" rows="3" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentStepDescAr">Description (Arabic)</label><textarea id="investmentStepDescAr" class="form-control-custom" rows="3" dir="rtl" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="investmentStepDisplayOrder">Display Order</label><input type="number" id="investmentStepDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="investmentStepIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="investmentStepIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Step</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Logistics Service Modal -->
+  <div class="modal fade" id="logisticsServiceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="logisticsServiceModalTitle">Add Service</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="logisticsServiceForm">
+          <div class="modal-body">
+            <input type="hidden" id="logisticsServiceId" />
+            <div class="row g-3">
+              <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="dropdown">
+                  <button type="button" class="btn-icon" id="logisticsServiceIconToggle" data-bs-toggle="dropdown" aria-expanded="false" title="Choose icon" style="width:56px;height:56px;">
+                    <i id="logisticsServiceIconPreview" class="bi bi-truck" style="font-size:1.8rem;color:var(--gold);"></i>
+                  </button>
+                  <div class="dropdown-menu icon-picker-menu" id="logisticsServiceIconMenu"></div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group-custom">
+                  <label class="form-label-custom">Icon</label>
+                  <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin:0;">Click the icon on the left to pick a shape.</p>
+                  <input type="hidden" id="logisticsServiceIcon" />
+                </div>
+              </div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsServiceTitleEn">Title (English)</label><input type="text" id="logisticsServiceTitleEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsServiceTitleAr">Title (Arabic)</label><input type="text" id="logisticsServiceTitleAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsServiceDescEn">Description (English)</label><textarea id="logisticsServiceDescEn" class="form-control-custom" rows="3" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsServiceDescAr">Description (Arabic)</label><textarea id="logisticsServiceDescAr" class="form-control-custom" rows="3" dir="rtl" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsServiceDisplayOrder">Display Order</label><input type="number" id="logisticsServiceDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="logisticsServiceIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="logisticsServiceIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Service</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Logistics Stat Modal -->
+  <div class="modal fade" id="logisticsStatModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="logisticsStatModalTitle">Add Stat</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="logisticsStatForm">
+          <div class="modal-body">
+            <input type="hidden" id="logisticsStatId" />
+            <div class="row g-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsStatNumber">Number</label><input type="number" id="logisticsStatNumber" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsStatSuffix">Suffix</label><input type="text" id="logisticsStatSuffix" class="form-control-custom" placeholder="e.g. + or %" value="+" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsStatLabelEn">Label (English)</label><input type="text" id="logisticsStatLabelEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsStatLabelAr">Label (Arabic)</label><input type="text" id="logisticsStatLabelAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="logisticsStatDisplayOrder">Display Order</label><input type="number" id="logisticsStatDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="logisticsStatIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="logisticsStatIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Stat</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Media News Article Modal -->
+  <div class="modal fade" id="mediaNewsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="mediaNewsModalTitle">Add News Article</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="mediaNewsForm">
+          <div class="modal-body">
+            <input type="hidden" id="mediaNewsId" />
+            <div class="row g-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsImageFile">Upload Image</label><input type="file" id="mediaNewsImageFile" class="form-control-custom" accept="image/*" /><div id="mediaNewsImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-6 d-flex align-items-end"><img id="mediaNewsImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsImageUrl">Image URL</label><input type="text" id="mediaNewsImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsDateEn">Date (English)</label><input type="text" id="mediaNewsDateEn" class="form-control-custom" placeholder="e.g. March 15, 2024" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsDateAr">Date (Arabic)</label><input type="text" id="mediaNewsDateAr" class="form-control-custom" dir="rtl" placeholder="مثال: 15 مارس 2024" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsTitleEn">Title (English)</label><input type="text" id="mediaNewsTitleEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsTitleArInput">Title (Arabic)</label><input type="text" id="mediaNewsTitleArInput" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsDescEn">Description (English)</label><textarea id="mediaNewsDescEn" class="form-control-custom" rows="3" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsDescAr">Description (Arabic)</label><textarea id="mediaNewsDescAr" class="form-control-custom" rows="3" dir="rtl" required></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsLinkUrl">Link URL (optional — "Read More" destination)</label><input type="text" id="mediaNewsLinkUrl" class="form-control-custom" placeholder="e.g. https://... (defaults to # if left blank)" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="mediaNewsDisplayOrder">Display Order</label><input type="number" id="mediaNewsDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="mediaNewsIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="mediaNewsIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Article</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Contact Info Item Modal -->
+  <div class="modal fade" id="contactInfoItemModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="contactInfoItemModalTitle">Add Channel</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="contactInfoItemForm">
+          <div class="modal-body">
+            <input type="hidden" id="contactInfoItemId" />
+            <div class="row g-3">
+              <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="dropdown">
+                  <button type="button" class="btn-icon" id="contactInfoItemIconToggle" data-bs-toggle="dropdown" aria-expanded="false" title="Choose icon" style="width:56px;height:56px;">
+                    <i id="contactInfoItemIconPreview" class="bi bi-geo-alt" style="font-size:1.8rem;color:var(--gold);"></i>
+                  </button>
+                  <div class="dropdown-menu icon-picker-menu" id="contactInfoItemIconMenu"></div>
+                  <input type="hidden" id="contactInfoItemIcon" />
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="row g-3">
+                  <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoItemLabelEn">Label (English)</label><input type="text" id="contactInfoItemLabelEn" class="form-control-custom" required /></div></div>
+                  <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoItemLabelAr">Label (Arabic)</label><input type="text" id="contactInfoItemLabelAr" class="form-control-custom" dir="rtl" required /></div></div>
+                </div>
+              </div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoItemValueEn">Value (English)</label><input type="text" id="contactInfoItemValueEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoItemValueAr">Value (Arabic)</label><input type="text" id="contactInfoItemValueAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactInfoItemDisplayOrder">Display Order</label><input type="number" id="contactInfoItemDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="contactInfoItemIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="contactInfoItemIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Channel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Contact Office Modal -->
+  <div class="modal fade" id="contactOfficeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="contactOfficeModalTitle">Add Office</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="contactOfficeForm">
+          <div class="modal-body">
+            <input type="hidden" id="contactOfficeId" />
+            <div class="row g-3">
+              <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="dropdown">
+                  <button type="button" class="btn-icon" id="contactOfficeIconToggle" data-bs-toggle="dropdown" aria-expanded="false" title="Choose icon" style="width:56px;height:56px;">
+                    <i id="contactOfficeIconPreview" class="bi bi-building" style="font-size:1.8rem;color:var(--gold);"></i>
+                  </button>
+                  <div class="dropdown-menu icon-picker-menu" id="contactOfficeIconMenu"></div>
+                  <input type="hidden" id="contactOfficeIcon" />
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="row g-3">
+                  <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficeTitleEn">City Title (English)</label><input type="text" id="contactOfficeTitleEn" class="form-control-custom" required /></div></div>
+                  <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficeTitleAr">City Title (Arabic)</label><input type="text" id="contactOfficeTitleAr" class="form-control-custom" dir="rtl" required /></div></div>
+                </div>
+              </div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficeLabelEn">Office Type Label (English)</label><input type="text" id="contactOfficeLabelEn" class="form-control-custom" placeholder="e.g. Head Office" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficeLabelAr">Office Type Label (Arabic)</label><input type="text" id="contactOfficeLabelAr" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficeAddressEn">Address (English)</label><input type="text" id="contactOfficeAddressEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficeAddressAr">Address (Arabic)</label><input type="text" id="contactOfficeAddressAr" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficePhone">Phone Number</label><input type="text" id="contactOfficePhone" class="form-control-custom" placeholder="e.g. +966 50 441 5254" /></div></div>
+              <div class="col-md-3"><div class="form-group-custom"><label class="form-label-custom" for="contactOfficeDisplayOrder">Display Order</label><input type="number" id="contactOfficeDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-3 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="contactOfficeIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="contactOfficeIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Office</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" id="scrollTop" aria-label="Back to top"><i class="bi bi-chevron-up"></i></button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="./main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-client.js"></script>
+  <script src="./runtime-check.js"></script>
+  <script src="./auth.js"></script>
+  <script src="./dashboard.js"></script>
+</body>
+</html>
