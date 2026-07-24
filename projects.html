@@ -79,96 +79,73 @@
         <p class="section-subtitle mx-auto" data-i18n-key="proj_feat_sub">A selection of our most impactful projects across global markets.</p>
       </div>
 
-      <div class="row g-4">
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sesame Export" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj1_cat">Agricultural Export</div>
-              <div class="project-title" data-i18n-key="proj1_title">Sesame Export to China</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj1_loc">Sudan → China</span></div>
+      <div class="row g-4" id="projectsGrid">
+        <div class="col-12 text-center py-4" id="projectsLoading">
+          <div class="spinner-border" style="color:var(--gold);" role="status"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" style="background:var(--primary);">
+    <div class="container-fluid px-4 px-xl-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6" data-aos="fade-right">
+          <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="osli_tag">Flagship Project</p>
+          <h2 class="section-title text-white" data-i18n-key="osli_title">OSLI Smart City for Development and Stability</h2>
+          <div class="gold-divider"></div>
+          <p class="section-subtitle" style="color:rgba(255,255,255,0.6);" data-i18n-key="osli_desc">
+            An ambitious humanitarian and development initiative to build an integrated residential community offering a safe, sustainable living environment with educational, healthcare, commercial and recreational facilities in line with modern urban planning and sustainable development standards.
+          </p>
+
+          <div class="row g-3 mt-2">
+            <div class="col-6">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="bi bi-rulers" style="color:var(--gold);font-size:1.3rem;"></i>
+                <div>
+                  <div style="color:var(--white);font-weight:700;">9 km²</div>
+                  <div style="color:rgba(255,255,255,0.5);font-size:0.78rem;" data-i18n-key="osli_stat_area">Total Area</div>
+                </div>
+              </div>
             </div>
+            <div class="col-6">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="bi bi-houses" style="color:var(--gold);font-size:1.3rem;"></i>
+                <div>
+                  <div style="color:var(--white);font-weight:700;">1,300</div>
+                  <div style="color:rgba(255,255,255,0.5);font-size:0.78rem;" data-i18n-key="osli_stat_units">Residential Units</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="bi bi-mortarboard" style="color:var(--gold);font-size:1.3rem;"></i>
+                <div>
+                  <div style="color:var(--white);font-weight:700;">6</div>
+                  <div style="color:rgba(255,255,255,0.5);font-size:0.78rem;" data-i18n-key="osli_stat_schools">Schools</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <i class="bi bi-shop" style="color:var(--gold);font-size:1.3rem;"></i>
+                <div>
+                  <div style="color:var(--white);font-weight:700;">30</div>
+                  <div style="color:rgba(255,255,255,0.5);font-size:0.78rem;" data-i18n-key="osli_stat_shops">Commercial Shops</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4" style="display:flex;align-items:center;gap:10px;">
+            <span class="badge" style="background:rgba(212,175,55,0.15);color:var(--gold);border:1px solid rgba(212,175,55,0.3);padding:6px 14px;border-radius:30px;font-size:0.78rem;">
+              <i class="bi bi-cone-striped me-1"></i><span data-i18n-key="osli_status">Under Construction and Development</span>
+            </span>
           </div>
         </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Logistics Hub" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj2_cat">Logistics</div>
-              <div class="project-title" data-i18n-key="proj2_title">Port Sudan Logistics Hub</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj2_loc">Port Sudan, Sudan</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ERP Implementation" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj3_cat">Technology</div>
-              <div class="project-title" data-i18n-key="proj3_title">ERP System Implementation</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj3_loc">Riyadh, Saudi Arabia</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/1078884/pexels-photo-1078884.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mining Project" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj4_cat">Mining</div>
-              <div class="project-title" data-i18n-key="proj4_title">Gold Mining Partnership</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj4_loc">Red Sea Hills, Sudan</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Investment Tower" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj5_cat">Investment</div>
-              <div class="project-title" data-i18n-key="proj5_title">Riyadh Investment Tower</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj5_loc">Riyadh, Saudi Arabia</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/422218/pexels-photo-422218.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Livestock Export" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj6_cat">Livestock</div>
-              <div class="project-title" data-i18n-key="proj6_title">Livestock Export to UAE</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj6_loc">Sudan → UAE</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Construction" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj7_cat">Industrial</div>
-              <div class="project-title" data-i18n-key="proj7_title">Construction Materials Supply</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj7_loc">Khartoum, Sudan</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tech Partnership" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj8_cat">Technology</div>
-              <div class="project-title" data-i18n-key="proj8_title">Cloud Migration Project</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj8_loc">Dubai, UAE</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Oil Processing" />
-            <div class="project-overlay">
-              <div class="project-cat" data-i18n-key="proj9_cat">Natural Oils</div>
-              <div class="project-title" data-i18n-key="proj9_title">Sesame Oil Processing Plant</div>
-              <div class="project-location"><i class="bi bi-geo-alt"></i> <span data-i18n-key="proj9_loc">Gedaref, Sudan</span></div>
-            </div>
-          </div>
+
+        <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+          <img src="./photo/الخريطة.png" alt="OSLI Smart City Master Plan" style="width:100%;height:auto;border-radius:8px;border:1px solid rgba(212,175,55,0.2);" />
         </div>
       </div>
     </div>
@@ -297,5 +274,12 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="./main.js"></script>
   <script src="translate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="./emailjs-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-client.js"></script>
+  <script src="./runtime-check.js"></script>
+  <script src="./projects-data.js"></script>
+  <script src="./projects-loader.js"></script>
 </body>
 </html>

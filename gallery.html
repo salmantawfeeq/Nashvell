@@ -77,54 +77,9 @@
         <p class="section-subtitle mx-auto" style="color:rgba(255,255,255,0.55);" data-i18n-key="gallery_section_subtitle">Click any image to view in full size.</p>
       </div>
 
-      <div class="gallery-grid">
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in">
-          <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Agricultural Products" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="50">
-          <img src="https://images.pexels.com/photos/2749165/pexels-photo-2749165.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Natural Oils" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="100">
-          <img src="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Logistics" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/422218/pexels-photo-422218.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="150">
-          <img src="https://images.pexels.com/photos/422218/pexels-photo-422218.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Livestock" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/1078884/pexels-photo-1078884.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in">
-          <img src="https://images.pexels.com/photos/1078884/pexels-photo-1078884.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mining" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="50">
-          <img src="https://images.pexels.com/photos/1797428/pexels-photo-1797428.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Industrial" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="100">
-          <img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Investment" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="150">
-          <img src="https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Corporate" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in">
-          <img src="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Technology" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/5908874/pexels-photo-5908874.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="50">
-          <img src="https://images.pexels.com/photos/5908874/pexels-photo-5908874.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Hibiscus" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/5769086/pexels-photo-5769086.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="100">
-          <img src="https://images.pexels.com/photos/5769086/pexels-photo-5769086.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Peanuts" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
-        </div>
-        <div class="gallery-item" data-lightbox="https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=1200" data-aos="zoom-in" data-aos-delay="150">
-          <img src="https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Construction" />
-          <div class="gallery-overlay"><i class="bi bi-zoom-in"></i></div>
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="col-12 text-center py-4" id="galleryLoading">
+          <div class="spinner-border" style="color:var(--gold);" role="status"></div>
         </div>
       </div>
     </div>
@@ -233,5 +188,12 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="./main.js"></script>
   <script src="translate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="./emailjs-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-client.js"></script>
+  <script src="./runtime-check.js"></script>
+  <script src="./gallery-data.js"></script>
+  <script src="./gallery-loader.js"></script>
 </body>
 </html>
