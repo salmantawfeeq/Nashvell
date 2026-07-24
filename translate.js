@@ -212,6 +212,26 @@ const translations = {
     about_cert3_desc: "Occupational Health & Safety",
     about_cert4_title: "Best Exporter 2023",
     about_cert4_desc: "Sudan Export Excellence Award",
+    about_chairman_link: "Read the Chairman's Message",
+
+    // ============================================================
+    // CHAIRMAN PAGE
+    // ============================================================
+    chairman_hero_tag: "Leadership",
+    chairman_hero_title: "Chairman's Message",
+    chairman_hero_subtitle: "A strategic vision for building sustainable trade and investment bridges across the world.",
+    chairman_name: "Dr. Salah Al-Amin Hadousi",
+    chairman_role: "Chairman of the Board",
+    chairman_badge_num: "30+",
+    chairman_badge_label: "Years of Experience",
+    chairman_p1: "Dr. Salah Al-Amin Hadousi leads Nashvell International Trade with an ambitious strategic vision aimed at building sustainable trade and investment bridges between the Kingdom of Saudi Arabia and regional and global markets, with a strong focus on promoting investment opportunities and commercial exchange across the sectors of agriculture, mining, energy, industry, and logistics.",
+    chairman_p2: "Dr. Salah Al-Amin Hadousi possesses more than three decades of professional and executive experience in executive management, financial and administrative systems, business development, project management, and international investments. Throughout his career, he has contributed to the establishment and development of numerous commercial and investment initiatives and projects both within the Kingdom of Saudi Arabia and internationally.",
+    chairman_p3: "He holds a Master's Degree in Systems Analysis, in addition to his academic specialization in Cost Accounting, Information Systems, and Business Administration. This unique combination of expertise has enabled him to integrate managerial excellence with technological vision in leading organizations, driving innovation, and achieving sustainable growth.",
+    chairman_p4: "Under his leadership, Nashvell International Trade provides integrated solutions in international trade, investment consulting, project development, and strategic partnership building, while maintaining the highest standards of quality, transparency, and professionalism.",
+    chairman_quote: "We believe that true success is achieved through building long-term partnerships that create sustainable value for investors, partners, and the communities in which we operate.",
+    chairman_quote_attribution: "Dr. Salah Al-Amin Hadousi — Chairman of the Board",
+    chairman_btn_contact: "Get in Touch",
+    chairman_btn_about: "Back to About Us",
 
     // ============================================================
     // CONTACT PAGE
@@ -397,10 +417,22 @@ const translations = {
     proj9_cat: "Natural Oils",
     proj9_title: "Sesame Oil Processing Plant",
     proj9_loc: "Gedaref, Sudan",
+    proj10_cat: "Urban Development",
+    proj10_title: "OSLI Smart City",
+    proj10_loc: "Under Construction",
     proj_stat1: "Completed Projects",
     proj_stat2: "Countries Served",
     proj_stat3: "Happy Clients",
     proj_stat4: "Years Experience",
+
+    osli_tag: "Flagship Project",
+    osli_title: "OSLI Smart City for Development and Stability",
+    osli_desc: "An ambitious humanitarian and development initiative to build an integrated residential community offering a safe, sustainable living environment with educational, healthcare, commercial and recreational facilities in line with modern urban planning and sustainable development standards.",
+    osli_stat_area: "Total Area",
+    osli_stat_units: "Residential Units",
+    osli_stat_schools: "Schools",
+    osli_stat_shops: "Commercial Shops",
+    osli_status: "Under Construction and Development",
 
     // ============================================================
     // TECHNOLOGY PAGE
@@ -750,6 +782,26 @@ const translations = {
     about_cert3_desc: "الصحة والسلامة المهنية",
     about_cert4_title: "أفضل مُصدِّر 2023",
     about_cert4_desc: "جائزة التميز في التصدير — السودان",
+    about_chairman_link: "اقرأ كلمة رئيس مجلس الإدارة",
+
+    // ============================================================
+    // CHAIRMAN PAGE
+    // ============================================================
+    chairman_hero_tag: "القيادة",
+    chairman_hero_title: "كلمة رئيس مجلس الإدارة",
+    chairman_hero_subtitle: "رؤية استراتيجية لبناء جسور تجارية واستثمارية مستدامة حول العالم.",
+    chairman_name: "د. صلاح الأمين حدوثي",
+    chairman_role: "رئيس مجلس الإدارة",
+    chairman_badge_num: "+30",
+    chairman_badge_label: "سنة من الخبرة",
+    chairman_p1: "يقود الدكتور صلاح الأمين حدوثي شركة ناشڤيل للتجارة الدولية برؤية استراتيجية طموحة تهدف إلى بناء جسور تجارية واستثمارية مستدامة بين المملكة العربية السعودية والأسواق الإقليمية والعالمية، مع التركيز على تعزيز فرص الاستثمار والتبادل التجاري في قطاعات الزراعة والتعدين والطاقة والصناعة والخدمات اللوجستية.",
+    chairman_p2: "يمتلك الدكتور صلاح الأمين حدوثي خبرة مهنية وإدارية تمتد لأكثر من ثلاثة عقود في مجالات الإدارة التنفيذية والأنظمة المالية والإدارية وتطوير الأعمال وإدارة المشاريع والاستثمارات الدولية، وقد ساهم خلال مسيرته المهنية في تأسيس وتطوير العديد من المبادرات والمشروعات التجارية والاستثمارية داخل المملكة العربية السعودية وخارجها.",
+    chairman_p3: "ويحمل درجة الماجستير في تحليل النظم، إضافة إلى تخصصه الأكاديمي في المحاسبة والتكاليف ونظم المعلومات، الأمر الذي مكّنه من الجمع بين الخبرة الإدارية والرؤية التقنية في قيادة المؤسسات وتطويرها وتحقيق النمو المستدام.",
+    chairman_p4: "وتعمل شركة ناشڤيل للتجارة الدولية تحت قيادته على تقديم حلول متكاملة في مجالات التجارة الدولية والاستشارات الاستثمارية وتطوير المشاريع وبناء الشراكات الاستراتيجية، مع الالتزام بأعلى معايير الجودة والشفافية والاحترافية.",
+    chairman_quote: "نؤمن بأن النجاح الحقيقي يتحقق من خلال بناء شراكات طويلة الأمد تخلق قيمة مستدامة للمستثمرين والشركاء والمجتمعات التي نعمل فيها.",
+    chairman_quote_attribution: "د. صلاح الأمين حدوثي — رئيس مجلس الإدارة",
+    chairman_btn_contact: "تواصل معنا",
+    chairman_btn_about: "العودة إلى من نحن",
 
     // ============================================================
     // CONTACT PAGE
@@ -935,10 +987,22 @@ const translations = {
     proj9_cat: "الزيوت الطبيعية",
     proj9_title: "مصنع معالجة زيت السمسم",
     proj9_loc: "القضارف، السودان",
+    proj10_cat: "التطوير العمراني",
+    proj10_title: "مدينة OSLI الذكية",
+    proj10_loc: "مشروع تحت الإنشاء",
     proj_stat1: "مشروع مكتمل",
     proj_stat2: "دولة مخدومة",
     proj_stat3: "عميل سعيد",
     proj_stat4: "سنة خبرة",
+
+    osli_tag: "المشروع الرائد",
+    osli_title: "مشروع مدينة OSLI الذكية للتنمية والاستقرار",
+    osli_desc: "مشروع تنموي وإنساني طموح يهدف إلى إنشاء مجتمع سكني متكامل يوفر بيئة آمنة ومستدامة للأسر المستفيدة، مع توفير الخدمات التعليمية والصحية والتجارية والترفيهية وفق أحدث معايير التخطيط العمراني والتنمية المستدامة.",
+    osli_stat_area: "المساحة الإجمالية",
+    osli_stat_units: "وحدة سكنية",
+    osli_stat_schools: "مدارس",
+    osli_stat_shops: "محل تجاري",
+    osli_status: "مشروع تحت الإنشاء والتطوير",
 
     // ============================================================
     // TECHNOLOGY PAGE

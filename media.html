@@ -55,12 +55,12 @@
   </nav>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image:url('https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <div class="page-hero-bg" id="mediaHeroBg" style="background-image:url('https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
     <div class="page-hero-content">
       <div class="container-fluid px-4 px-xl-5">
-        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-aos="fade-down" data-i18n-key="media_hero_tag">News &amp; Updates</p>
-        <h1 class="page-hero-title" data-aos="fade-up" data-aos-delay="80" data-i18n-key="media_hero_title">Media Center</h1>
-        <p class="page-hero-sub" data-aos="fade-up" data-aos-delay="120" data-i18n-key="media_hero_sub">Stay updated with the latest news, press releases and announcements.</p>
+        <p class="gold-text fw-700 mb-2" id="mediaHeroTag" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-aos="fade-down">News &amp; Updates</p>
+        <h1 class="page-hero-title" id="mediaHeroTitle" data-aos="fade-up" data-aos-delay="80">Media Center</h1>
+        <p class="page-hero-sub" id="mediaHeroSub" data-aos="fade-up" data-aos-delay="120">Stay updated with the latest news, press releases and announcements.</p>
         <div class="breadcrumb-custom" data-aos="fade-up" data-aos-delay="160">
           <a href="index.html" data-i18n-key="nav_home">Home</a>
           <span><i class="bi bi-chevron-right" style="font-size:0.7rem;"></i></span>
@@ -73,21 +73,21 @@
   <section class="section-pad">
     <div class="container-fluid px-4 px-xl-5">
       <div class="text-center mb-5" data-aos="fade-up">
-        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="media_news_tag">Latest News</p>
-        <h2 class="section-title" data-i18n-key="media_news_title">Press &amp; Media</h2>
+        <p class="gold-text fw-700 mb-2" id="mediaNewsTag" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;">Latest News</p>
+        <h2 class="section-title" id="mediaNewsTitle">Press &amp; Media</h2>
         <div class="gold-divider center"></div>
       </div>
-      <div class="row g-4">
+      <div class="row g-4" id="mediaNewsGrid">
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
           <div class="product-page-card">
             <div class="product-page-card-img" style="height:200px;">
               <img src="https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg?auto=compress&cs=tinysrgb&w=800" alt="News 1" />
             </div>
             <div class="product-page-card-body">
-              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span data-i18n-key="media_news1_date">March 15, 2024</span></div>
-              <h3 class="product-page-card-title" data-i18n-key="media_news1_title">Nashvell Expands Agricultural Exports to Asian Markets</h3>
-              <p class="product-page-card-desc" data-i18n-key="media_news1_desc">We are proud to announce the expansion of our agricultural export operations to include three new Asian markets, strengthening our global trade network.</p>
-              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span data-i18n-key="btn_read_more">Read More</span> <i class="bi bi-arrow-right"></i></a>
+              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span>March 15, 2024</span></div>
+              <h3 class="product-page-card-title">Nashvell Expands Agricultural Exports to Asian Markets</h3>
+              <p class="product-page-card-desc">We are proud to announce the expansion of our agricultural export operations to include three new Asian markets, strengthening our global trade network.</p>
+              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -97,10 +97,10 @@
               <img src="https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&w=800" alt="News 2" />
             </div>
             <div class="product-page-card-body">
-              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span data-i18n-key="media_news2_date">February 28, 2024</span></div>
-              <h3 class="product-page-card-title" data-i18n-key="media_news2_title">New Technology Division Launches AI-Powered ERP Platform</h3>
-              <p class="product-page-card-desc" data-i18n-key="media_news2_desc">Our technology division has launched a new AI-powered ERP platform designed specifically for trading companies in the MENA region.</p>
-              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span data-i18n-key="btn_read_more">Read More</span> <i class="bi bi-arrow-right"></i></a>
+              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span>February 28, 2024</span></div>
+              <h3 class="product-page-card-title">New Technology Division Launches AI-Powered ERP Platform</h3>
+              <p class="product-page-card-desc">Our technology division has launched a new AI-powered ERP platform designed specifically for trading companies in the MENA region.</p>
+              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -110,10 +110,10 @@
               <img src="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=800" alt="News 3" />
             </div>
             <div class="product-page-card-body">
-              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span data-i18n-key="media_news3_date">January 10, 2024</span></div>
-              <h3 class="product-page-card-title" data-i18n-key="media_news3_title">Port Sudan Logistics Hub Reaches Record Capacity</h3>
-              <p class="product-page-card-desc" data-i18n-key="media_news3_desc">Our logistics hub at Port Sudan has achieved record-breaking cargo throughput, cementing our position as a regional logistics leader.</p>
-              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span data-i18n-key="btn_read_more">Read More</span> <i class="bi bi-arrow-right"></i></a>
+              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span>January 10, 2024</span></div>
+              <h3 class="product-page-card-title">Port Sudan Logistics Hub Reaches Record Capacity</h3>
+              <p class="product-page-card-desc">Our logistics hub at Port Sudan has achieved record-breaking cargo throughput, cementing our position as a regional logistics leader.</p>
+              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -123,10 +123,10 @@
               <img src="https://images.pexels.com/photos/1105766/pexels-photo-1105766.jpeg?auto=compress&cs=tinysrgb&w=800" alt="News 4" />
             </div>
             <div class="product-page-card-body">
-              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span data-i18n-key="media_news4_date">December 5, 2023</span></div>
-              <h3 class="product-page-card-title" data-i18n-key="media_news4_title">Strategic Investment Partnership with Saudi Investors</h3>
-              <p class="product-page-card-desc" data-i18n-key="media_news4_desc">We have signed a strategic investment partnership with leading Saudi investors to develop commercial real estate projects in Riyadh.</p>
-              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span data-i18n-key="btn_read_more">Read More</span> <i class="bi bi-arrow-right"></i></a>
+              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span>December 5, 2023</span></div>
+              <h3 class="product-page-card-title">Strategic Investment Partnership with Saudi Investors</h3>
+              <p class="product-page-card-desc">We have signed a strategic investment partnership with leading Saudi investors to develop commercial real estate projects in Riyadh.</p>
+              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -136,10 +136,10 @@
               <img src="https://images.pexels.com/photos/1078884/pexels-photo-1078884.jpeg?auto=compress&cs=tinysrgb&w=800" alt="News 5" />
             </div>
             <div class="product-page-card-body">
-              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span data-i18n-key="media_news5_date">November 18, 2023</span></div>
-              <h3 class="product-page-card-title" data-i18n-key="media_news5_title">New Mining Partnership Signed in Red Sea Hills</h3>
-              <p class="product-page-card-desc" data-i18n-key="media_news5_desc">A new mining partnership has been established to develop gold extraction operations in Sudan's mineral-rich Red Sea Hills region.</p>
-              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span data-i18n-key="btn_read_more">Read More</span> <i class="bi bi-arrow-right"></i></a>
+              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span>November 18, 2023</span></div>
+              <h3 class="product-page-card-title">New Mining Partnership Signed in Red Sea Hills</h3>
+              <p class="product-page-card-desc">A new mining partnership has been established to develop gold extraction operations in Sudan's mineral-rich Red Sea Hills region.</p>
+              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -149,10 +149,10 @@
               <img src="https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=800" alt="News 6" />
             </div>
             <div class="product-page-card-body">
-              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span data-i18n-key="media_news6_date">October 2, 2023</span></div>
-              <h3 class="product-page-card-title" data-i18n-key="media_news6_title">Nashvell Wins Best Exporter Award 2023</h3>
-              <p class="product-page-card-desc" data-i18n-key="media_news6_desc">We are honored to receive the Sudan Export Excellence Award for 2023, recognizing our contribution to the nation's export growth.</p>
-              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span data-i18n-key="btn_read_more">Read More</span> <i class="bi bi-arrow-right"></i></a>
+              <div class="product-page-card-cat"><i class="bi bi-calendar3 me-1"></i> <span>October 2, 2023</span></div>
+              <h3 class="product-page-card-title">Nashvell Wins Best Exporter Award 2023</h3>
+              <p class="product-page-card-desc">We are honored to receive the Sudan Export Excellence Award for 2023, recognizing our contribution to the nation's export growth.</p>
+              <a href="#" class="product-btn" style="opacity:1;transform:none;"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -161,16 +161,16 @@
   </section>
 
   <section class="video-section">
-    <div class="video-bg"></div>
+    <div class="video-bg" id="mediaVideoBg"></div>
     <div class="video-overlay"></div>
     <div class="video-content container-fluid px-4 px-xl-5">
       <div data-aos="zoom-in">
         <button id="videoPlayBtn" class="play-btn btn-ripple" type="button" aria-label="Play video">
           <i class="bi bi-play-fill"></i>
         </button>
-        <h2 class="section-title text-white" data-i18n-key="media_video_title">Watch Our Story</h2>
+        <h2 class="section-title text-white" id="mediaVideoTitle">Watch Our Story</h2>
         <div class="gold-divider center"></div>
-        <p style="color:rgba(255,255,255,0.65);max-width:600px;margin:0 auto;" data-i18n-key="media_video_desc">
+        <p style="color:rgba(255,255,255,0.65);max-width:600px;margin:0 auto;" id="mediaVideoDesc">
           Discover how Nashvell International Trading Co. Ltd. connects Sudan to the world through three decades of excellence.
         </p>
       </div>
@@ -277,5 +277,12 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="./main.js"></script>
   <script src="translate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="./emailjs-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-client.js"></script>
+  <script src="./runtime-check.js"></script>
+  <script src="./media-data.js"></script>
+  <script src="./media-loader.js"></script>
 </body>
 </html>

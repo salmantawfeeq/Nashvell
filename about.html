@@ -55,12 +55,12 @@
   </nav>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image:url('https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <div class="page-hero-bg" id="aboutHeroBg" style="background-image:url('https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
     <div class="page-hero-content">
       <div class="container-fluid px-4 px-xl-5">
-        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-aos="fade-down" data-i18n-key="about_hero_tag">Get to know us</p>
-        <h1 class="page-hero-title" data-aos="fade-up" data-aos-delay="80" data-i18n-key="about_hero_title">About Nashvell</h1>
-        <p class="page-hero-sub" data-aos="fade-up" data-aos-delay="120" data-i18n-key="about_hero_subtitle">Three decades of excellence in international trade, technology and investment.</p>
+        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-aos="fade-down" id="aboutHeroTag">Get to know us</p>
+        <h1 class="page-hero-title" data-aos="fade-up" data-aos-delay="80" id="aboutHeroTitle">About Nashvell</h1>
+        <p class="page-hero-sub" data-aos="fade-up" data-aos-delay="120" id="aboutHeroSubtitle">Three decades of excellence in international trade, technology and investment.</p>
         <div class="breadcrumb-custom" data-aos="fade-up" data-aos-delay="160">
           <a href="index.html" data-i18n-key="nav_home">Home</a>
           <span><i class="bi bi-chevron-right" style="font-size:0.7rem;"></i></span>
@@ -75,55 +75,55 @@
       <div class="row align-items-center g-5">
         <div class="col-lg-6" data-aos="fade-right">
           <div class="about-image-card">
-            <img src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Nashvell Team" />
+            <img id="aboutStoryImg" src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Nashvell Team" />
             <div class="about-image-badge">
-              <div class="num" data-i18n-key="about_badge_num">30+</div>
-              <div class="lbl" data-i18n-key="about_badge_label">Years of Excellence</div>
+              <div class="num" id="aboutBadgeNum">30+</div>
+              <div class="lbl" id="aboutBadgeLabel">Years of Excellence</div>
             </div>
           </div>
         </div>
         <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
-          <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="about_intro_tag">Our Story</p>
-          <h2 class="section-title" data-i18n-key="about_intro_title">A Legacy of International Trade</h2>
+          <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" id="aboutStoryTag">Our Story</p>
+          <h2 class="section-title" id="aboutStoryTitle">A Legacy of International Trade</h2>
           <div class="gold-divider"></div>
-          <p style="color:var(--mid-gray);font-size:0.95rem;line-height:1.9;" data-i18n-key="about_intro_p1">
+          <p style="color:var(--mid-gray);font-size:0.95rem;line-height:1.9;" id="aboutStoryP1">
             Founded in 1994, Nashvell International Trading Co. Ltd. has grown from a regional trading
             house into a diversified international enterprise. Headquartered in Saudi Arabia with deep
             roots in Sudan, we connect African products with global markets.
           </p>
-          <p style="color:var(--mid-gray);font-size:0.95rem;line-height:1.9;" data-i18n-key="about_intro_p2">
+          <p style="color:var(--mid-gray);font-size:0.95rem;line-height:1.9;" id="aboutStoryP2">
             Our operations span agricultural exports, natural oils, livestock, mining, industrial products,
             technology solutions, logistics and strategic investments — all driven by a commitment to
             quality, integrity and long-term partnerships.
           </p>
-          <div class="row g-3 mt-3">
+          <div class="row g-3 mt-3" id="aboutFeaturesList">
             <div class="col-md-6">
               <div class="about-feature">
                 <div class="about-feature-dot"></div>
-                <div class="about-feature-text" data-i18n-key="about_feature1">Global trade network across 25+ countries</div>
+                <div class="about-feature-text">Global trade network across 25+ countries</div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="about-feature">
                 <div class="about-feature-dot"></div>
-                <div class="about-feature-text" data-i18n-key="about_feature2">Premium Sudanese products exported worldwide</div>
+                <div class="about-feature-text">Premium Sudanese products exported worldwide</div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="about-feature">
                 <div class="about-feature-dot"></div>
-                <div class="about-feature-text" data-i18n-key="about_feature3">Integrated technology and logistics solutions</div>
+                <div class="about-feature-text">Integrated technology and logistics solutions</div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="about-feature">
                 <div class="about-feature-dot"></div>
-                <div class="about-feature-text" data-i18n-key="about_feature4">ISO-certified quality management systems</div>
+                <div class="about-feature-text">ISO-certified quality management systems</div>
               </div>
             </div>
           </div>
           <a href="contact.html" class="btn-gold btn-ripple d-inline-block mt-4">
-            <i class="bi bi-telephone me-2"></i><span data-i18n-key="about_btn_contact">Get in Touch</span>
+            <i class="bi bi-telephone me-2"></i><span id="aboutBtnContact">Get in Touch</span>
           </a>
         </div>
       </div>
@@ -133,30 +133,30 @@
   <section class="section-pad bg-light-gray">
     <div class="container-fluid px-4 px-xl-5">
       <div class="text-center mb-5" data-aos="fade-up">
-        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="about_vission_tag">What Drives Us</p>
-        <h2 class="section-title" data-i18n-key="about_vission_title">Vision, Mission &amp; Values</h2>
+        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" id="aboutVisionTag">What Drives Us</p>
+        <h2 class="section-title" id="aboutVisionTitle">Vision, Mission &amp; Values</h2>
         <div class="gold-divider center"></div>
       </div>
-      <div class="row g-4">
+      <div class="row g-4" id="aboutVisionRow">
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="0">
           <div class="vision-card">
             <div class="vision-card-icon"><i class="bi bi-eye"></i></div>
-            <h3 class="vision-card-title" data-i18n-key="about_vision_card_title">Our Vision</h3>
-            <p class="vision-card-text" data-i18n-key="about_vision_card_desc">To be the leading bridge connecting Sudanese products and African resources with global markets, setting the standard for excellence in international trade.</p>
+            <h3 class="vision-card-title">Our Vision</h3>
+            <p class="vision-card-text">To be the leading bridge connecting Sudanese products and African resources with global markets, setting the standard for excellence in international trade.</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
           <div class="vision-card">
             <div class="vision-card-icon"><i class="bi bi-bullseye"></i></div>
-            <h3 class="vision-card-title" data-i18n-key="about_mission_card_title">Our Mission</h3>
-            <p class="vision-card-text" data-i18n-key="about_mission_card_desc">To deliver premium products, innovative technology solutions and reliable logistics services that create lasting value for our clients, partners and communities.</p>
+            <h3 class="vision-card-title">Our Mission</h3>
+            <p class="vision-card-text">To deliver premium products, innovative technology solutions and reliable logistics services that create lasting value for our clients, partners and communities.</p>
           </div>
         </div>
         <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
           <div class="vision-card">
             <div class="vision-card-icon"><i class="bi bi-gem"></i></div>
-            <h3 class="vision-card-title" data-i18n-key="about_values_card_title">Our Values</h3>
-            <p class="vision-card-text" data-i18n-key="about_values_card_desc">Integrity, quality, innovation and partnership are the foundations of everything we do — guiding our relationships with clients, suppliers and communities.</p>
+            <h3 class="vision-card-title">Our Values</h3>
+            <p class="vision-card-text">Integrity, quality, innovation and partnership are the foundations of everything we do — guiding our relationships with clients, suppliers and communities.</p>
           </div>
         </div>
       </div>
@@ -165,26 +165,26 @@
 
   <section class="section-pad bg-primary-dark">
     <div class="container-fluid px-4 px-xl-5">
-      <div class="row g-4 text-center about-stats-row">
+      <div class="row g-4 text-center about-stats-row" id="aboutStatsRow">
         <div class="col-6 col-lg" data-aos="fade-up" data-aos-delay="0">
           <div class="stat-number counter-num" data-target="30" data-suffix="+">30+</div>
-          <div class="stat-label" data-i18n-key="stat_experience">Years of Experience</div>
+          <div class="stat-label">Years of Experience</div>
         </div>
         <div class="col-6 col-lg" data-aos="fade-up" data-aos-delay="80">
           <div class="stat-number counter-num" data-target="25" data-suffix="+">25+</div>
-          <div class="stat-label" data-i18n-key="stat_countries">Countries Worldwide</div>
+          <div class="stat-label">Countries Worldwide</div>
         </div>
         <div class="col-6 col-lg" data-aos="fade-up" data-aos-delay="160">
           <div class="stat-number counter-num" data-target="200" data-suffix="+">200+</div>
-          <div class="stat-label" data-i18n-key="stat_products">Sudanese Products</div>
+          <div class="stat-label">Sudanese Products</div>
         </div>
         <div class="col-6 col-lg" data-aos="fade-up" data-aos-delay="240">
           <div class="stat-number counter-num" data-target="500" data-suffix="+">500+</div>
-          <div class="stat-label" data-i18n-key="stat_clients">Clients &amp; Partners</div>
+          <div class="stat-label">Clients &amp; Partners</div>
         </div>
         <div class="col-6 col-lg" data-aos="fade-up" data-aos-delay="320">
           <div class="stat-number counter-num" data-target="100" data-suffix="+">100+</div>
-          <div class="stat-label" data-i18n-key="stat_projects">Completed Projects</div>
+          <div class="stat-label">Completed Projects</div>
         </div>
       </div>
     </div>
@@ -193,27 +193,30 @@
   <section class="section-pad">
     <div class="container-fluid px-4 px-xl-5">
       <div class="text-center mb-5" data-aos="fade-up">
-        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="about_team_tag">Our Leadership</p>
-        <h2 class="section-title" data-i18n-key="about_team_title">Meet the Team</h2>
+        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" id="aboutTeamTag">Our Leadership</p>
+        <h2 class="section-title" id="aboutTeamTitle">Meet the Team</h2>
         <div class="gold-divider center"></div>
-        <p class="section-subtitle mx-auto" data-i18n-key="about_team_subtitle">Experienced leaders guiding our vision for global trade and innovation.</p>
+        <p class="section-subtitle mx-auto" id="aboutTeamSubtitle">Experienced leaders guiding our vision for global trade and innovation.</p>
       </div>
-      <div class="row g-4">
+      <div class="row g-4" id="aboutTeamRow">
         <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
-          <div class="team-card">
+          <a href="chairman-message.html" class="team-card d-block">
             <img src="./photo/DR salah.jpeg" alt="Dr. Salah" />
             <div class="team-card-body">
-              <div class="team-card-name" data-i18n-key="about_team_member1_name">Dr. Salah</div>
-              <div class="team-card-role" data-i18n-key="about_team_member1_role">Owner of the Company</div>
+              <div class="team-card-name">Dr. Salah</div>
+              <div class="team-card-role">Owner of the Company</div>
+              <div class="mt-2" style="font-size:0.78rem;color:var(--gold);font-weight:600;">
+                <i class="bi bi-chat-quote me-1"></i><span>Read the Chairman's Message</span>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
           <div class="team-card">
             <img src="https://images.pexels.com/photos/32844861/pexels-photo-32844861.jpeg?auto=compress&cs=tinysrgb&w=600" alt="COO" />
             <div class="team-card-body">
-              <div class="team-card-name" data-i18n-key="about_team_member2_name">Khalid Mahmoud</div>
-              <div class="team-card-role" data-i18n-key="about_team_member2_role"> Operating Officer</div>
+              <div class="team-card-name">Khalid Mahmoud</div>
+              <div class="team-card-role">Operating Officer</div>
             </div>
           </div>
         </div>
@@ -221,8 +224,8 @@
           <div class="team-card">
             <img src="https://images.pexels.com/photos/34381970/pexels-photo-34381970.jpeg?auto=compress&cs=tinysrgb&w=600" alt="CTO" />
             <div class="team-card-body">
-              <div class="team-card-name" data-i18n-key="about_team_member3_name">Sarah Ibrahim</div>
-              <div class="team-card-role" data-i18n-key="about_team_member3_role"> Technology Officer</div>
+              <div class="team-card-name">Sarah Ibrahim</div>
+              <div class="team-card-role">Technology Officer</div>
             </div>
           </div>
         </div>
@@ -230,8 +233,8 @@
           <div class="team-card">
             <img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600" alt="CFO" />
             <div class="team-card-body">
-              <div class="team-card-name" data-i18n-key="about_team_member4_name">Omar Hassan</div>
-              <div class="team-card-role" data-i18n-key="about_team_member4_role"> Financial Officer</div>
+              <div class="team-card-name">Omar Hassan</div>
+              <div class="team-card-role">Financial Officer</div>
             </div>
           </div>
         </div>
@@ -242,37 +245,37 @@
   <section class="section-pad bg-light-gray">
     <div class="container-fluid px-4 px-xl-5">
       <div class="text-center mb-5" data-aos="fade-up">
-        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="about_certs_tag">Quality &amp; Trust</p>
-        <h2 class="section-title" data-i18n-key="about_certs_title">Our Certifications</h2>
+        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" id="aboutCertsTag">Quality &amp; Trust</p>
+        <h2 class="section-title" id="aboutCertsTitle">Our Certifications</h2>
         <div class="gold-divider center"></div>
       </div>
-      <div class="row g-4">
+      <div class="row g-4" id="aboutCertsRow">
         <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="0">
           <div class="cert-card">
             <img class="cert-badge" src="./photo/certs/iso-9001.svg" alt="ISO 9001:2015" />
-            <div class="cert-title" data-i18n-key="about_cert1_title">ISO 9001:2015</div>
-            <div class="cert-desc" data-i18n-key="about_cert1_desc">Quality Management System Certified</div>
+            <div class="cert-title">ISO 9001:2015</div>
+            <div class="cert-desc">Quality Management System Certified</div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="100">
           <div class="cert-card">
             <img class="cert-badge" src="./photo/certs/iso-14001.svg" alt="ISO 14001:2015" />
-            <div class="cert-title" data-i18n-key="about_cert2_title">ISO 14001:2015</div>
-            <div class="cert-desc" data-i18n-key="about_cert2_desc">Environmental Management Certified</div>
+            <div class="cert-title">ISO 14001:2015</div>
+            <div class="cert-desc">Environmental Management Certified</div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="200">
           <div class="cert-card">
             <img class="cert-badge" src="./photo/certs/iso-45001.svg" alt="ISO 45001:2018" />
-            <div class="cert-title" data-i18n-key="about_cert3_title">ISO 45001:2018</div>
-            <div class="cert-desc" data-i18n-key="about_cert3_desc">Occupational Health &amp; Safety</div>
+            <div class="cert-title">ISO 45001:2018</div>
+            <div class="cert-desc">Occupational Health &amp; Safety</div>
           </div>
         </div>
         <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="300">
           <div class="cert-card">
             <img class="cert-badge" src="./photo/certs/best-exporter.svg" alt="Best Exporter 2023" />
-            <div class="cert-title" data-i18n-key="about_cert4_title">Best Exporter 2023</div>
-            <div class="cert-desc" data-i18n-key="about_cert4_desc">Sudan Export Excellence Award</div>
+            <div class="cert-title">Best Exporter 2023</div>
+            <div class="cert-desc">Sudan Export Excellence Award</div>
           </div>
         </div>
       </div>
@@ -384,5 +387,12 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="./main.js"></script>
   <script src="translate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="./emailjs-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-client.js"></script>
+  <script src="./runtime-check.js"></script>
+  <script src="./about-data.js"></script>
+  <script src="./about-loader.js"></script>
 </body>
 </html>

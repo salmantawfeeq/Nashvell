@@ -1,4 +1,41 @@
 
+function animateCounter(el) {
+  const target = parseInt(el.getAttribute('data-target'), 10);
+  const suffix = el.getAttribute('data-suffix') || '';
+  const duration = 2000;
+  const step = target / (duration / 16);
+  let current = 0;
+
+  const timer = setInterval(() => {
+    current += step;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    el.textContent = Math.floor(current) + suffix;
+  }, 16);
+}
+
+// Wires the count-up animation for any `.counter-num` elements under `root`.
+// Exposed on window so loaders that inject stat elements after page load
+// (e.g. about-loader.js, fetching from Supabase asynchronously) can call it
+// again — the initial DOMContentLoaded query below only sees elements that
+// already exist in the static HTML at that moment.
+function initCounters(root = document) {
+  const counters = root.querySelectorAll('.counter-num:not([data-counted])');
+  if (!counters.length) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => observer.observe(c));
+}
+window.initCounters = initCounters;
+
 document.addEventListener('DOMContentLoaded', function () {
 
   const preloader = document.getElementById('preloader');
@@ -62,35 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function animateCounter(el) {
-    const target = parseInt(el.getAttribute('data-target'), 10);
-    const suffix = el.getAttribute('data-suffix') || '';
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-      el.textContent = Math.floor(current) + suffix;
-    }, 16);
-  }
-
-  const counters = document.querySelectorAll('.counter-num');
-  if (counters.length) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.counted) {
-          entry.target.dataset.counted = 'true';
-          animateCounter(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(c => observer.observe(c));
-  }
+  initCounters(document);
 
   document.querySelectorAll('.btn-ripple').forEach(btn => {
     btn.addEventListener('click', function (e) {
@@ -109,15 +118,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const lightboxImg = document.getElementById('lightboxImg');
 
   if (lightbox && lightboxImg) {
-    document.querySelectorAll('[data-lightbox]').forEach(item => {
-      item.addEventListener('click', function () {
-        const src = this.getAttribute('data-lightbox') || this.querySelector('img')?.src;
-        if (src) {
-          lightboxImg.src = src;
-          lightbox.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
-      });
+    // Delegated so gallery items rendered later (e.g. gallery-loader.js
+    // fetching from Supabase after this listener is attached) still work.
+    document.addEventListener('click', (e) => {
+      const item = e.target.closest('[data-lightbox]');
+      if (!item) return;
+      const src = item.getAttribute('data-lightbox') || item.querySelector('img')?.src;
+      if (src) {
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
     });
 
     const closeLightbox = () => {
@@ -132,33 +143,77 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+    contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       const btn = this.querySelector('button[type="submit"]');
-      const original = btn.textContent;
-      btn.textContent = 'Sending...';
+      const btnLabel = btn.querySelector('span') || btn;
+      const original = btnLabel.textContent;
       btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Message Sent!';
+      btnLabel.textContent = 'Sending...';
+      btn.style.background = '';
+
+      const name = document.getElementById('contactInputName')?.value || '';
+      const email = document.getElementById('contactInputEmail')?.value || '';
+      const phone = document.getElementById('contactInputPhone')?.value || '';
+      const subject = document.getElementById('contactSubject')?.value || '';
+      const message = document.getElementById('contactInputMessage')?.value || '';
+
+      try {
+        if (typeof emailjs === 'undefined' || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') throw new Error('EmailJS is not configured yet');
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          name,
+          email,
+          title: subject,
+          message: `${phone ? `Phone: ${phone}\n\n` : ''}${message}`,
+        });
+
+        btnLabel.textContent = 'Message Sent!';
         btn.style.background = '#28a745';
         setTimeout(() => {
-          btn.textContent = original;
+          btnLabel.textContent = original;
           btn.style.background = '';
           btn.disabled = false;
           contactForm.reset();
         }, 3000);
-      }, 1500);
+      } catch (err) {
+        console.error('Contact form send failed:', err?.text || err?.message || err);
+        btnLabel.textContent = 'Failed — Try Again';
+        btn.style.background = '#e05252';
+        setTimeout(() => {
+          btnLabel.textContent = original;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 3000);
+      }
     });
   }
 
   document.querySelectorAll('.newsletter-form').forEach(form => {
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const input = form.querySelector('.newsletter-input');
-      if (input && input.value) {
+      if (!input || !input.value) return;
+      const email = input.value;
+      const originalPlaceholder = input.placeholder;
+      input.disabled = true;
+
+      try {
+        if (typeof emailjs === 'undefined' || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') throw new Error('EmailJS is not configured yet');
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          name: 'Newsletter Signup',
+          email,
+          title: 'New Newsletter Subscriber',
+          message: `New newsletter subscriber: ${email}`,
+        });
+
         input.value = '';
         input.placeholder = 'Subscribed! Thank you.';
-        setTimeout(() => { input.placeholder = 'Your email address'; }, 3000);
+      } catch (err) {
+        console.error('Newsletter signup failed:', err?.text || err?.message || err);
+        input.placeholder = 'Something went wrong — try again.';
+      } finally {
+        input.disabled = false;
+        setTimeout(() => { input.placeholder = originalPlaceholder; }, 3000);
       }
     });
   });
@@ -197,11 +252,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    tab.addEventListener('click', function () {
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      const filter = this.getAttribute('data-filter');
+  // Delegated on the container (not each .filter-tab) so tabs rendered later
+  // by products-loader.js (categories added from the dashboard) still filter
+  // correctly without needing their own listener wired up.
+  const filterTabsContainer = document.querySelector('.filter-tabs');
+  if (filterTabsContainer) {
+    filterTabsContainer.addEventListener('click', function (e) {
+      const tab = e.target.closest('.filter-tab');
+      if (!tab || !filterTabsContainer.contains(tab)) return;
+      filterTabsContainer.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.getAttribute('data-filter');
       document.querySelectorAll('[data-category]').forEach(card => {
         if (filter === 'all' || card.getAttribute('data-category') === filter) {
           card.style.display = '';
@@ -212,6 +273,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       if (typeof AOS !== 'undefined') AOS.refresh();
     });
-  });
+  }
 
 });

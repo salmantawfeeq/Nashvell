@@ -55,12 +55,12 @@
   </nav>
 
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image:url('https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+    <div class="page-hero-bg" id="logisticsHeroBg" style="background-image:url('https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
     <div class="page-hero-content">
       <div class="container-fluid px-4 px-xl-5">
-        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-aos="fade-down" data-i18n-key="log_hero_tag">Global Supply Chain</p>
-        <h1 class="page-hero-title" data-aos="fade-up" data-aos-delay="80" data-i18n-key="log_hero_title">Logistics Services</h1>
-        <p class="page-hero-sub" data-aos="fade-up" data-aos-delay="120" data-i18n-key="log_hero_sub">End-to-end logistics solutions connecting Sudan to the world — by sea, air and land.</p>
+        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-aos="fade-down" id="logisticsHeroTag">Global Supply Chain</p>
+        <h1 class="page-hero-title" data-aos="fade-up" data-aos-delay="80" id="logisticsHeroTitle">Logistics Services</h1>
+        <p class="page-hero-sub" data-aos="fade-up" data-aos-delay="120" id="logisticsHeroSub">End-to-end logistics solutions connecting Sudan to the world — by sea, air and land.</p>
         <div class="breadcrumb-custom" data-aos="fade-up" data-aos-delay="160">
           <a href="index.html" data-i18n-key="nav_home">Home</a>
           <span><i class="bi bi-chevron-right" style="font-size:0.7rem;"></i></span>
@@ -75,67 +75,69 @@
       <div class="row g-5 align-items-center">
         <div class="col-lg-6" data-aos="fade-right">
           <div class="logistics-image-wrap">
-            <img src="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Logistics" />
-            <div class="logistics-badge" data-i18n-key="log_badge">Global Network</div>
+            <img id="logisticsIntroImg" src="https://images.pexels.com/photos/1117210/pexels-photo-1117210.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Logistics" />
+            <div class="logistics-badge" id="logisticsBadge">Global Network</div>
           </div>
         </div>
         <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
-          <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="log_intro_tag">Our Services</p>
-          <h2 class="section-title" data-i18n-key="log_intro_title">Comprehensive Logistics Solutions</h2>
+          <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" id="logisticsIntroTag">Our Services</p>
+          <h2 class="section-title" id="logisticsIntroTitle">Comprehensive Logistics Solutions</h2>
           <div class="gold-divider"></div>
-          <p style="color:var(--mid-gray);font-size:0.95rem;line-height:1.9;margin-bottom:24px;" data-i18n-key="log_intro_desc">
+          <p style="color:var(--mid-gray);font-size:0.95rem;line-height:1.9;margin-bottom:24px;" id="logisticsIntroDesc">
             From Port Sudan to global destinations, we manage every step of your supply chain
             with precision, reliability and care. Our integrated logistics platform ensures
             your cargo reaches its destination safely and on time.
           </p>
 
-          <div class="logistics-feature">
-            <div class="logistics-feature-icon"><i class="bi bi-truck"></i></div>
-            <div>
-              <div class="logistics-feature-title" data-i18n-key="log_feat1_title">Sea Shipping</div>
-              <div class="logistics-feature-desc" data-i18n-key="log_feat1_desc">Full container and bulk shipping services through major global ports.</div>
+          <div id="logisticsServicesList">
+            <div class="logistics-feature">
+              <div class="logistics-feature-icon"><i class="bi bi-truck"></i></div>
+              <div>
+                <div class="logistics-feature-title">Sea Shipping</div>
+                <div class="logistics-feature-desc">Full container and bulk shipping services through major global ports.</div>
+              </div>
             </div>
-          </div>
-          <div class="logistics-feature">
-            <div class="logistics-feature-icon"><i class="bi bi-airplane"></i></div>
-            <div>
-              <div class="logistics-feature-title" data-i18n-key="log_feat2_title">Air Shipping</div>
-              <div class="logistics-feature-desc" data-i18n-key="log_feat2_desc">Express air freight for time-sensitive cargo to any destination worldwide.</div>
+            <div class="logistics-feature">
+              <div class="logistics-feature-icon"><i class="bi bi-airplane"></i></div>
+              <div>
+                <div class="logistics-feature-title">Air Shipping</div>
+                <div class="logistics-feature-desc">Express air freight for time-sensitive cargo to any destination worldwide.</div>
+              </div>
             </div>
-          </div>
-          <div class="logistics-feature">
-            <div class="logistics-feature-icon"><i class="bi bi-file-earmark-check"></i></div>
-            <div>
-              <div class="logistics-feature-title" data-i18n-key="log_feat3_title">Custom Clearance</div>
-              <div class="logistics-feature-desc" data-i18n-key="log_feat3_desc">Expert customs documentation and clearance services at all major ports.</div>
+            <div class="logistics-feature">
+              <div class="logistics-feature-icon"><i class="bi bi-file-earmark-check"></i></div>
+              <div>
+                <div class="logistics-feature-title">Custom Clearance</div>
+                <div class="logistics-feature-desc">Expert customs documentation and clearance services at all major ports.</div>
+              </div>
             </div>
-          </div>
-          <div class="logistics-feature">
-            <div class="logistics-feature-icon"><i class="bi bi-building"></i></div>
-            <div>
-              <div class="logistics-feature-title" data-i18n-key="log_feat4_title">Warehousing</div>
-              <div class="logistics-feature-desc" data-i18n-key="log_feat4_desc">Secure storage facilities with modern inventory management systems.</div>
+            <div class="logistics-feature">
+              <div class="logistics-feature-icon"><i class="bi bi-building"></i></div>
+              <div>
+                <div class="logistics-feature-title">Warehousing</div>
+                <div class="logistics-feature-desc">Secure storage facilities with modern inventory management systems.</div>
+              </div>
             </div>
-          </div>
-          <div class="logistics-feature">
-            <div class="logistics-feature-icon"><i class="bi bi-geo-alt"></i></div>
-            <div>
-              <div class="logistics-feature-title" data-i18n-key="log_feat5_title">Shipment Tracking</div>
-              <div class="logistics-feature-desc" data-i18n-key="log_feat5_desc">Real-time tracking and monitoring of your shipments from origin to destination.</div>
+            <div class="logistics-feature">
+              <div class="logistics-feature-icon"><i class="bi bi-geo-alt"></i></div>
+              <div>
+                <div class="logistics-feature-title">Shipment Tracking</div>
+                <div class="logistics-feature-desc">Real-time tracking and monitoring of your shipments from origin to destination.</div>
+              </div>
             </div>
-          </div>
-          <div class="logistics-feature">
-            <div class="logistics-feature-icon"><i class="bi bi-box-seam"></i></div>
-            <div>
-              <div class="logistics-feature-title" data-i18n-key="log_feat6_title">Export Services</div>
-              <div class="logistics-feature-desc" data-i18n-key="log_feat6_desc">Exporting authentic Sudanese products to markets around the world.</div>
+            <div class="logistics-feature">
+              <div class="logistics-feature-icon"><i class="bi bi-box-seam"></i></div>
+              <div>
+                <div class="logistics-feature-title">Export Services</div>
+                <div class="logistics-feature-desc">Exporting authentic Sudanese products to markets around the world.</div>
+              </div>
             </div>
-          </div>
-          <div class="logistics-feature">
-            <div class="logistics-feature-icon"><i class="bi bi-journal-check"></i></div>
-            <div>
-              <div class="logistics-feature-title" data-i18n-key="log_feat7_title">Trade Agreements</div>
-              <div class="logistics-feature-desc" data-i18n-key="log_feat7_desc">Managing trade contracts and international agreements on your behalf.</div>
+            <div class="logistics-feature">
+              <div class="logistics-feature-icon"><i class="bi bi-journal-check"></i></div>
+              <div>
+                <div class="logistics-feature-title">Trade Agreements</div>
+                <div class="logistics-feature-desc">Managing trade contracts and international agreements on your behalf.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -145,22 +147,22 @@
 
   <section class="section-pad-sm bg-primary-dark">
     <div class="container-fluid px-4 px-xl-5">
-      <div class="row g-4 text-center">
+      <div class="row g-4 text-center" id="logisticsStatsRow">
         <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
           <div class="stat-number counter-num" data-target="25" data-suffix="+">25+</div>
-          <div class="stat-label" data-i18n-key="log_stat1">Countries Served</div>
+          <div class="stat-label">Countries Served</div>
         </div>
         <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
           <div class="stat-number counter-num" data-target="50" data-suffix="+">50+</div>
-          <div class="stat-label" data-i18n-key="log_stat2">Global Ports</div>
+          <div class="stat-label">Global Ports</div>
         </div>
         <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
           <div class="stat-number counter-num" data-target="10000" data-suffix="+">10000+</div>
-          <div class="stat-label" data-i18n-key="log_stat3">Shipments Delivered</div>
+          <div class="stat-label">Shipments Delivered</div>
         </div>
         <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
           <div class="stat-number counter-num" data-target="99" data-suffix="%">99%</div>
-          <div class="stat-label" data-i18n-key="log_stat4">On-Time Delivery</div>
+          <div class="stat-label">On-Time Delivery</div>
         </div>
       </div>
     </div>
@@ -169,18 +171,18 @@
   <section class="section-pad">
     <div class="container-fluid px-4 px-xl-5">
       <div class="text-center mb-5" data-aos="fade-up">
-        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" data-i18n-key="log_track_tag">Track Your Shipment</p>
-        <h2 class="section-title" data-i18n-key="log_track_title">Shipment Tracking</h2>
+        <p class="gold-text fw-700 mb-2" style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;" id="logisticsTrackTag">Track Your Shipment</p>
+        <h2 class="section-title" id="logisticsTrackTitle">Shipment Tracking</h2>
         <div class="gold-divider center"></div>
-        <p class="section-subtitle mx-auto" data-i18n-key="log_track_sub">Enter your tracking number to get real-time updates on your shipment.</p>
+        <p class="section-subtitle mx-auto" id="logisticsTrackSub">Enter your tracking number to get real-time updates on your shipment.</p>
       </div>
       <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
         <div class="col-lg-8">
           <div style="background:var(--primary);padding:40px;border-radius:var(--radius-lg);">
             <form onsubmit="return false;" style="display:flex;gap:12px;flex-wrap:wrap;">
-              <input type="text" placeholder="Enter tracking number (e.g. NSV-2024-001234)" data-i18n-key="log_track_placeholder" style="flex:1;min-width:200px;background:rgba(255,255,255,0.06);border:1px solid rgba(212,175,55,0.2);border-radius:var(--radius-sm);padding:0.85rem 1.2rem;color:var(--white);font-family:'Cairo',sans-serif;font-size:0.9rem;outline:none;" />
+              <input type="text" id="logisticsTrackInput" placeholder="Enter tracking number (e.g. NSV-2024-001234)" style="flex:1;min-width:200px;background:rgba(255,255,255,0.06);border:1px solid rgba(212,175,55,0.2);border-radius:var(--radius-sm);padding:0.85rem 1.2rem;color:var(--white);font-family:'Cairo',sans-serif;font-size:0.9rem;outline:none;" />
               <button class="btn-gold btn-ripple" type="button" onclick="alert('Tracking is a frontend demo. In production, this would query the logistics database.')">
-                <i class="bi bi-search me-2"></i><span data-i18n-key="log_track_btn">Track Now</span>
+                <i class="bi bi-search me-2"></i><span id="logisticsTrackBtn">Track Now</span>
               </button>
             </form>
           </div>
@@ -289,5 +291,12 @@
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script src="./main.js"></script>
   <script src="translate.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="./emailjs-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-client.js"></script>
+  <script src="./runtime-check.js"></script>
+  <script src="./logistics-data.js"></script>
+  <script src="./logistics-loader.js"></script>
 </body>
 </html>
