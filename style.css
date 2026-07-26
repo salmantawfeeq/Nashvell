@@ -1662,6 +1662,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 1399.98px) {
+  #mainNav .navbar-brand {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  #mainNav .brand-text {
+    min-width: 0;
+    overflow: hidden;
+  }
+  #mainNav .brand-tagline {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #mainNav .navbar-toggler {
+    flex-shrink: 0;
+  }
   #mainNav .navbar-collapse {
     background: var(--primary);
     padding: 18px 20px;
@@ -1713,6 +1729,11 @@ h1, h2, h3, h4, h5, h6 {
   .hero-badge { display: none; }
   .hero-heading-ar { font-size: 1.9rem; }
   .brand-name { font-size: 1rem; }
+  .brand-icon { width: 54px; height: 54px; }
+}
+
+@media (max-width: 380px) {
+  .brand-tagline { display: none; }
 }
 
 [data-aos] { pointer-events: none; }
