@@ -68,7 +68,7 @@ const translations = {
     hq_desc: "Our headquarters stands as a reflection of Nashvell's identity — a modern facility designed to bring together our trade, technology and investment teams under one roof, and to welcome partners and clients from around the world.",
     hq_feature_location: "Strategically located in Khartoum, Sudan",
     hq_feature_facilities: "Modern offices and meeting facilities",
-    hq_feature_teams: "Home to our trade &amp; technology teams",
+    hq_feature_teams: "Home to our trade & technology teams",
     hq_feature_visitors: "Open to partners and client visits",
     hq_btn: "Get Directions",
     section_title_certs: "Certificates & Accreditations",
