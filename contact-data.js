@@ -42,15 +42,14 @@ const CONTACT_PAGE_FALLBACK = {
 };
 
 const CONTACT_INFO_ITEMS_FALLBACK = [
-  { icon: 'bi-geo-alt', label_en: 'Head Office', label_ar: 'المكتب الرئيسي', value_en: 'Kingdom of Saudi Arabia, Riyadh', value_ar: 'المملكة العربية السعودية، الرياض', display_order: 0 },
-  { icon: 'bi-telephone', label_en: 'Phone (KSA)', label_ar: 'الهاتف (السعودية)', value_en: '+966 50 441 5254', value_ar: '+966 50 441 5254', display_order: 1 },
-  { icon: 'bi-telephone', label_en: 'Phone (Sudan)', label_ar: 'الهاتف (السودان)', value_en: '+249 90 717 5005', value_ar: '+249 90 717 5005', display_order: 2 },
+  { icon: 'bi-geo-alt', label_en: 'Head Office', label_ar: 'المكتب الرئيسي', value_en: 'Khartoum, Sudan', value_ar: 'الخرطوم، السودان', display_order: 0 },
+  { icon: 'bi-telephone', label_en: 'Phone (Sudan)', label_ar: 'الهاتف (السودان)', value_en: '+249 90 717 5005', value_ar: '+249 90 717 5005', display_order: 1 },
+  { icon: 'bi-telephone', label_en: 'Phone (Saudi Arabia - Partners)', label_ar: 'الهاتف (السعودية - الشركاء)', value_en: '+966 50 441 5254', value_ar: '+966 50 441 5254', display_order: 2 },
   { icon: 'bi-envelope', label_en: 'Email', label_ar: 'البريد الإلكتروني', value_en: 'qqsalah@hotmail.com', value_ar: 'qqsalah@hotmail.com', display_order: 3 },
   { icon: 'bi-globe2', label_en: 'Website', label_ar: 'الموقع الإلكتروني', value_en: 'www.nashvell.com', value_ar: 'www.nashvell.com', display_order: 4 },
 ];
 
 const CONTACT_OFFICES_FALLBACK = [
-  { icon: 'bi-building', title_en: 'Riyadh, Saudi Arabia', title_ar: 'الرياض، السعودية', office_label_en: 'Head Office', office_label_ar: 'المكتب الرئيسي', address_en: 'King Fahd District, Riyadh, KSA', address_ar: 'حي الملك فهد، الرياض، السعودية', phone: '+966 50 441 5254', display_order: 0 },
-  { icon: 'bi-building', title_en: 'Khartoum, Sudan', title_ar: 'الخرطوم، السودان', office_label_en: 'Regional Office', office_label_ar: 'المكتب الإقليمي', address_en: 'Al-Mogran, Khartoum, Sudan', address_ar: 'المقرن، الخرطوم، السودان', phone: '+249 90 717 5005', display_order: 1 },
-  { icon: 'bi-building', title_en: 'Port Sudan, Sudan', title_ar: 'بورتسودان، السودان', office_label_en: 'Logistics Hub', office_label_ar: 'المركز اللوجستي', address_en: 'Port Sudan Harbor, Sudan', address_ar: 'ميناء بورتسودان، السودان', phone: '+249 90 717 5005', display_order: 2 },
+  { icon: 'bi-building', title_en: 'Khartoum, Sudan', title_ar: 'الخرطوم، السودان', office_label_en: 'Head Office', office_label_ar: 'المكتب الرئيسي', address_en: 'Al-Mogran, Khartoum, Sudan', address_ar: 'المقرن، الخرطوم، السودان', phone: '+249 90 717 5005', display_order: 0 },
+  { icon: 'bi-building', title_en: 'Port Sudan, Sudan', title_ar: 'بورتسودان، السودان', office_label_en: 'Logistics Hub', office_label_ar: 'المركز اللوجستي', address_en: 'Port Sudan Harbor, Sudan', address_ar: 'ميناء بورتسودان، السودان', phone: '+249 90 717 5005', display_order: 1 },
 ];

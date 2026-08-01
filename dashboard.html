@@ -79,6 +79,7 @@
           <button type="button" class="sidebar-link pages-nav-link" data-tab="chairman"><i class="bi bi-person-badge"></i><span>Chairman's Message</span></button>
           <button type="button" class="sidebar-link pages-nav-link" data-tab="investment"><i class="bi bi-graph-up-arrow"></i><span>Investment</span></button>
           <button type="button" class="sidebar-link pages-nav-link" data-tab="logistics"><i class="bi bi-truck"></i><span>Logistics</span></button>
+          <button type="button" class="sidebar-link pages-nav-link" data-tab="aviation"><i class="bi bi-airplane"></i><span>Aviation &amp; Airports</span></button>
           <button type="button" class="sidebar-link pages-nav-link" data-tab="media"><i class="bi bi-newspaper"></i><span>Media Center</span></button>
           <button type="button" class="sidebar-link pages-nav-link" data-tab="contact"><i class="bi bi-envelope-paper"></i><span>Contact</span></button>
         </nav>
@@ -592,6 +593,77 @@
             <table class="admin-table">
               <thead><tr><th>Number</th><th>Label (EN)</th><th>Label (AR)</th><th>Active</th><th>Actions</th></tr></thead>
               <tbody id="logisticsStatsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="aviationSection" style="display:none;">
+        <div class="mb-4">
+          <h2 class="section-title" style="font-size:1.5rem;margin-bottom:4px;">Aviation &amp; Airport Infrastructure Page</h2>
+          <p class="section-subtitle" style="margin-bottom:0;">Edit every section of the public Aviation &amp; Airports page.</p>
+        </div>
+
+        <div class="admin-form-panel" style="margin-bottom:40px;">
+          <form id="aviationPageForm">
+            <input type="hidden" id="aviationPageId" />
+
+            <h3 class="section-title" style="font-size:1.1rem;">Hero Section</h3>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationHeroTagEn">Tag (English)</label><input type="text" id="aviationHeroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationHeroTagArInput">Tag (Arabic)</label><input type="text" id="aviationHeroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationHeroTitleEn">Title (English)</label><input type="text" id="aviationHeroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationHeroTitleArInput">Title (Arabic)</label><input type="text" id="aviationHeroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationHeroSubEn">Subtitle (English)</label><input type="text" id="aviationHeroSubEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationHeroSubArInput">Subtitle (Arabic)</label><input type="text" id="aviationHeroSubArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationHeroImageFile">Hero Background Image</label><input type="file" id="aviationHeroImageFile" class="form-control-custom" accept="image/*" /><div id="aviationHeroImageUploadStatus" style="font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:6px;"></div></div></div>
+              <div class="col-md-3 d-flex align-items-end"><img id="aviationHeroImagePreview" src="" alt="" style="display:none;max-height:70px;max-width:100%;border-radius:var(--radius-sm);border:1px solid rgba(212,175,55,0.2);object-fit:cover;" /></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="aviationHeroImageUrl">Hero Image URL</label><input type="text" id="aviationHeroImageUrl" class="form-control-custom" placeholder="Fills automatically after upload, or paste a link manually" /></div></div>
+            </div>
+
+            <h3 class="section-title" style="font-size:1.1rem;">Section Headers</h3>
+            <div class="row g-3 mb-3">
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationIntroTagEn">Vision/Overview Tag (English)</label><input type="text" id="aviationIntroTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationIntroTagArInput">Vision/Overview Tag (Arabic)</label><input type="text" id="aviationIntroTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationIntroTitleEn">Vision/Overview Title (English)</label><input type="text" id="aviationIntroTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationIntroTitleArInput">Vision/Overview Title (Arabic)</label><input type="text" id="aviationIntroTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationActivitiesTagEn">Activities Tag (English)</label><input type="text" id="aviationActivitiesTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationActivitiesTagArInput">Activities Tag (Arabic)</label><input type="text" id="aviationActivitiesTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationActivitiesTitleEn">Activities Title (English)</label><input type="text" id="aviationActivitiesTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationActivitiesTitleArInput">Activities Title (Arabic)</label><input type="text" id="aviationActivitiesTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationGalleryTagEn">Gallery Tag (English)</label><input type="text" id="aviationGalleryTagEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationGalleryTagArInput">Gallery Tag (Arabic)</label><input type="text" id="aviationGalleryTagArInput" class="form-control-custom" dir="rtl" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationGalleryTitleEn">Gallery Title (English)</label><input type="text" id="aviationGalleryTitleEn" class="form-control-custom" /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationGalleryTitleArInput">Gallery Title (Arabic)</label><input type="text" id="aviationGalleryTitleArInput" class="form-control-custom" dir="rtl" /></div></div>
+            </div>
+
+            <button type="submit" class="btn-gold btn-ripple">Save Page Text</button>
+            <span id="aviationPageStatus" style="font-size:0.85rem;margin-left:12px;"></span>
+          </form>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Vision / Overview / Commitment Cards</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddAviationVisionCardBtn"><i class="bi bi-plus-lg me-2"></i>Add Card</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Icon</th><th>Title (EN)</th><th>Title (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="aviationVisionCardsTableBody"><tr><td colspan="5" class="text-center py-4">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+            <h3 class="section-title" style="font-size:1.2rem;margin-bottom:0;">Business Activities</h3>
+            <button type="button" class="btn-gold btn-ripple" id="openAddAviationActivityBtn"><i class="bi bi-plus-lg me-2"></i>Add Activity</button>
+          </div>
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead><tr><th>Text (EN)</th><th>Text (AR)</th><th>Active</th><th>Actions</th></tr></thead>
+              <tbody id="aviationActivitiesTableBody"><tr><td colspan="4" class="text-center py-4">Loading…</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -1670,6 +1742,77 @@
           <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
             <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
             <button type="submit" class="btn-gold btn-ripple">Save Stat</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Aviation Vision Card Modal -->
+  <div class="modal fade" id="aviationVisionCardModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="aviationVisionCardModalTitle">Add Card</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="aviationVisionCardForm">
+          <div class="modal-body">
+            <input type="hidden" id="aviationVisionCardId" />
+            <div class="row g-3">
+              <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="dropdown">
+                  <button type="button" class="btn-icon" id="aviationVisionCardIconToggle" data-bs-toggle="dropdown" aria-expanded="false" title="Choose icon" style="width:56px;height:56px;">
+                    <i id="aviationVisionCardIconPreview" class="bi bi-eye" style="font-size:1.8rem;color:var(--gold);"></i>
+                  </button>
+                  <div class="dropdown-menu icon-picker-menu" id="aviationVisionCardIconMenu"></div>
+                </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form-group-custom">
+                  <label class="form-label-custom">Icon</label>
+                  <p style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin:0;">Click the icon on the left to pick a shape.</p>
+                  <input type="hidden" id="aviationVisionCardIcon" />
+                </div>
+              </div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationVisionCardTitleEn">Title (English)</label><input type="text" id="aviationVisionCardTitleEn" class="form-control-custom" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationVisionCardTitleAr">Title (Arabic)</label><input type="text" id="aviationVisionCardTitleAr" class="form-control-custom" dir="rtl" required /></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationVisionCardDescEn">Description (English)</label><textarea id="aviationVisionCardDescEn" class="form-control-custom" rows="4" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationVisionCardDescAr">Description (Arabic)</label><textarea id="aviationVisionCardDescAr" class="form-control-custom" rows="4" dir="rtl" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationVisionCardDisplayOrder">Display Order</label><input type="number" id="aviationVisionCardDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="aviationVisionCardIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="aviationVisionCardIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Card</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / Edit Aviation Activity Modal -->
+  <div class="modal fade" id="aviationActivityModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content auth-card" style="border-radius:var(--radius-md);">
+        <div class="modal-header" style="border-color:rgba(212,175,55,0.2);">
+          <h5 class="modal-title text-white" id="aviationActivityModalTitle">Add Activity</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="aviationActivityForm">
+          <div class="modal-body">
+            <input type="hidden" id="aviationActivityId" />
+            <div class="row g-3">
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="aviationActivityTextEn">Text (English)</label><textarea id="aviationActivityTextEn" class="form-control-custom" rows="2" required></textarea></div></div>
+              <div class="col-12"><div class="form-group-custom"><label class="form-label-custom" for="aviationActivityTextAr">Text (Arabic)</label><textarea id="aviationActivityTextAr" class="form-control-custom" rows="2" dir="rtl" required></textarea></div></div>
+              <div class="col-md-6"><div class="form-group-custom"><label class="form-label-custom" for="aviationActivityDisplayOrder">Display Order</label><input type="number" id="aviationActivityDisplayOrder" class="form-control-custom" value="0" /></div></div>
+              <div class="col-md-6 d-flex align-items-end"><div class="form-group-custom form-check ps-0"><input type="checkbox" id="aviationActivityIsActive" checked style="margin-right:8px;" /><label class="form-label-custom" for="aviationActivityIsActive" style="display:inline;">Active (visible on site)</label></div></div>
+            </div>
+          </div>
+          <div class="modal-footer" style="border-color:rgba(212,175,55,0.2);">
+            <button type="button" class="btn-outline-white" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn-gold btn-ripple">Save Activity</button>
           </div>
         </form>
       </div>
