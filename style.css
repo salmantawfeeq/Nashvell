@@ -1712,7 +1712,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 991px) {
   .hero-content-wrap { flex-direction: column; }
-  .hero-left { padding: 100px 0 40px; text-align: center; }
+  .hero-left { height: 100%; padding: 100px 0 40px; text-align: center; }
   .hero-desc { margin: 0 auto 2rem; }
   .hero-actions { justify-content: center; }
   .hero-center { display: none; }
