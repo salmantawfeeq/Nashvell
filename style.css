@@ -1365,7 +1365,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-copyright {
-  font-size: 0.8rem;
+  font-size: clamp(0.68rem, 2.8vw, 0.8rem);
   color: rgba(255,255,255,0.4);
   margin: 0;
 }
@@ -1390,6 +1390,10 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   background-position: center;
   opacity: 0.12;
+}
+
+#aviationHeroBg {
+  background-position: center 65%;
 }
 
 .page-hero-content { position: relative; z-index: 1; }
@@ -1643,6 +1647,11 @@ h1, h2, h3, h4, h5, h6 {
   .values-bar .row > div:last-child {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+
+  .about-image-card img {
+    height: auto;
+    object-fit: contain;
   }
 }
 

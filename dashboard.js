@@ -2535,6 +2535,294 @@ async function handleLogisticsStatFormSubmit(e) {
   loadLogisticsStats();
 }
 
+const AVIATION_IMAGE_BUCKET = 'aviation-images';
+
+async function uploadAviationImage(file, statusEl, urlInput, previewEl) {
+  statusEl.textContent = 'Uploading…';
+  const safeName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+  const path = `${Date.now()}-${safeName}`;
+
+  const { error: uploadError } = await supabaseClient
+    .storage
+    .from(AVIATION_IMAGE_BUCKET)
+    .upload(path, file, { upsert: false });
+
+  if (uploadError) {
+    statusEl.textContent = `Upload failed: ${uploadError.message}`;
+    return;
+  }
+
+  const { data } = supabaseClient.storage.from(AVIATION_IMAGE_BUCKET).getPublicUrl(path);
+  urlInput.value = data.publicUrl;
+  previewEl.src = data.publicUrl;
+  previewEl.style.display = '';
+  statusEl.textContent = 'Uploaded ✓';
+}
+
+async function loadAviationPage() {
+  const { data, error } = await supabaseClient.from('aviation_page').select('*').limit(1).maybeSingle();
+  if (error) {
+    showDashboardError(error.message);
+    return;
+  }
+
+  document.getElementById('aviationPageId').value = data?.id || '';
+  document.getElementById('aviationHeroTagEn').value = data?.hero_tag_en || '';
+  document.getElementById('aviationHeroTagArInput').value = data?.hero_tag_ar || '';
+  document.getElementById('aviationHeroTitleEn').value = data?.hero_title_en || '';
+  document.getElementById('aviationHeroTitleArInput').value = data?.hero_title_ar || '';
+  document.getElementById('aviationHeroSubEn').value = data?.hero_sub_en || '';
+  document.getElementById('aviationHeroSubArInput').value = data?.hero_sub_ar || '';
+  document.getElementById('aviationHeroImageUrl').value = data?.hero_image_url || '';
+  setImagePreview('aviationHeroImagePreview', data?.hero_image_url);
+
+  document.getElementById('aviationIntroTagEn').value = data?.intro_tag_en || '';
+  document.getElementById('aviationIntroTagArInput').value = data?.intro_tag_ar || '';
+  document.getElementById('aviationIntroTitleEn').value = data?.intro_title_en || '';
+  document.getElementById('aviationIntroTitleArInput').value = data?.intro_title_ar || '';
+
+  document.getElementById('aviationActivitiesTagEn').value = data?.activities_tag_en || '';
+  document.getElementById('aviationActivitiesTagArInput').value = data?.activities_tag_ar || '';
+  document.getElementById('aviationActivitiesTitleEn').value = data?.activities_title_en || '';
+  document.getElementById('aviationActivitiesTitleArInput').value = data?.activities_title_ar || '';
+
+  document.getElementById('aviationGalleryTagEn').value = data?.gallery_tag_en || '';
+  document.getElementById('aviationGalleryTagArInput').value = data?.gallery_tag_ar || '';
+  document.getElementById('aviationGalleryTitleEn').value = data?.gallery_title_en || '';
+  document.getElementById('aviationGalleryTitleArInput').value = data?.gallery_title_ar || '';
+}
+
+async function handleAviationPageFormSubmit(e) {
+  e.preventDefault();
+  const id = document.getElementById('aviationPageId').value;
+  const statusEl = document.getElementById('aviationPageStatus');
+  statusEl.style.color = '';
+  statusEl.textContent = 'Saving…';
+
+  const payload = {
+    hero_tag_en: document.getElementById('aviationHeroTagEn').value.trim(),
+    hero_tag_ar: document.getElementById('aviationHeroTagArInput').value.trim(),
+    hero_title_en: document.getElementById('aviationHeroTitleEn').value.trim(),
+    hero_title_ar: document.getElementById('aviationHeroTitleArInput').value.trim(),
+    hero_sub_en: document.getElementById('aviationHeroSubEn').value.trim(),
+    hero_sub_ar: document.getElementById('aviationHeroSubArInput').value.trim(),
+    hero_image_url: document.getElementById('aviationHeroImageUrl').value.trim(),
+    intro_tag_en: document.getElementById('aviationIntroTagEn').value.trim(),
+    intro_tag_ar: document.getElementById('aviationIntroTagArInput').value.trim(),
+    intro_title_en: document.getElementById('aviationIntroTitleEn').value.trim(),
+    intro_title_ar: document.getElementById('aviationIntroTitleArInput').value.trim(),
+    activities_tag_en: document.getElementById('aviationActivitiesTagEn').value.trim(),
+    activities_tag_ar: document.getElementById('aviationActivitiesTagArInput').value.trim(),
+    activities_title_en: document.getElementById('aviationActivitiesTitleEn').value.trim(),
+    activities_title_ar: document.getElementById('aviationActivitiesTitleArInput').value.trim(),
+    gallery_tag_en: document.getElementById('aviationGalleryTagEn').value.trim(),
+    gallery_tag_ar: document.getElementById('aviationGalleryTagArInput').value.trim(),
+    gallery_title_en: document.getElementById('aviationGalleryTitleEn').value.trim(),
+    gallery_title_ar: document.getElementById('aviationGalleryTitleArInput').value.trim(),
+  };
+
+  let pageId = id;
+  if (id) {
+    const { error } = await supabaseClient.from('aviation_page').update(payload).eq('id', id);
+    if (error) {
+      statusEl.style.color = '#e05252';
+      statusEl.textContent = error.message.includes('permission') ? "You don't have permission for this action." : error.message;
+      return;
+    }
+  } else {
+    const { data, error } = await supabaseClient.from('aviation_page').insert(payload).select('id').single();
+    if (error) {
+      statusEl.style.color = '#e05252';
+      statusEl.textContent = error.message.includes('permission') ? "You don't have permission for this action." : error.message;
+      return;
+    }
+    pageId = data.id;
+    document.getElementById('aviationPageId').value = pageId;
+  }
+
+  statusEl.style.color = '#2ecc71';
+  statusEl.textContent = 'Saved ✓';
+  setTimeout(() => { statusEl.textContent = ''; }, 3000);
+}
+
+let aviationVisionCardModalInstance = null;
+let aviationVisionCardIconPicker = null;
+
+async function loadAviationVisionCards() {
+  const tbody = document.getElementById('aviationVisionCardsTableBody');
+  const { data, error } = await supabaseClient
+    .from('aviation_vision_cards')
+    .select('*')
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4">Failed to load cards.</td></tr>`;
+    showDashboardError(error.message);
+    return;
+  }
+  if (!data.length) {
+    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4">No cards yet.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = data.map((c) => `
+    <tr data-id="${c.id}">
+      <td><i class="bi ${escapeHtml(c.icon)}" style="font-size:1.3rem;color:var(--primary);"></i></td>
+      <td>${escapeHtml(c.title_en)}</td>
+      <td dir="rtl">${escapeHtml(c.title_ar)}</td>
+      <td>${c.is_active ? '<span class="admin-badge admin-badge-active">Active</span>' : '<span class="admin-badge admin-badge-inactive">Hidden</span>'}</td>
+      <td class="admin-table-actions">
+        <button type="button" class="btn-icon" data-action="edit" title="Edit"><i class="bi bi-pencil"></i></button>
+        ${currentRole === 'admin' ? `<button type="button" class="btn-icon btn-icon-danger" data-action="delete" title="Delete"><i class="bi bi-trash"></i></button>` : ''}
+      </td>
+    </tr>
+  `).join('');
+
+  tbody.querySelectorAll('[data-action="edit"]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.closest('tr').dataset.id;
+      const card = data.find((c) => String(c.id) === String(id));
+      if (card) openAviationVisionCardModal(card);
+    });
+  });
+  tbody.querySelectorAll('[data-action="delete"]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const id = btn.closest('tr').dataset.id;
+      if (!confirm('Delete this card? This cannot be undone.')) return;
+      const { error: delError } = await supabaseClient.from('aviation_vision_cards').delete().eq('id', id);
+      if (delError) {
+        showDashboardError(delError.message.includes('permission') ? "You don't have permission for this action." : delError.message);
+        return;
+      }
+      loadAviationVisionCards();
+    });
+  });
+}
+
+function openAviationVisionCardModal(card) {
+  document.getElementById('aviationVisionCardModalTitle').textContent = card ? 'Edit Card' : 'Add Card';
+  document.getElementById('aviationVisionCardId').value = card?.id || '';
+  aviationVisionCardIconPicker.setIcon(card?.icon || 'bi-eye');
+  document.getElementById('aviationVisionCardTitleEn').value = card?.title_en || '';
+  document.getElementById('aviationVisionCardTitleAr').value = card?.title_ar || '';
+  document.getElementById('aviationVisionCardDescEn').value = card?.desc_en || '';
+  document.getElementById('aviationVisionCardDescAr').value = card?.desc_ar || '';
+  document.getElementById('aviationVisionCardDisplayOrder').value = card?.display_order ?? 0;
+  document.getElementById('aviationVisionCardIsActive').checked = card ? !!card.is_active : true;
+  aviationVisionCardModalInstance.show();
+}
+
+async function handleAviationVisionCardFormSubmit(e) {
+  e.preventDefault();
+  const id = document.getElementById('aviationVisionCardId').value;
+  const payload = {
+    icon: document.getElementById('aviationVisionCardIcon').value || 'bi-eye',
+    title_en: document.getElementById('aviationVisionCardTitleEn').value.trim(),
+    title_ar: document.getElementById('aviationVisionCardTitleAr').value.trim(),
+    desc_en: document.getElementById('aviationVisionCardDescEn').value.trim(),
+    desc_ar: document.getElementById('aviationVisionCardDescAr').value.trim(),
+    display_order: parseInt(document.getElementById('aviationVisionCardDisplayOrder').value, 10) || 0,
+    is_active: document.getElementById('aviationVisionCardIsActive').checked,
+  };
+
+  const { error } = id
+    ? await supabaseClient.from('aviation_vision_cards').update(payload).eq('id', id)
+    : await supabaseClient.from('aviation_vision_cards').insert(payload);
+
+  if (error) {
+    showDashboardError(error.message.includes('permission') ? "You don't have permission for this action." : error.message);
+    return;
+  }
+
+  aviationVisionCardModalInstance.hide();
+  loadAviationVisionCards();
+}
+
+let aviationActivityModalInstance = null;
+
+async function loadAviationActivities() {
+  const tbody = document.getElementById('aviationActivitiesTableBody');
+  const { data, error } = await supabaseClient
+    .from('aviation_activities')
+    .select('*')
+    .order('display_order', { ascending: true });
+
+  if (error) {
+    tbody.innerHTML = `<tr><td colspan="4" class="text-center py-4">Failed to load activities.</td></tr>`;
+    showDashboardError(error.message);
+    return;
+  }
+  if (!data.length) {
+    tbody.innerHTML = `<tr><td colspan="4" class="text-center py-4">No activities yet.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = data.map((a) => `
+    <tr data-id="${a.id}">
+      <td>${escapeHtml(a.text_en)}</td>
+      <td dir="rtl">${escapeHtml(a.text_ar)}</td>
+      <td>${a.is_active ? '<span class="admin-badge admin-badge-active">Active</span>' : '<span class="admin-badge admin-badge-inactive">Hidden</span>'}</td>
+      <td class="admin-table-actions">
+        <button type="button" class="btn-icon" data-action="edit" title="Edit"><i class="bi bi-pencil"></i></button>
+        ${currentRole === 'admin' ? `<button type="button" class="btn-icon btn-icon-danger" data-action="delete" title="Delete"><i class="bi bi-trash"></i></button>` : ''}
+      </td>
+    </tr>
+  `).join('');
+
+  tbody.querySelectorAll('[data-action="edit"]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.closest('tr').dataset.id;
+      const activity = data.find((a) => String(a.id) === String(id));
+      if (activity) openAviationActivityModal(activity);
+    });
+  });
+  tbody.querySelectorAll('[data-action="delete"]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const id = btn.closest('tr').dataset.id;
+      if (!confirm('Delete this activity? This cannot be undone.')) return;
+      const { error: delError } = await supabaseClient.from('aviation_activities').delete().eq('id', id);
+      if (delError) {
+        showDashboardError(delError.message.includes('permission') ? "You don't have permission for this action." : delError.message);
+        return;
+      }
+      loadAviationActivities();
+    });
+  });
+}
+
+function openAviationActivityModal(activity) {
+  document.getElementById('aviationActivityModalTitle').textContent = activity ? 'Edit Activity' : 'Add Activity';
+  document.getElementById('aviationActivityId').value = activity?.id || '';
+  document.getElementById('aviationActivityTextEn').value = activity?.text_en || '';
+  document.getElementById('aviationActivityTextAr').value = activity?.text_ar || '';
+  document.getElementById('aviationActivityDisplayOrder').value = activity?.display_order ?? 0;
+  document.getElementById('aviationActivityIsActive').checked = activity ? !!activity.is_active : true;
+  aviationActivityModalInstance.show();
+}
+
+async function handleAviationActivityFormSubmit(e) {
+  e.preventDefault();
+  const id = document.getElementById('aviationActivityId').value;
+  const payload = {
+    text_en: document.getElementById('aviationActivityTextEn').value.trim(),
+    text_ar: document.getElementById('aviationActivityTextAr').value.trim(),
+    display_order: parseInt(document.getElementById('aviationActivityDisplayOrder').value, 10) || 0,
+    is_active: document.getElementById('aviationActivityIsActive').checked,
+  };
+
+  const { error } = id
+    ? await supabaseClient.from('aviation_activities').update(payload).eq('id', id)
+    : await supabaseClient.from('aviation_activities').insert(payload);
+
+  if (error) {
+    showDashboardError(error.message.includes('permission') ? "You don't have permission for this action." : error.message);
+    return;
+  }
+
+  aviationActivityModalInstance.hide();
+  loadAviationActivities();
+}
+
 const MEDIA_IMAGE_BUCKET = 'media-images';
 
 async function uploadMediaImage(file, statusEl, urlInput, previewEl) {
@@ -3143,6 +3431,7 @@ const DASHBOARD_TAB_SECTIONS = {
   chairman: 'chairmanSection',
   investment: 'investmentSection',
   logistics: 'logisticsSection',
+  aviation: 'aviationSection',
   media: 'mediaSection',
   contact: 'contactSection',
 };
@@ -3321,6 +3610,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('openAddLogisticsStatBtn').addEventListener('click', () => openLogisticsStatModal(null));
   document.getElementById('logisticsStatForm').addEventListener('submit', handleLogisticsStatFormSubmit);
 
+  document.getElementById('aviationPageForm').addEventListener('submit', handleAviationPageFormSubmit);
+  document.getElementById('aviationHeroImageFile').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    uploadAviationImage(file, document.getElementById('aviationHeroImageUploadStatus'), document.getElementById('aviationHeroImageUrl'), document.getElementById('aviationHeroImagePreview'));
+  });
+
+  document.getElementById('openAddAviationVisionCardBtn').addEventListener('click', () => openAviationVisionCardModal(null));
+  document.getElementById('aviationVisionCardForm').addEventListener('submit', handleAviationVisionCardFormSubmit);
+  aviationVisionCardIconPicker = attachIconPicker(document.getElementById('aviationVisionCardModal'), {
+    toggleSelector: '#aviationVisionCardIconToggle',
+    menuSelector: '#aviationVisionCardIconMenu',
+    hiddenInputSelector: '#aviationVisionCardIcon',
+    previewSelector: '#aviationVisionCardIconPreview',
+  });
+
+  document.getElementById('openAddAviationActivityBtn').addEventListener('click', () => openAviationActivityModal(null));
+  document.getElementById('aviationActivityForm').addEventListener('submit', handleAviationActivityFormSubmit);
+
   document.getElementById('mediaPageForm').addEventListener('submit', handleMediaPageFormSubmit);
   document.getElementById('mediaHeroImageFile').addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -3387,6 +3695,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const investmentStepModalEl = document.getElementById('investmentStepModal');
   const logisticsServiceModalEl = document.getElementById('logisticsServiceModal');
   const logisticsStatModalEl = document.getElementById('logisticsStatModal');
+  const aviationVisionCardModalEl = document.getElementById('aviationVisionCardModal');
+  const aviationActivityModalEl = document.getElementById('aviationActivityModal');
   const mediaNewsModalEl = document.getElementById('mediaNewsModal');
   const contactInfoItemModalEl = document.getElementById('contactInfoItemModal');
   const contactOfficeModalEl = document.getElementById('contactOfficeModal');
@@ -3408,6 +3718,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     investmentStepModalInstance = new bootstrap.Modal(investmentStepModalEl);
     logisticsServiceModalInstance = new bootstrap.Modal(logisticsServiceModalEl);
     logisticsStatModalInstance = new bootstrap.Modal(logisticsStatModalEl);
+    aviationVisionCardModalInstance = new bootstrap.Modal(aviationVisionCardModalEl);
+    aviationActivityModalInstance = new bootstrap.Modal(aviationActivityModalEl);
     mediaNewsModalInstance = new bootstrap.Modal(mediaNewsModalEl);
     contactInfoItemModalInstance = new bootstrap.Modal(contactInfoItemModalEl);
     contactOfficeModalInstance = new bootstrap.Modal(contactOfficeModalEl);
@@ -3434,6 +3746,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   loadLogisticsPage();
   loadLogisticsServices();
   loadLogisticsStats();
+  loadAviationPage();
+  loadAviationVisionCards();
+  loadAviationActivities();
   loadMediaPage();
   loadMediaNews();
   loadContactPage();
