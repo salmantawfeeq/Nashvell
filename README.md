@@ -2,7 +2,7 @@
 
 A corporate website for Nashvell International Trading Co. Ltd., a company connecting Sudan to the world through trade, technology and investment.
 
-**Live demo:** https://salmantawfeeq.github.io/Nashvell/
+**Live site:** https://www.nashvell.com
 
 ## Screenshots
 
