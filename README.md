@@ -16,6 +16,7 @@ A corporate website for Nashvell International Trading Co. Ltd., a company conne
 - Content-driven pages: each section reads its content from a data file through a loader script, so content can be updated without touching the markup
 - Admin login and dashboard for managing site content
 - Supabase backend and an EmailJS-powered contact form
+- Remote maintenance mode: a flag in Supabase switches the whole site to a "temporarily unavailable" notice without a redeploy (`runtime-check.js`)
 - SEO basics: `sitemap.xml` and `robots.txt`
 
 ## Tech Stack
