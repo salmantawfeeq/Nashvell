@@ -1,3 +1,5 @@
+// Maintenance mode: when the flag in the `app_config` table is switched on from
+// Supabase, every page shows a "temporarily unavailable" notice instead of its content.
 (function () {
   function renderFallback() {
     document.body.innerHTML = `
